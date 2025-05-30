@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 
 public class GamePlay extends javax.swing.JFrame {
 
+    private HighScores score;
     /**
      * Creates new form GamePlay
      */
@@ -151,15 +152,20 @@ public class GamePlay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void highScoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoresButtonActionPerformed
-        // TODO add your handling code here:
+        if (score == null) {
+            score = new HighScores(this);
+        }
+        
+        score.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_highScoresButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void instructionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
