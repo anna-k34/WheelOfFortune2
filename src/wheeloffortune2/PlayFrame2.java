@@ -11,6 +11,7 @@ package wheeloffortune2;
 public class PlayFrame2 extends javax.swing.JFrame {
 
     PlayFrame1 firstFrame;
+    private PlayFrame3 thirdFrame;
     public PlayFrame2(PlayFrame1 f) {
         initComponents();
         firstFrame=f;
@@ -489,7 +490,13 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_hintTextFieldActionPerformed
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
-        // TODO add your handling code here:
+        if(thirdFrame==null){
+            thirdFrame=new PlayFrame3(this);
+            
+        }
+        thirdFrame.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
 
     /**
