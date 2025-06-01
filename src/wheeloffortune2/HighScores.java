@@ -29,45 +29,83 @@ public class HighScores extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        highscoresTextArea = new javax.swing.JTextArea();
+        highScoreButton = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
+        quitButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 204));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 102));
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 30)); // NOI18N
-        jLabel1.setText("HIGHSCORES");
+        highscoresTextArea.setEditable(false);
+        highscoresTextArea.setBackground(new java.awt.Color(255, 255, 102));
+        highscoresTextArea.setColumns(20);
+        highscoresTextArea.setRows(5);
+        jScrollPane1.setViewportView(highscoresTextArea);
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 102));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        highScoreButton.setBackground(new java.awt.Color(255, 255, 102));
+        highScoreButton.setFont(new java.awt.Font("MS UI Gothic", 1, 40)); // NOI18N
+        highScoreButton.setForeground(new java.awt.Color(255, 255, 102));
+        highScoreButton.setText(" HIGHSCORES");
+        highScoreButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 7, true));
+
+        backButton.setBackground(new java.awt.Color(255, 255, 102));
+        backButton.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+        backButton.setForeground(new java.awt.Color(0, 51, 204));
+        backButton.setText("BACK");
+        backButton.setToolTipText("");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        quitButton1.setBackground(new java.awt.Color(255, 255, 102));
+        quitButton1.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+        quitButton1.setForeground(new java.awt.Color(0, 51, 204));
+        quitButton1.setText("QUIT");
+        quitButton1.setToolTipText("");
+        quitButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(301, Short.MAX_VALUE)
+                .addGap(146, 146, 146)
+                .addComponent(highScoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(294, 294, 294))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))))
+                    .addComponent(quitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(highScoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backButton)
+                        .addGap(26, 26, 26)
+                        .addComponent(quitButton1)
+                        .addGap(86, 86, 86))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -84,12 +122,25 @@ public class HighScores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        this.setVisible(false);
+        GamePlay main = new GamePlay();
+        main.setVisible(true);
+
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void quitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_quitButton1ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton backButton;
+    private javax.swing.JLabel highScoreButton;
+    private javax.swing.JTextArea highscoresTextArea;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton quitButton1;
     // End of variables declaration//GEN-END:variables
 }
