@@ -15,6 +15,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
     PlayFrame1 firstFrame;
     private PlayFrame3 thirdFrame;
+    private PlayFrame4 fourthFrame;
     public PlayFrame2(PlayFrame1 f) {
         initComponents();
         firstFrame=f;
@@ -97,106 +98,137 @@ public class PlayFrame2 extends javax.swing.JFrame {
         guessesLeftLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
 
         letter0.setBackground(new java.awt.Color(255, 0, 0));
+        letter0.setEditable(false);
         letter0.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter0.setForeground(new java.awt.Color(255, 255, 255));
+        letter0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                letter0ActionPerformed(evt);
+            }
+        });
 
         letter1.setBackground(new java.awt.Color(255, 0, 0));
+        letter1.setEditable(false);
         letter1.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter1.setForeground(new java.awt.Color(255, 255, 255));
 
         letter2.setBackground(new java.awt.Color(255, 0, 0));
+        letter2.setEditable(false);
         letter2.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter2.setForeground(new java.awt.Color(255, 255, 255));
 
         letter3.setBackground(new java.awt.Color(255, 0, 0));
+        letter3.setEditable(false);
         letter3.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter3.setForeground(new java.awt.Color(255, 255, 255));
 
         letter4.setBackground(new java.awt.Color(255, 0, 0));
+        letter4.setEditable(false);
         letter4.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter4.setForeground(new java.awt.Color(255, 255, 255));
 
         letter5.setBackground(new java.awt.Color(255, 0, 0));
+        letter5.setEditable(false);
         letter5.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter5.setForeground(new java.awt.Color(255, 255, 255));
 
         letter6.setBackground(new java.awt.Color(255, 0, 0));
+        letter6.setEditable(false);
         letter6.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter6.setForeground(new java.awt.Color(255, 255, 255));
 
         letter7.setBackground(new java.awt.Color(255, 0, 0));
+        letter7.setEditable(false);
         letter7.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter7.setForeground(new java.awt.Color(255, 255, 255));
 
         letter9.setBackground(new java.awt.Color(255, 0, 0));
+        letter9.setEditable(false);
         letter9.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter9.setForeground(new java.awt.Color(255, 255, 255));
 
         letter10.setBackground(new java.awt.Color(255, 0, 0));
+        letter10.setEditable(false);
         letter10.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter10.setForeground(new java.awt.Color(255, 255, 255));
 
         letter11.setBackground(new java.awt.Color(255, 0, 0));
+        letter11.setEditable(false);
         letter11.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter11.setForeground(new java.awt.Color(255, 255, 255));
 
         letter12.setBackground(new java.awt.Color(255, 0, 0));
+        letter12.setEditable(false);
         letter12.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter12.setForeground(new java.awt.Color(255, 255, 255));
 
         letter13.setBackground(new java.awt.Color(255, 0, 0));
+        letter13.setEditable(false);
         letter13.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter13.setForeground(new java.awt.Color(255, 255, 255));
 
         letter8.setBackground(new java.awt.Color(255, 0, 0));
+        letter8.setEditable(false);
         letter8.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter8.setForeground(new java.awt.Color(255, 255, 255));
 
         letter14.setBackground(new java.awt.Color(255, 0, 0));
+        letter14.setEditable(false);
         letter14.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter14.setForeground(new java.awt.Color(255, 255, 255));
 
         letter15.setBackground(new java.awt.Color(255, 0, 0));
+        letter15.setEditable(false);
         letter15.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter15.setForeground(new java.awt.Color(255, 255, 255));
 
         letter16.setBackground(new java.awt.Color(255, 0, 0));
+        letter16.setEditable(false);
         letter16.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter16.setForeground(new java.awt.Color(255, 255, 255));
 
         letter17.setBackground(new java.awt.Color(255, 0, 0));
+        letter17.setEditable(false);
         letter17.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter17.setForeground(new java.awt.Color(255, 255, 255));
 
         letter18.setBackground(new java.awt.Color(255, 0, 0));
+        letter18.setEditable(false);
         letter18.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter18.setForeground(new java.awt.Color(255, 255, 255));
 
         letter19.setBackground(new java.awt.Color(255, 0, 0));
+        letter19.setEditable(false);
         letter19.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter19.setForeground(new java.awt.Color(255, 255, 255));
 
         letter20.setBackground(new java.awt.Color(255, 0, 0));
+        letter20.setEditable(false);
         letter20.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter20.setForeground(new java.awt.Color(255, 255, 255));
 
         letter21.setBackground(new java.awt.Color(255, 0, 0));
+        letter21.setEditable(false);
         letter21.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter21.setForeground(new java.awt.Color(255, 255, 255));
 
         letter22.setBackground(new java.awt.Color(255, 0, 0));
+        letter22.setEditable(false);
         letter22.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter22.setForeground(new java.awt.Color(255, 255, 255));
 
         letter23.setBackground(new java.awt.Color(255, 0, 0));
+        letter23.setEditable(false);
         letter23.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter23.setForeground(new java.awt.Color(255, 255, 255));
 
         letter24.setBackground(new java.awt.Color(255, 0, 0));
+        letter24.setEditable(false);
         letter24.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter24.setForeground(new java.awt.Color(255, 255, 255));
 
         letter25.setBackground(new java.awt.Color(255, 0, 0));
+        letter25.setEditable(false);
         letter25.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
         letter25.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -517,6 +549,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
+
+    private void letter0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_letter0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_letter0ActionPerformed
 
     /**
      * @param args the command line arguments
