@@ -4,6 +4,8 @@
  */
 package wheeloffortune2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author annak
@@ -12,6 +14,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     private PlayFrame2 secondFrame;
     GamePlay firstWindow;
+    private Phrase p;
 
     public PlayFrame1(GamePlay f) {
         initComponents();
@@ -135,7 +138,17 @@ public class PlayFrame1 extends javax.swing.JFrame {
         secondFrame.setVisible(true);
         this.setVisible(false);
 
+        ArrayList<Phrase> phrases = firstWindow.getPhrases();
+
+        int rNum = (int) (Math.random() * phrases.size()) + 0;
+        ArrayList<Phrase> copy = (ArrayList<Phrase>) phrases.clone();
+        p = copy.get(rNum);
+        copy.remove(p);
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
+
+    public Phrase getP() {
+        return p;
+    }
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
         // TODO add your handling code here:

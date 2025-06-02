@@ -4,6 +4,9 @@
  */
 package wheeloffortune2;
 
+import java.util.ArrayList;
+
+
 /**
  *
  * @author annak
@@ -474,11 +477,27 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed
-
+        
+        
     }//GEN-LAST:event_guessVowelButtonActionPerformed
 
     private void guessConsonantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessConsonantButtonActionPerformed
-        // TODO add your handling code here:
+        String answer;
+        String answerSplit[];
+        int count;
+        int totalCount;
+        
+        Phrase p = firstFrame.getP();
+        
+        answer = p.getAnswer();
+        answerSplit = answer.split("");
+        
+        TextField[] letters = {letter0, letter1, letter2, letter3, letter4}; 
+        
+        for (int i = 0; i < answerSplit.length; i++) {
+            count = answerSplit[i].length();
+            
+        }
     }//GEN-LAST:event_guessConsonantButtonActionPerformed
 
     private void hintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintButtonActionPerformed

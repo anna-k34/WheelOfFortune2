@@ -4,11 +4,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import javax.swing.JOptionPane;
 
 public class GamePlay extends javax.swing.JFrame {
     private Instructions instructions;
     private HighScores score;
     private PlayFrame1 firstPlayScreen;
+    private ArrayList phrases;
+
+    public ArrayList<Phrase> getPhrases() {
+        return phrases;
+    }
+
+    public void setPhrases(ArrayList<Phrase> phrases) {
+        this.phrases = phrases;
+    }
     /**
      * Creates new form GamePlay
      */
@@ -33,6 +43,8 @@ public class GamePlay extends javax.swing.JFrame {
             System.out.println("Error " + e);
         }
     }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -194,6 +206,9 @@ public class GamePlay extends javax.swing.JFrame {
         }
         firstPlayScreen.setVisible(true);
         this.setVisible(false);
+        
+        phrases = new ArrayList();
+        scanFile(phrases);
         
     }//GEN-LAST:event_playButtonActionPerformed
 
