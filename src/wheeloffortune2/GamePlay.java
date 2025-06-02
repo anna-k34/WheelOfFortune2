@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import javax.swing.JOptionPane;
 
 public class GamePlay extends javax.swing.JFrame {
     private Instructions instructions;
@@ -15,12 +16,47 @@ public class GamePlay extends javax.swing.JFrame {
     public GamePlay() {
         initComponents();
     }
-
+    public static ArrayList scanPlayerListFile(){
+        ArrayList<String> username=new ArrayList();
+        Player p;
+        int highscore;
+        try {
+            File f = new File("src/wheeloffortune2/playerList");
+            Scanner s = new Scanner(f);
+            while (s.hasNextLine()) {
+                username.add(s.nextLine());
+                highscore = Integer.parseInt(s.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error " + e);
+        }
+        
+    return username;
+        
+    }
+    public static boolean usernameCheck(String u){
+        ArrayList<String> usernameList=new ArrayList();
+        usernameList=scanPlayerListFile();
+        boolean equals=false;
+        for(int i=0;i<usernameList.size();i++){
+            if(usernameList.get(i).equals(u)){
+                equals=true;
+            }
+        }       
+        if(u.length()>20){
+            JOptionPane.showMessageDialog(null, "Username is too long. Try again");
+            return false;
+        }else if(equals){
+            JOptionPane.showMessageDialog(null, "Username has already been used. Try again");
+            return false;
+        }
+        return true;
+    }
     public static void scanFile(ArrayList<Phrase> phrases) {
         String question, hint, answer;
         Phrase p;
         try {
-            File f = new File("src/wheeloffortune2/phrases.txt");
+            File f = new File("src/wheeloffortune2/phrases.txt");//THIS DOESN'T WORK
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
                 question = s.nextLine();
@@ -189,11 +225,17 @@ public class GamePlay extends javax.swing.JFrame {
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         // add error checking for username!!!!
-        if(firstPlayScreen==null){
+        boolean usernameTest=usernameCheck(usernameTextField.getText());
+        if(firstPlayScreen==null&&usernameTest){
             firstPlayScreen=new PlayFrame1(this);
-        }
-        firstPlayScreen.setVisible(true);
+            firstPlayScreen.setVisible(true);
+            Player p=new Player(usernameTextField.getText(),0);
         this.setVisible(false);
+        }else if(!usernameTest){
+           usernameTextField.setText("");
+
+        }
+        
         
     }//GEN-LAST:event_playButtonActionPerformed
 
