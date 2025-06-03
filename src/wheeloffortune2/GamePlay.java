@@ -65,7 +65,7 @@ public class GamePlay extends javax.swing.JFrame {
         String question, hint, answer;
         Phrase p;
         try {
-            File f = new File("src/wheeloffortune2/phrases.txt");//THIS DOESN'T WORK
+            File f = new File("src/wheeloffortune2/phrase.txt");//THIS DOESN'T WORK
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
                 question = s.nextLine();

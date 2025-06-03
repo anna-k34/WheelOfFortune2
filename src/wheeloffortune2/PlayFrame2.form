@@ -238,6 +238,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter7" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="letter8" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter9" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter10" min="-2" pref="50" max="-2" attributes="0"/>
@@ -245,24 +247,22 @@
                               <Component id="letter11" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter12" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="letter13" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="letter8" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="letter15" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="letter13" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter14" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="letter15" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter16" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter17" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="letter19" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter18" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="letter19" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter20" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -272,9 +272,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="letter23" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="letter25" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="letter24" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="letter25" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -286,11 +286,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="letter13" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter12" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter11" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter10" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter9" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="letter8" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter7" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter6" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter5" min="-2" pref="65" max="-2" attributes="0"/>
@@ -302,19 +302,19 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="letter8" min="-2" pref="65" max="-2" attributes="0"/>
-                          <Component id="letter15" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="letter13" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter14" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="letter15" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter16" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter17" min="-2" pref="65" max="-2" attributes="0"/>
-                          <Component id="letter19" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter18" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="letter19" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter20" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter21" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter22" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter23" min="-2" pref="65" max="-2" attributes="0"/>
-                          <Component id="letter25" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="letter24" min="-2" pref="65" max="-2" attributes="0"/>
+                          <Component id="letter25" min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -437,6 +437,20 @@
                 </Property>
               </Properties>
             </Component>
+            <Component class="java.awt.TextField" name="letter8">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="MS UI Gothic" size="18" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
             <Component class="java.awt.TextField" name="letter9">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -494,20 +508,6 @@
               </Properties>
             </Component>
             <Component class="java.awt.TextField" name="letter13">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="ff" type="rgb"/>
-                </Property>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="MS UI Gothic" size="18" style="0"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="java.awt.TextField" name="letter8">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
