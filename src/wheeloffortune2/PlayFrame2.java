@@ -37,7 +37,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
-        highscore=Integer.parseInt(totalMoneyLabel.getText());
+        highscore=Integer.parseInt("100");
         player=firstFrame.getPlayer();
     }
 
@@ -562,11 +562,14 @@ public class PlayFrame2 extends javax.swing.JFrame {
         int consValue;
         String answer;
         String checkConsonant = consField1.getText();
+        char consonant;
+        char answerLetter;
+        int count = 0;
 
         if (checkConsonant.length() != 1) {
             JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            char consonant = checkConsonant.charAt(0);
+            consonant = checkConsonant.charAt(0);
             letterCheck = Character.isLetter(consonant);
 
             if (!letterCheck) {
@@ -579,6 +582,16 @@ public class PlayFrame2 extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "That is a vowel not a consonant!", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                    Phrase p = firstFrame.getPhrase();
+                   answer = p.getAnswer();
+                   
+                   for (int i = 0; i < answer.length(); i++) {
+                       answerLetter = answer.charAt(i);
+                       if (answerLetter == consonant) {
+                           letters[i].setText(Character.toString((Character.toUpperCase(consonant))));
+                           count++;
+                       }
+                       
+                   }
                 }
             }
 
