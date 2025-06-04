@@ -199,6 +199,7 @@ public class PlayFrame4 extends javax.swing.JFrame {
     private void saveScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveScoreButtonActionPerformed
         Player player=secondFrame.getPlayer();
         int highscore=secondFrame.getHighscore();
+        player.setHighscore(highscore);
     }//GEN-LAST:event_saveScoreButtonActionPerformed
 
     /**
