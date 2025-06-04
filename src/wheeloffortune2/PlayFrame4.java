@@ -11,7 +11,8 @@ package wheeloffortune2;
 public class PlayFrame4 extends javax.swing.JFrame {
 
         PlayFrame2 secondFrame;
-
+        
+        
     public PlayFrame4(PlayFrame2 f) {
         secondFrame=f;
         initComponents();
@@ -35,6 +36,7 @@ public class PlayFrame4 extends javax.swing.JFrame {
         totalMoneyLabel = new javax.swing.JLabel();
         highscoresButton1 = new javax.swing.JButton();
         quitButton = new javax.swing.JButton();
+        saveScoreButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +100,17 @@ public class PlayFrame4 extends javax.swing.JFrame {
             }
         });
 
+        saveScoreButton.setBackground(new java.awt.Color(255, 255, 102));
+        saveScoreButton.setFont(new java.awt.Font("MS UI Gothic", 1, 24)); // NOI18N
+        saveScoreButton.setForeground(new java.awt.Color(0, 51, 204));
+        saveScoreButton.setText("Save Score");
+        saveScoreButton.setToolTipText("");
+        saveScoreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveScoreButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,15 +133,17 @@ public class PlayFrame4 extends javax.swing.JFrame {
                 .addContainerGap(79, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(41, 41, 41)
-                    .addComponent(highscoresButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(580, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(highscoresButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(playAgainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(saveScoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(280, 280, 280))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,20 +154,18 @@ public class PlayFrame4 extends javax.swing.JFrame {
                     .addComponent(noEditLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(phraseAnswerLabel)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guessesLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                    .addComponent(guessesLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(saveScoreButton)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playAgainButton)
-                    .addComponent(quitButton))
+                    .addComponent(quitButton)
+                    .addComponent(highscoresButton1))
                 .addContainerGap(52, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(277, Short.MAX_VALUE)
-                    .addComponent(highscoresButton1)
-                    .addGap(50, 50, 50)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,6 +196,11 @@ public class PlayFrame4 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_quitButtonActionPerformed
 
+    private void saveScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveScoreButtonActionPerformed
+        Player player=secondFrame.getPlayer();
+        int highscore=secondFrame.getHighscore();
+    }//GEN-LAST:event_saveScoreButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +215,7 @@ public class PlayFrame4 extends javax.swing.JFrame {
     private javax.swing.JLabel phraseAnswerLabel;
     private javax.swing.JButton playAgainButton;
     private javax.swing.JButton quitButton;
+    private javax.swing.JButton saveScoreButton;
     private javax.swing.JLabel totalMoneyLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,11 +7,13 @@ import java.io.FileNotFoundException;
 import javax.swing.JOptionPane;
 
 public class GamePlay extends javax.swing.JFrame {
+
     private Instructions instructions;
     private HighScores score;
     private PlayFrame1 firstPlayScreen;
     private ArrayList phrases;
-
+    private String username;
+    private Player player;
     public ArrayList<Phrase> getPhrases() {
         return phrases;
     }
@@ -19,14 +21,21 @@ public class GamePlay extends javax.swing.JFrame {
     public void setPhrases(ArrayList<Phrase> phrases) {
         this.phrases = phrases;
     }
+    public String getUsername() {
+        return username;
+    }
+    public Player getPlayer(){
+        return player;
+    }
     /**
      * Creates new form GamePlay
      */
     public GamePlay() {
         initComponents();
     }
-    public static ArrayList scanPlayerListFile(){
-        ArrayList<String> username=new ArrayList();
+
+    public static ArrayList scanPlayerListFile() {
+        ArrayList<String> username = new ArrayList();
         Player p;
         int highscore;
         try {
@@ -39,28 +48,33 @@ public class GamePlay extends javax.swing.JFrame {
         } catch (FileNotFoundException e) {
             System.out.println("Error " + e);
         }
-        
-    return username;
-        
+
+        return username;
+
     }
-    public static boolean usernameCheck(String u){
-        ArrayList<String> usernameList=new ArrayList();
-        usernameList=scanPlayerListFile();
-        boolean equals=false;
-        for(int i=0;i<usernameList.size();i++){
-            if(usernameList.get(i).equals(u)){
-                equals=true;
+
+    public static boolean usernameCheck(String u) {
+        ArrayList<String> usernameList = new ArrayList();
+        usernameList = scanPlayerListFile();
+        boolean equals = false;
+        for (int i = 0; i < usernameList.size(); i++) {
+            if (usernameList.get(i).equals(u)) {
+                equals = true;
             }
-        }       
-        if(u.length()>20){
+        }
+        if (u.length() > 20) {
             JOptionPane.showMessageDialog(null, "Username is too long. Try again");
             return false;
-        }else if(equals){
+        } else if (equals) {
             JOptionPane.showMessageDialog(null, "Username has already been used. Try again");
+            return false;
+        } else if (u.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid username.");
             return false;
         }
         return true;
     }
+
     public static void scanFile(ArrayList<Phrase> phrases) {
         String question, hint, answer;
         Phrase p;
@@ -78,8 +92,7 @@ public class GamePlay extends javax.swing.JFrame {
             System.out.println("Error " + e);
         }
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -229,34 +242,33 @@ public class GamePlay extends javax.swing.JFrame {
         if (score == null) {
             score = new HighScores(this);
         }
-        
+
         score.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_highScoresButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         // add error checking for username!!!!
-        boolean usernameTest=usernameCheck(usernameTextField.getText());
-        if(firstPlayScreen==null&&usernameTest){
-            firstPlayScreen=new PlayFrame1(this);
+        boolean usernameTest = usernameCheck(usernameTextField.getText());
+        if (firstPlayScreen == null && usernameTest) {
+            firstPlayScreen = new PlayFrame1(this);
             firstPlayScreen.setVisible(true);
-            Player p=new Player(usernameTextField.getText(),0);
-        this.setVisible(false);
-        }else if(!usernameTest){
-           usernameTextField.setText("");
+            player = new Player(usernameTextField.getText(), 0);
+            this.setVisible(false);
+        } else if (!usernameTest) {
+            usernameTextField.setText("");
 
         }
-        
-        
+
         phrases = new ArrayList();
         scanFile(phrases);
-        
-    }//GEN-LAST:event_playButtonActionPerformed
 
+    }//GEN-LAST:event_playButtonActionPerformed
+    
     private void instructionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
-        if(instructions==null){
-            instructions=new Instructions(this);
-            
+        if (instructions == null) {
+            instructions = new Instructions(this);
+
         }
         instructions.setVisible(true);
         this.setVisible(false);
