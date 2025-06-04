@@ -4,7 +4,9 @@
  */
 package wheeloffortune2;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.awt.TextField;
 
 /**
  *
@@ -144,6 +146,32 @@ public class PlayFrame1 extends javax.swing.JFrame {
         ArrayList<Phrase> copy = (ArrayList<Phrase>) phrases.clone();
         p = copy.get(rNum);
         copy.remove(p);
+        
+        String answer;
+        String answerSplit[];
+        int count;
+        int totalCount = 0;
+       
+        
+        answer = p.getAnswer();
+        answerSplit = answer.split(" ");
+        
+        TextField letters[] = secondFrame.getLetters();
+        
+        for (int i = 0; i < answerSplit.length; i++) {
+            count = answerSplit[i].length();
+            for (int j = totalCount; j < count + totalCount; j++) {
+                letters[j].setBackground(Color.green);
+            }
+            
+            if (i < answerSplit.length - 1) {
+                letters[totalCount + count].setBackground(Color.white);
+            }
+            
+            totalCount += count + 1;
+            
+            
+        }
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
 
     public Phrase getP() {

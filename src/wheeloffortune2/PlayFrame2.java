@@ -7,7 +7,7 @@ package wheeloffortune2;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.TextField;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,9 +18,18 @@ public class PlayFrame2 extends javax.swing.JFrame {
     PlayFrame1 firstFrame;
     private PlayFrame3 thirdFrame;
     private PlayFrame4 fourthFrame;
+    private TextField letters[];
+
+    public TextField[] getLetters() {
+        return letters;
+    }
+
     public PlayFrame2(PlayFrame1 f) {
         initComponents();
-        firstFrame=f;
+        firstFrame = f;
+        letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
+            letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
+            letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
     }
 
     /**
@@ -511,40 +520,30 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_guessVowelButtonActionPerformed
 
     private void guessConsonantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessConsonantButtonActionPerformed
-        String answer;
-        String answerSplit[];
-        int count;
-        int totalCount = 0;
-        
-        Phrase p = firstFrame.getP();
-        
-        answer = p.getAnswer();
-        answerSplit = answer.split(" ");
-        
-        TextField[] letters = {letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7, 
-            letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17, 
-            letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25}; 
-        
-        for (int i = 0; i < answerSplit.length; i++) {
-            count = answerSplit[i].length();
-            for (int j = totalCount; j < count + totalCount; j++) {
-                letters[j].setBackground(Color.green);
-            }
-            
-            if (i < answerSplit.length - 1) {
-                letters[totalCount + count].setBackground(Color.white);
-            }
-            
-            totalCount += count + 1;
-            
-            
+        boolean check;
+        String checkConsonant = consField1.getText();
+
+        if (checkConsonant.length() != 1) {
+            JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!");
+            check = false;
         }
         
+        char consonant = checkConsonant.charAt(0);
+        check = Character.isLetter(consonant);
+        
+
+        
+        
+        System.out.println(consonant);
+        
+        
+
+
     }//GEN-LAST:event_guessConsonantButtonActionPerformed
 
     private void hintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintButtonActionPerformed
@@ -556,13 +555,13 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_hintTextFieldActionPerformed
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
-        if(thirdFrame==null){
-            thirdFrame=new PlayFrame3(this);
-            
+        if (thirdFrame == null) {
+            thirdFrame = new PlayFrame3(this);
+
         }
         thirdFrame.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
 
     private void letter0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_letter0ActionPerformed
@@ -572,7 +571,6 @@ public class PlayFrame2 extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField consField1;
