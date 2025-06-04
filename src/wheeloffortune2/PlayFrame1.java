@@ -174,7 +174,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
 
-    public Phrase getP() {
+    public Phrase getPhrase() {
         return p;
     }
 

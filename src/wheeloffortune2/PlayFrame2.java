@@ -525,23 +525,31 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_guessVowelButtonActionPerformed
 
     private void guessConsonantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessConsonantButtonActionPerformed
-        boolean check;
+        boolean letterCheck;
+        int consValue;
+        String answer;
         String checkConsonant = consField1.getText();
 
         if (checkConsonant.length() != 1) {
-            JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!");
-            check = false;
-        }
-        
-        char consonant = checkConsonant.charAt(0);
-        check = Character.isLetter(consonant);
-        
+            JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            char consonant = checkConsonant.charAt(0);
+            letterCheck = Character.isLetter(consonant);
 
-        
-        
-        System.out.println(consonant);
-        
-        
+            if (!letterCheck) {
+                JOptionPane.showMessageDialog(null, "That is not a letter, let alone a consonant! Try again", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                consValue = Character.getNumericValue(consonant);
+                System.out.println(consValue);
+                
+                if (consValue == 10 || consValue == 14 || consValue == 18 || consValue == 24 || consValue == 30) {
+                    JOptionPane.showMessageDialog(null, "That is a vowel not a consonant!", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                   Phrase p = firstFrame.getPhrase();
+                }
+            }
+
+        }
 
 
     }//GEN-LAST:event_guessConsonantButtonActionPerformed
