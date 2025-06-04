@@ -4,17 +4,21 @@
  */
 package wheeloffortune2;
 
-/**
- *
- * @author annak
- */
+import javax.swing.*;
+
 public class PlayFrame3 extends javax.swing.JFrame {
 
     PlayFrame2 secondFrame;
+    private JLabel phraseAnswer;
   
     public PlayFrame3(PlayFrame2 f) {
         initComponents();
         secondFrame=f;
+        phraseAnswer = phraseAnswerLabel;
+    }
+
+    public JLabel getPhraseAnswerLabel() {
+        return phraseAnswerLabel;
     }
 
     /**

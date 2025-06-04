@@ -7,6 +7,7 @@ package wheeloffortune2;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.TextField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,14 +17,16 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     private PlayFrame2 secondFrame;
     GamePlay firstWindow;
-    private Phrase p;
     private String username;
     private Player player;
+    private ArrayList<Phrase> phrases;
+    private Phrase p;
     public PlayFrame1(GamePlay f) {
         initComponents();
         firstWindow = f;
-        username=firstWindow.getUsername();
-        player=firstWindow.getPlayer();
+        username = firstWindow.getUsername();
+        player = firstWindow.getPlayer();
+        phrases = firstWindow.getPhrases();
     }
     public String getUsername(){
         return username;
@@ -142,18 +145,17 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
+        
+        ArrayList<Phrase> copy = (ArrayList<Phrase>) phrases.clone();
+        int rNum = (int) (Math.random() * copy.size()) + 0;
+        p = copy.get(rNum);
+        copy.remove(p);
+        
         if (secondFrame == null) {
             secondFrame = new PlayFrame2(this);
         }
         secondFrame.setVisible(true);
         this.setVisible(false);
-
-        ArrayList<Phrase> phrases = firstWindow.getPhrases();
-
-        int rNum = (int) (Math.random() * phrases.size()) + 0;
-        ArrayList<Phrase> copy = (ArrayList<Phrase>) phrases.clone();
-        p = copy.get(rNum);
-        copy.remove(p);
         
         String answer;
         String answerSplit[];
@@ -180,6 +182,10 @@ public class PlayFrame1 extends javax.swing.JFrame {
             
             
         }
+        
+        System.out.println(p);
+        JTextField clue = secondFrame.getClueField();
+        clue.setText(p.getQuestion());
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
 
     public Phrase getPhrase() {

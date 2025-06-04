@@ -11,7 +11,7 @@ public class GamePlay extends javax.swing.JFrame {
     private Instructions instructions;
     private HighScores score;
     private PlayFrame1 firstPlayScreen;
-    private ArrayList phrases;
+    private ArrayList<Phrase> phrases;
     private String username;
     private Player player;
     public ArrayList<Phrase> getPhrases() {
@@ -249,6 +249,9 @@ public class GamePlay extends javax.swing.JFrame {
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         // add error checking for username!!!!
+        phrases = new ArrayList();
+        scanFile(phrases);
+        
         boolean usernameTest = usernameCheck(usernameTextField.getText());
         if (firstPlayScreen == null && usernameTest) {
             firstPlayScreen = new PlayFrame1(this);
@@ -260,8 +263,7 @@ public class GamePlay extends javax.swing.JFrame {
 
         }
 
-        phrases = new ArrayList();
-        scanFile(phrases);
+        
 
     }//GEN-LAST:event_playButtonActionPerformed
     

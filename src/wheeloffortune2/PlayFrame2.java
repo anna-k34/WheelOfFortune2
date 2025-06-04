@@ -4,10 +4,8 @@
  */
 package wheeloffortune2;
 
-import java.awt.Color;
-import java.util.ArrayList;
 import java.awt.TextField;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -21,6 +19,9 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private TextField letters[];
     private int highscore;
     private Player player;
+    private JTextField clue;
+    private Phrase p;
+    private String answer;
 
     public TextField[] getLetters() {
         return letters;
@@ -40,8 +41,15 @@ public class PlayFrame2 extends javax.swing.JFrame {
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
+        clue = clueField;
         highscore=Integer.parseInt("100");
         player=firstFrame.getPlayer();
+        p = firstFrame.getPhrase();
+        answer = p.getAnswer();
+    }
+
+    public JTextField getClueField() {
+        return clueField;
     }
 
     /**
@@ -96,6 +104,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         guessPhraseButton = new javax.swing.JButton();
         noEditHintLabel = new javax.swing.JLabel();
         hintLabel = new javax.swing.JLabel();
+        clueField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -479,7 +488,6 @@ public class PlayFrame2 extends javax.swing.JFrame {
                             .addComponent(totalMoneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
                         .addGap(68, 68, 68))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -495,8 +503,13 @@ public class PlayFrame2 extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(noEditHintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(hintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(138, 138, 138)
+                                .addComponent(hintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(clueField, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -507,8 +520,11 @@ public class PlayFrame2 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(noEditHintLabel)
-                    .addComponent(hintLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addComponent(hintLabel)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(clueField)))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -554,14 +570,45 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed
+        boolean letterCheck;
+        int vowValue;
+        String checkVowel = vowelField.getText();
+        char vowel;
+        char answerLetter;
+        int count = 0;
 
+        if (checkVowel.length() != 1) {
+            JOptionPane.showMessageDialog(null, "You can only answer one vowel at a time!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            vowel = checkVowel.charAt(0);
+            letterCheck = Character.isLetter(vowel);
+
+            if (!letterCheck) {
+                JOptionPane.showMessageDialog(null, "That is not a letter, let alone a vowel! Try again", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                vowValue = Character.getNumericValue(vowel);
+                
+                if (vowValue != 10 && vowValue != 14 && vowValue != 18 && vowValue != 24 && vowValue != 30) {
+                    JOptionPane.showMessageDialog(null, "That is a consonant not a vowel!", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {                   
+                   for (int i = 0; i < answer.length(); i++) {
+                       answerLetter = answer.charAt(i);
+                       if (Character.toLowerCase(answerLetter) == Character.toLowerCase(vowel)) {
+                           letters[i].setText(Character.toString((Character.toUpperCase(vowel))));
+                           count++;
+                       }
+                       
+                   }
+                }
+            }
+
+        }
 
     }//GEN-LAST:event_guessVowelButtonActionPerformed
 
     private void guessConsonantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessConsonantButtonActionPerformed
         boolean letterCheck;
         int consValue;
-        String answer;
         String checkConsonant = consField1.getText();
         char consonant;
         char answerLetter;
@@ -582,12 +629,9 @@ public class PlayFrame2 extends javax.swing.JFrame {
                 if (consValue == 10 || consValue == 14 || consValue == 18 || consValue == 24 || consValue == 30) {
                     JOptionPane.showMessageDialog(null, "That is a vowel not a consonant!", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                   Phrase p = firstFrame.getPhrase();
-                   answer = p.getAnswer();
-                   
                    for (int i = 0; i < answer.length(); i++) {
                        answerLetter = answer.charAt(i);
-                       if (answerLetter == consonant) {
+                       if (Character.toLowerCase(answerLetter) == Character.toLowerCase(consonant)) {
                            letters[i].setText(Character.toString((Character.toUpperCase(consonant))));
                            count++;
                        }
@@ -624,6 +668,9 @@ public class PlayFrame2 extends javax.swing.JFrame {
                 }
             }
         } 
+        
+        JLabel phraseAnswer = thirdFrame.getPhraseAnswerLabel();
+        phraseAnswer.setText(answer);
 
 
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
@@ -637,6 +684,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField clueField;
     private javax.swing.JTextField consField1;
     private javax.swing.JLabel consLabel;
     private javax.swing.JButton guessConsonantButton;
