@@ -21,24 +21,27 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private TextField letters[];
     private int highscore;
     private Player player;
+
     public TextField[] getLetters() {
         return letters;
     }
-    public int getHighscore(){
+
+    public int getHighscore() {
         return highscore;
     }
-    public Player getPlayer(){
+
+    public Player getPlayer() {
         return player;
     }
-    
+
     public PlayFrame2(PlayFrame1 f) {
         initComponents();
         firstFrame = f;
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
-        highscore=Integer.parseInt(totalMoneyLabel.getText());
-        player=firstFrame.getPlayer();
+        //highscore=Integer.parseInt(totalMoneyLabel.getText());
+        player = firstFrame.getPlayer();
     }
 
     /**
@@ -476,7 +479,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
                             .addComponent(totalMoneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
                         .addGap(68, 68, 68))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -538,9 +541,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -565,16 +566,11 @@ public class PlayFrame2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!");
             check = false;
         }
-        
+
         char consonant = checkConsonant.charAt(0);
         check = Character.isLetter(consonant);
-        
 
-        
-        
         System.out.println(consonant);
-        
-        
 
 
     }//GEN-LAST:event_guessConsonantButtonActionPerformed
@@ -588,12 +584,21 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_hintTextFieldActionPerformed
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
-        if (thirdFrame == null) {
-            thirdFrame = new PlayFrame3(this);
-
+        int numGuesses = 1;//make later
+        if (numGuesses != 0) {
+            if (thirdFrame == null) {
+                thirdFrame = new PlayFrame3(this);
+                thirdFrame.setVisible(true);
+                this.setVisible(false);
+            } else if (numGuesses == 0) {//FIX
+                if (fourthFrame == null) {
+                    fourthFrame = new PlayFrame4(this);
+                    fourthFrame.setVisible(true);
+                    this.setVisible(false);
+                }
+            }
         }
-        thirdFrame.setVisible(true);
-        this.setVisible(false);
+
 
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
 

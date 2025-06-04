@@ -3,11 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package wheeloffortune2;
-
-/**
- *
- * @author annak
- */
+import java.io.FileWriter;
+import java.io.IOException;
 public class PlayFrame4 extends javax.swing.JFrame {
 
         PlayFrame2 secondFrame;
@@ -200,6 +197,14 @@ public class PlayFrame4 extends javax.swing.JFrame {
         Player player=secondFrame.getPlayer();
         int highscore=secondFrame.getHighscore();
         player.setHighscore(highscore);
+        //test later
+        try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList", true)) {
+            fw.write("\n"+player.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        
+    }
+
     }//GEN-LAST:event_saveScoreButtonActionPerformed
 
     /**
