@@ -17,12 +17,20 @@ public class PlayFrame1 extends javax.swing.JFrame {
     private PlayFrame2 secondFrame;
     GamePlay firstWindow;
     private Phrase p;
-
+    private String username;
+    private Player player;
     public PlayFrame1(GamePlay f) {
         initComponents();
         firstWindow = f;
+        username=firstWindow.getUsername();
+        player=firstWindow.getPlayer();
     }
-
+    public String getUsername(){
+        return username;
+    }
+    public Player getPlayer(){
+        return player;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
