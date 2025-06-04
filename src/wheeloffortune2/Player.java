@@ -39,7 +39,7 @@ public class Player {
     }
 
     public String toString() {
-        return "Player{" + "username=" + username + ", highscore=" + highscore + '}';
+        return username + "\n" + highscore ;
     }
         
     
