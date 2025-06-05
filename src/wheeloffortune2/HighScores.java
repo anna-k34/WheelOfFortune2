@@ -4,13 +4,18 @@
  */
 package wheeloffortune2;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author lauragarcia
  */
 public class HighScores extends javax.swing.JFrame {
     GamePlay mainScreen;
-     
+     private 
     /**
      * Creates new form HighScores
      */
@@ -122,6 +127,24 @@ public class HighScores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static void scanHighscores() {
+        ArrayList<String> username = new ArrayList();
+        Player p;
+        int highscore;
+        try {
+            File f = new File("src/wheeloffortune2/playerList");
+            Scanner s = new Scanner(f);
+            while (s.hasNextLine()) {
+                username.add(s.nextLine());
+                highscore = Integer.parseInt(s.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error " + e);
+        }
+
+        //return username;
+
+    }
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.setVisible(false);
         GamePlay main = new GamePlay();
@@ -132,6 +155,20 @@ public class HighScores extends javax.swing.JFrame {
     private void quitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_quitButton1ActionPerformed
+public boolean binarySearch(int array[], int left, int right, int x){
+    int middle;
+    if (left > right) return false;
+    //determine the middle of this array section
+    middle = (left + right) / 2;
+    //is the middle what we are looking for?
+    if (array[middle] == x) return true;
+    //search the half of the array that might contain x
+    if (array[middle] > x) { //search for x to the left
+        return binarySearch(array, left, middle - 1, x);
+    } else { //search for x to the right
+        return binarySearch(array, middle + 1, right, x);
+    }
+}
 
 
 
