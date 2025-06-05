@@ -25,7 +25,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private Phrase p;
     private String answer;
     private boolean answerStatus;
-    private int totalMoney;
+    private int totalMoney=1000;
     //private int guessesLeft=firstFrame.getGuessesLeft();
     private int guessesLeft = 6;
 
@@ -607,6 +607,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
     public void changeAmountMoney() {
         DecimalFormat money = new DecimalFormat("$0,00");
         totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
+        
         
     }
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed

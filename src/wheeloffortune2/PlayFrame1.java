@@ -77,7 +77,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
         wheelPanel.repaint();
     }
 
-    public String getUsername() {
+    //public String getUsername() {
     /**
     public String getUsername(){
         return username;
