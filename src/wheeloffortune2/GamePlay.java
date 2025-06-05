@@ -14,6 +14,8 @@ public class GamePlay extends javax.swing.JFrame {
     private ArrayList<Phrase> phrases;
     private String username;
     private Player player;
+    //private int guessesLeft=8;
+
     public ArrayList<Phrase> getPhrases() {
         return phrases;
     }
@@ -27,6 +29,9 @@ public class GamePlay extends javax.swing.JFrame {
     public Player getPlayer(){
         return player;
     }
+    //public int getGuessesLeft(){
+        //return guessesLeft;
+    //}
     /**
      * Creates new form GamePlay
      */

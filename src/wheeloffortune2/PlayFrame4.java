@@ -3,16 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package wheeloffortune2;
-import java.io.FileWriter;
-import java.io.IOException;
-public class PlayFrame4 extends javax.swing.JFrame {
 
-        PlayFrame2 secondFrame;
-        
-        
+import java.io.*;
+import java.io.IOException;
+import javax.swing.JLabel;
+
+public class PlayFrame4 extends javax.swing.JFrame {
+    GamePlay playFrame;
+    HighScores highScoresFrame;
+    PlayFrame2 secondFrame;
+    private JLabel phraseAnswer;
+    private Player player;
+
     public PlayFrame4(PlayFrame2 f) {
-        secondFrame=f;
+        secondFrame = f;
         initComponents();
+        phraseAnswer = phraseAnswerLabel;
+
+    }
+
+    public JLabel getPhraseAnswerLabel() {
+        return phraseAnswerLabel;
     }
 
     /**
@@ -182,35 +193,45 @@ public class PlayFrame4 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainButtonActionPerformed
-        // TODO add your handling code here:
+        if(playFrame==null){
+            playFrame = new GamePlay();
+        }
+        playFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_playAgainButtonActionPerformed
 
     private void highscoresButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highscoresButton1ActionPerformed
-        // TODO add your handling code here:
+        if(highScoresFrame==null){
+            GamePlay play=new GamePlay();
+            highScoresFrame = new HighScores(play);
+        }
+        highScoresFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_highscoresButton1ActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void saveScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveScoreButtonActionPerformed
-        Player player=secondFrame.getPlayer();
-        int highscore=secondFrame.getHighscore();
-        player.setHighscore(highscore);
-        //test later
-        try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList", true)) {
-            fw.write("\n"+player.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        
-    }
+       Player player = secondFrame.getPlayer();
+int highscore = secondFrame.getHighscore();
+player.setHighscore(highscore);
 
+try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList", true);
+     BufferedWriter bw = new BufferedWriter(fw);
+     PrintWriter out = new PrintWriter(bw)) {
+
+    out.println(player.toString());  // Writes player's data on a new line
+
+} catch (IOException e) {
+    e.printStackTrace();
+}
     }//GEN-LAST:event_saveScoreButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel correctLabel;

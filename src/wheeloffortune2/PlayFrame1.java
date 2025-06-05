@@ -17,6 +17,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     private PlayFrame2 secondFrame;
     GamePlay firstWindow;
+    
+    private PlayFrame3 thirdFrame;
     private String username;
     private Player player;
     private ArrayList<Phrase> phrases;
@@ -28,12 +30,16 @@ public class PlayFrame1 extends javax.swing.JFrame {
         player = firstWindow.getPlayer();
         phrases = firstWindow.getPhrases();
     }
+    /**
     public String getUsername(){
         return username;
-    }
+    }**/
     public Player getPlayer(){
-        return player;
+        return firstWindow.getPlayer();
     }
+    //public int getGuessesLeft(){
+        //return firstWindow.getGuessesLeft();
+    //}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -193,7 +199,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_spinButton1ActionPerformed
 
     /**

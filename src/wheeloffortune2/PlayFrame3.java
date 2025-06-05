@@ -7,14 +7,17 @@ package wheeloffortune2;
 import javax.swing.*;
 
 public class PlayFrame3 extends javax.swing.JFrame {
-
     PlayFrame2 secondFrame;
     private JLabel phraseAnswer;
-  
+    PlayFrame1 firstFrame;
+    
     public PlayFrame3(PlayFrame2 f) {
         initComponents();
         secondFrame=f;
         phraseAnswer = phraseAnswerLabel;
+        if(!secondFrame.getStatus()){
+            correctLabel.setText("That's incorrect.");
+        }
     }
 
     public JLabel getPhraseAnswerLabel() {
@@ -136,7 +139,12 @@ public class PlayFrame3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-        // TODO add your handling code here:
+        if (firstFrame == null) {
+            GamePlay play=new GamePlay();
+            firstFrame = new PlayFrame1(play);
+        }
+        firstFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_spinButton1ActionPerformed
 
    

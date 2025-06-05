@@ -39,7 +39,7 @@ public class Player {
     }
 
     public String toString() {
-        return username + "\n" + highscore ;
+        return username + "\n" + highscore;
     }
         
     

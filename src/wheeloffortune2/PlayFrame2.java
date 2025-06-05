@@ -6,6 +6,8 @@ package wheeloffortune2;
 
 import java.awt.TextField;
 import javax.swing.*;
+import javax.swing.JTextField;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -22,6 +24,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private JTextField clue;
     private Phrase p;
     private String answer;
+    private boolean answerStatus;
+    private int totalMoney;
+    //private int guessesLeft=firstFrame.getGuessesLeft();
+    private int guessesLeft = 6;
 
     public TextField[] getLetters() {
         return letters;
@@ -32,20 +38,24 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }
 
     public Player getPlayer() {
-        return player;
+        return firstFrame.getPlayer();
     }
 
     public PlayFrame2(PlayFrame1 f) {
+        DecimalFormat money = new DecimalFormat("$0,00");
         initComponents();
         firstFrame = f;
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
         clue = clueField;
-        highscore=Integer.parseInt("100");
-        player=firstFrame.getPlayer();
+        highscore = Integer.parseInt("100");
+        player = firstFrame.getPlayer();
         p = firstFrame.getPhrase();
         answer = p.getAnswer();
+        guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
+                totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
+
     }
 
     public JTextField getClueField() {
@@ -133,7 +143,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
         letter0.setBackground(new java.awt.Color(255, 0, 0));
         letter0.setEditable(false);
-        letter0.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter0.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter0.setForeground(new java.awt.Color(255, 255, 255));
         letter0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,127 +153,132 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
         letter1.setBackground(new java.awt.Color(255, 0, 0));
         letter1.setEditable(false);
-        letter1.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter1.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter1.setForeground(new java.awt.Color(255, 255, 255));
 
         letter2.setBackground(new java.awt.Color(255, 0, 0));
         letter2.setEditable(false);
-        letter2.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter2.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter2.setForeground(new java.awt.Color(255, 255, 255));
 
         letter3.setBackground(new java.awt.Color(255, 0, 0));
         letter3.setEditable(false);
-        letter3.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter3.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter3.setForeground(new java.awt.Color(255, 255, 255));
 
         letter4.setBackground(new java.awt.Color(255, 0, 0));
         letter4.setEditable(false);
-        letter4.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter4.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter4.setForeground(new java.awt.Color(255, 255, 255));
 
         letter5.setBackground(new java.awt.Color(255, 0, 0));
         letter5.setEditable(false);
-        letter5.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter5.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter5.setForeground(new java.awt.Color(255, 255, 255));
+        letter5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                letter5ActionPerformed(evt);
+            }
+        });
 
         letter6.setBackground(new java.awt.Color(255, 0, 0));
         letter6.setEditable(false);
-        letter6.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter6.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter6.setForeground(new java.awt.Color(255, 255, 255));
 
         letter7.setBackground(new java.awt.Color(255, 0, 0));
         letter7.setEditable(false);
-        letter7.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter7.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter7.setForeground(new java.awt.Color(255, 255, 255));
 
         letter8.setBackground(new java.awt.Color(255, 0, 0));
         letter8.setEditable(false);
-        letter8.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter8.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter8.setForeground(new java.awt.Color(255, 255, 255));
 
         letter9.setBackground(new java.awt.Color(255, 0, 0));
         letter9.setEditable(false);
-        letter9.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter9.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter9.setForeground(new java.awt.Color(255, 255, 255));
 
         letter10.setBackground(new java.awt.Color(255, 0, 0));
         letter10.setEditable(false);
-        letter10.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter10.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter10.setForeground(new java.awt.Color(255, 255, 255));
 
         letter11.setBackground(new java.awt.Color(255, 0, 0));
         letter11.setEditable(false);
-        letter11.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter11.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter11.setForeground(new java.awt.Color(255, 255, 255));
 
         letter12.setBackground(new java.awt.Color(255, 0, 0));
         letter12.setEditable(false);
-        letter12.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter12.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter12.setForeground(new java.awt.Color(255, 255, 255));
 
         letter13.setBackground(new java.awt.Color(255, 0, 0));
         letter13.setEditable(false);
-        letter13.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter13.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter13.setForeground(new java.awt.Color(255, 255, 255));
 
         letter14.setBackground(new java.awt.Color(255, 0, 0));
         letter14.setEditable(false);
-        letter14.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter14.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter14.setForeground(new java.awt.Color(255, 255, 255));
 
         letter15.setBackground(new java.awt.Color(255, 0, 0));
         letter15.setEditable(false);
-        letter15.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter15.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter15.setForeground(new java.awt.Color(255, 255, 255));
 
         letter16.setBackground(new java.awt.Color(255, 0, 0));
         letter16.setEditable(false);
-        letter16.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter16.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter16.setForeground(new java.awt.Color(255, 255, 255));
 
         letter17.setBackground(new java.awt.Color(255, 0, 0));
         letter17.setEditable(false);
-        letter17.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter17.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter17.setForeground(new java.awt.Color(255, 255, 255));
 
         letter18.setBackground(new java.awt.Color(255, 0, 0));
         letter18.setEditable(false);
-        letter18.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter18.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter18.setForeground(new java.awt.Color(255, 255, 255));
 
         letter19.setBackground(new java.awt.Color(255, 0, 0));
         letter19.setEditable(false);
-        letter19.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter19.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter19.setForeground(new java.awt.Color(255, 255, 255));
 
         letter20.setBackground(new java.awt.Color(255, 0, 0));
         letter20.setEditable(false);
-        letter20.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter20.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter20.setForeground(new java.awt.Color(255, 255, 255));
 
         letter21.setBackground(new java.awt.Color(255, 0, 0));
         letter21.setEditable(false);
-        letter21.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter21.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter21.setForeground(new java.awt.Color(255, 255, 255));
 
         letter22.setBackground(new java.awt.Color(255, 0, 0));
         letter22.setEditable(false);
-        letter22.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter22.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter22.setForeground(new java.awt.Color(255, 255, 255));
 
         letter23.setBackground(new java.awt.Color(255, 0, 0));
         letter23.setEditable(false);
-        letter23.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter23.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter23.setForeground(new java.awt.Color(255, 255, 255));
 
         letter24.setBackground(new java.awt.Color(255, 0, 0));
         letter24.setEditable(false);
-        letter24.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter24.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter24.setForeground(new java.awt.Color(255, 255, 255));
 
         letter25.setBackground(new java.awt.Color(255, 0, 0));
         letter25.setEditable(false);
-        letter25.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        letter25.setFont(new java.awt.Font("MS UI Gothic", 1, 60)); // NOI18N
         letter25.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -447,12 +462,15 @@ public class PlayFrame2 extends javax.swing.JFrame {
         hintLabel.setFont(new java.awt.Font("MS UI Gothic", 1, 24)); // NOI18N
         hintLabel.setForeground(new java.awt.Color(255, 255, 255));
 
+        clueField.setFont(new java.awt.Font("MS UI Gothic", 1, 20)); // NOI18N
+        clueField.setForeground(new java.awt.Color(0, 51, 204));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -461,40 +479,40 @@ public class PlayFrame2 extends javax.swing.JFrame {
                                     .addComponent(guessVowelButton)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(nameLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(vowelField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(guessConsonantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(consLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(consField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)))
+                                .addGap(8, 8, 8)
+                                .addComponent(consLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(consField1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(9, 9, 9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(guessConsonantButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
                                 .addComponent(guessesLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(hintButton)
-                                .addGap(30, 30, 30)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(hintTextField)
-                            .addComponent(totalMoneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
-                        .addGap(68, 68, 68))
+                                .addGap(47, 47, 47)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hintTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(guessPhraseLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(phraseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30))))
+                        .addGap(74, 74, 74))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -517,47 +535,47 @@ public class PlayFrame2 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hintLabel)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clueField)
+                    .addComponent(noEditHintLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noEditHintLabel)
-                    .addComponent(hintLabel)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(clueField)))
-                .addGap(40, 40, 40)
+                    .addComponent(nameLabel)
+                    .addComponent(vowelField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guessesLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(guessVowelButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(guessesLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(consLabel)
+                            .addComponent(consField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(guessConsonantButton)
+                        .addGap(63, 63, 63))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hintButton)
+                            .addComponent(hintTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nameLabel)
-                            .addComponent(vowelField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hintTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hintButton)
-                    .addComponent(guessVowelButton))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phraseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guessPhraseLabel)
-                    .addComponent(consField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(consLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guessPhraseButton)
-                    .addComponent(guessConsonantButton))
-                .addGap(23, 23, 23))
+                            .addComponent(guessPhraseLabel)
+                            .addComponent(phraseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 867, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,8 +586,31 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void countGuesses() {
+        guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
+        if (guessesLeft > 1) {
+            guessesLeft -= 1;
 
+        } else if (guessesLeft == 1) {
+            JOptionPane.showMessageDialog(null, "You have one more guess, choose carefully");
+            guessesLeft -= 1;
+        } else if (guessesLeft == 0) {
+            JOptionPane.showMessageDialog(null, "That was your last guess, you must guess the phrase now");
+            guessVowelButton.setEnabled(false);
+            guessConsonantButton.setEnabled(false);
+            hintButton.setEnabled(false);
+            consField1.setEditable(false);
+            vowelField.setEditable(false);
+        }
+    }
+
+    public void changeAmountMoney() {
+        DecimalFormat money = new DecimalFormat("$0,00");
+        totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
+        
+    }
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed
+        countGuesses();
         boolean letterCheck;
         int vowValue;
         String checkVowel = vowelField.getText();
@@ -587,26 +628,28 @@ public class PlayFrame2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "That is not a letter, let alone a vowel! Try again", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 vowValue = Character.getNumericValue(vowel);
-                
+
                 if (vowValue != 10 && vowValue != 14 && vowValue != 18 && vowValue != 24 && vowValue != 30) {
                     JOptionPane.showMessageDialog(null, "That is a consonant not a vowel!", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {                   
-                   for (int i = 0; i < answer.length(); i++) {
-                       answerLetter = answer.charAt(i);
-                       if (Character.toLowerCase(answerLetter) == Character.toLowerCase(vowel)) {
-                           letters[i].setText(Character.toString((Character.toUpperCase(vowel))));
-                           count++;
-                       }
-                       
-                   }
+                } else {
+                    for (int i = 0; i < answer.length(); i++) {
+                        answerLetter = answer.charAt(i);
+                        if (Character.toLowerCase(answerLetter) == Character.toLowerCase(vowel)) {
+                            letters[i].setText(Character.toString((Character.toUpperCase(vowel))));
+                            count++;
+                        }
+
+                    }
                 }
             }
 
         }
+        vowelField.setText("");
 
     }//GEN-LAST:event_guessVowelButtonActionPerformed
 
     private void guessConsonantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessConsonantButtonActionPerformed
+        countGuesses();
         boolean letterCheck;
         int consValue;
         String checkConsonant = consField1.getText();
@@ -625,28 +668,28 @@ public class PlayFrame2 extends javax.swing.JFrame {
             } else {
                 consValue = Character.getNumericValue(consonant);
                 System.out.println(consValue);
-                
+
                 if (consValue == 10 || consValue == 14 || consValue == 18 || consValue == 24 || consValue == 30) {
                     JOptionPane.showMessageDialog(null, "That is a vowel not a consonant!", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                   for (int i = 0; i < answer.length(); i++) {
-                       answerLetter = answer.charAt(i);
-                       if (Character.toLowerCase(answerLetter) == Character.toLowerCase(consonant)) {
-                           letters[i].setText(Character.toString((Character.toUpperCase(consonant))));
-                           count++;
-                       }
-                       
-                   }
+                    for (int i = 0; i < answer.length(); i++) {
+                        answerLetter = answer.charAt(i);
+                        if (Character.toLowerCase(answerLetter) == Character.toLowerCase(consonant)) {
+                            letters[i].setText("" + Character.toString((Character.toUpperCase(consonant))));
+                            count++;
+                        }
+
+                    }
                 }
             }
 
         }
-
+        consField1.setText("");
 
     }//GEN-LAST:event_guessConsonantButtonActionPerformed
 
     private void hintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintButtonActionPerformed
-        // TODO add your handling code here:
+        hintTextField.setText(p.getHint());
     }//GEN-LAST:event_hintButtonActionPerformed
 
     private void hintTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintTextFieldActionPerformed
@@ -654,30 +697,49 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_hintTextFieldActionPerformed
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
-        int numGuesses = 1;//make later
+        countGuesses();
+        int numGuesses = 1;
+
         if (numGuesses != 0) {
             if (thirdFrame == null) {
                 thirdFrame = new PlayFrame3(this);
-                thirdFrame.setVisible(true);
-                this.setVisible(false);
-            } else if (numGuesses == 0) {//FIX
-                if (fourthFrame == null) {
-                    fourthFrame = new PlayFrame4(this);
-                    fourthFrame.setVisible(true);
-                    this.setVisible(false);
-                }
             }
-        } 
-        
-        JLabel phraseAnswer = thirdFrame.getPhraseAnswerLabel();
-        phraseAnswer.setText(answer);
+            JLabel phraseAnswer = thirdFrame.getPhraseAnswerLabel();
+            phraseAnswer.setText(answer);
+            thirdFrame.setVisible(true);
+            this.setVisible(false);
+        } else {
+            if (fourthFrame == null) {
+                fourthFrame = new PlayFrame4(this);
+                JLabel phraseAnswer = fourthFrame.getPhraseAnswerLabel();
+                phraseAnswer.setText(answer);
+
+            }
+            if (p.equals(phraseTextField.getText())) {//FIX
+                answerStatus = true;
+            } else {
+                answerStatus = false;
+            }
+            fourthFrame.setVisible(true);
+            this.setVisible(false);
+        }
 
 
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
+    public boolean getStatus() {
+        return answerStatus;
+    }
 
+    public int getGuessesLeft() {
+        return guessesLeft;
+    }
     private void letter0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_letter0ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_letter0ActionPerformed
+
+    private void letter5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_letter5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_letter5ActionPerformed
 
     /**
      * @param args the command line arguments
