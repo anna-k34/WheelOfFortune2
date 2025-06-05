@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class HighScores extends javax.swing.JFrame {
     GamePlay mainScreen;
-     private 
+     private ArrayList username;
     /**
      * Creates new form HighScores
      */
