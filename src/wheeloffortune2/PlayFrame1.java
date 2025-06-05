@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package wheeloffortune2;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.TextField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -21,19 +18,71 @@ public class PlayFrame1 extends javax.swing.JFrame {
     private Player player;
     private ArrayList<Phrase> phrases;
     private Phrase p;
+    private SelectionWheel selectionWheel;
+
     public PlayFrame1(GamePlay f) {
         initComponents();
         firstWindow = f;
         username = firstWindow.getUsername();
         player = firstWindow.getPlayer();
         phrases = firstWindow.getPhrases();
+
+        try {
+            ArrayList<String> list = new ArrayList<String>();
+            list.add("Avatar");
+            list.add("The Lord of the Rings: The Return of the King");
+            list.add("Pirates of the Caribbean: Dead Man's Chest");
+            list.add("The Dark Knight");
+            list.add("Harry Potter and the Philosopher's Stone");
+            list.add("Pirates of the Caribbean: At World's End");
+            list.add("Harry Potter and the Order of the Phoenix");
+            list.add("Harry Potter and the Half-Blood Prince");
+            list.add("The Lord of the Rings: The Two Towers");
+            list.add("Shrek 2");
+            list.add("Harry Potter and the Goblet of Fire");
+            list.add("Spider-Man 3");
+            list.add("Ice Age: Dawn of the Dinosaurs");
+            list.add("Harry Potter and the Chamber of Secrets");
+            list.add("The Lord of the Rings: The Fellowship of the Ring");
+            list.add("Finding Nemo");
+            list.add("Star Wars: Episode III – Revenge of the Sith");
+            list.add("Transformers: Revenge of the Fallen");
+            list.add("Spider-Man");
+            list.add("Shrek the Third");
+
+            selectionWheel = new SelectionWheel(list);
+            selectionWheel.hasBorders(true);
+            wheelPanel.setLayout(new java.awt.BorderLayout());
+            wheelPanel.add(selectionWheel, java.awt.BorderLayout.CENTER);
+           
+            //wheelPanel.setLayout(new java.awt.BorderLayout());
+            //selectionWheel.setPreferredSize(new java.awt.Dimension(300, 300));
+            //selectionWheel.setMinimumSize(new java.awt.Dimension(300, 300));
+            //selectionWheel.setMaximumSize(new java.awt.Dimension(800, 800));
+            //wheelPanel.removeAll(); // Clear just in case 
+            //wheelPanel.add(selectionWheel);
+            //selectionWheel.setPreferredSize(new java.awt.Dimension(300, 300));
+            //selectionWheel.setPreferredSize(new java.awt.Dimension(245, 245));
+            //wheelPanel.add(selectionWheel, java.awt.BorderLayout.CENTER);
+            System.out.println("SelectionWheel size: " + selectionWheel.getWidth() + "x" + selectionWheel.getHeight());
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        wheelPanel.revalidate();
+        wheelPanel.repaint();
     }
-    public String getUsername(){
+
+    public String getUsername() {
         return username;
     }
-    public Player getPlayer(){
+
+    public Player getPlayer() {
         return player;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +98,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
         guessPhraseButton = new javax.swing.JButton();
         spinMoneyLabel = new javax.swing.JLabel();
         spinButton1 = new javax.swing.JButton();
+        wheelPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,40 +141,58 @@ public class PlayFrame1 extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout wheelPanelLayout = new javax.swing.GroupLayout(wheelPanel);
+        wheelPanel.setLayout(wheelPanelLayout);
+        wheelPanelLayout.setHorizontalGroup(
+            wheelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 265, Short.MAX_VALUE)
+        );
+        wheelPanelLayout.setVerticalGroup(
+            wheelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 245, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(300, 300, 300)
+                .addGap(18, 18, 18)
+                .addComponent(wheelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(guessPhraseButton, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 233, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(spinsLeftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(spinsLeftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(spinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(spinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spinsLeftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(spinButton1)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(spinMoneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(guessPhraseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(wheelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spinsLeftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(spinButton1)
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(spinMoneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                            .addComponent(guessPhraseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
@@ -145,44 +213,42 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
-        
+
         ArrayList<Phrase> copy = (ArrayList<Phrase>) phrases.clone();
         int rNum = (int) (Math.random() * copy.size()) + 0;
         p = copy.get(rNum);
         copy.remove(p);
-        
+
         if (secondFrame == null) {
             secondFrame = new PlayFrame2(this);
         }
         secondFrame.setVisible(true);
         this.setVisible(false);
-        
+
         String answer;
         String answerSplit[];
         int count;
         int totalCount = 0;
-       
-        
+
         answer = p.getAnswer();
         answerSplit = answer.split(" ");
-        
+
         TextField letters[] = secondFrame.getLetters();
-        
+
         for (int i = 0; i < answerSplit.length; i++) {
             count = answerSplit[i].length();
             for (int j = totalCount; j < count + totalCount; j++) {
                 letters[j].setBackground(Color.green);
             }
-            
+
             if (i < answerSplit.length - 1) {
                 letters[totalCount + count].setBackground(Color.white);
             }
-            
+
             totalCount += count + 1;
-            
-            
+
         }
-        
+
         System.out.println(p);
         JTextField clue = secondFrame.getClueField();
         clue.setText(p.getQuestion());
@@ -193,7 +259,25 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-        // TODO add your handling code here:
+        while (true) {
+            // wait for action
+            try {
+                selectionWheel.spinStartAsync(300, -1, -50);
+
+                if (selectionWheel.isSpinning()) {
+                    break;
+                }
+
+                // while spinning
+                while (selectionWheel.isSpinning()) {
+                    Thread.sleep(10);
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }//GEN-LAST:event_spinButton1ActionPerformed
 
     /**
@@ -207,5 +291,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
     private javax.swing.JLabel spinMoneyLabel;
     private javax.swing.JLabel spinsLeftLabel;
     private javax.swing.JLabel spinsLeftLabel1;
+    private javax.swing.JPanel wheelPanel;
     // End of variables declaration//GEN-END:variables
 }
