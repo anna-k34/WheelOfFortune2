@@ -14,8 +14,13 @@ import java.util.Scanner;
  * @author lauragarcia
  */
 public class HighScores extends javax.swing.JFrame {
+
     GamePlay mainScreen;
-     private ArrayList username;
+    private ArrayList username;
+    private ArrayList highscore;
+    //add a searching method somehow???
+    
+    
     /**
      * Creates new form HighScores
      */
@@ -127,22 +132,19 @@ public class HighScores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void scanHighscores() {
-        ArrayList<String> username = new ArrayList();
-        Player p;
-        int highscore;
+    public void scanHighscores() {
         try {
             File f = new File("src/wheeloffortune2/playerList");
             Scanner s = new Scanner(f);
+            int i=0;
             while (s.hasNextLine()) {
+                i+=1;
                 username.add(s.nextLine());
-                highscore = Integer.parseInt(s.nextLine());
+                highscore.add(Integer.parseInt(s.nextLine()));
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error " + e);
         }
-
-        //return username;
 
     }
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -155,18 +157,82 @@ public class HighScores extends javax.swing.JFrame {
     private void quitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_quitButton1ActionPerformed
-public boolean binarySearch(int array[], int left, int right, int x){
-    int middle;
-    if (left > right) return false;
-    //determine the middle of this array section
-    middle = (left + right) / 2;
-    //is the middle what we are looking for?
-    if (array[middle] == x) return true;
-    //search the half of the array that might contain x
-    if (array[middle] > x) { //search for x to the left
-        return binarySearch(array, left, middle - 1, x);
-    } else { //search for x to the right
-        return binarySearch(array, middle + 1, right, x);
+    public boolean binarySearch(int array[], int left, int right, int x) {
+        int middle;
+        if (left > right) {
+            return false;
+        }
+        //determine the middle of this array section
+        middle = (left + right) / 2;
+        //is the middle what we are looking for?
+        if (array[middle] == x) {
+            return true;
+        }
+        //search the half of the array that might contain x
+        if (array[middle] > x) { //search for x to the left
+            return binarySearch(array, left, middle - 1, x);
+        } else { //search for x to the right
+            return binarySearch(array, middle + 1, right, x);
+        }
+    }
+    public static int[] quickSort(int[] items, int start, int end) {
+    // Base case for recursion:
+    
+    if (start >= end) {
+        return new int[0];
+    }
+    // Otherwise recursively call the function
+    else {
+        int pivotValue = items[0]; // Set to first item in the partition
+        int lowMark = start + 1; // Set to second position in the partition
+        int highMark = end; // Set to last position in the partition
+        int temp;
+        boolean finished = false;
+
+        // Repeat until low and high values have been swapped as needed
+        while (finished == false) {
+            // Move the left pivot
+            while (lowMark <= highMark && items[lowMark] <= pivotValue) {
+                lowMark = lowMark + 1; // Increment lowMark
+            }
+
+            // Move the right pivot
+            while (items[highMark] >= pivotValue && highMark >= lowMark) {
+                highMark = highMark - 1; // Decrement highMark
+            }
+
+            // Check that the low mark doesn't overlap with the high mark
+            if (lowMark < highMark) {
+                // Swap the values at lowMark and highMark
+                temp = items[lowMark];
+                items[lowMark] = items[highMark];
+                items[highMark] = temp;
+            }
+
+            // Otherwise end the loop
+            else {
+                finished = true;
+            }
+        }
+
+        // Swap the pivot value and the value at highMark
+        temp = items[start];
+        items[start] = items[highMark];
+        items[highMark] = temp;
+
+        // Recursive call on the left partition
+        quickSort(items, start, highMark - 1);
+
+        // Recursive call on the right partition
+        quickSort(items, highMark + 1, end);
+
+        return items;
+    }
+}
+public void sortedOutput(){
+    //int sortedItems[]=quickSort();
+    ArrayList <String>output=new ArrayList<String>();
+    for(int i=0;i<highscore.size();i++){
     }
 }
 
