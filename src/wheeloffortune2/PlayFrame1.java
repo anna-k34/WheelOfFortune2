@@ -2,7 +2,7 @@ package wheeloffortune2;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.awt.TextField;
+import java.awt.*;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
@@ -31,41 +31,28 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         try {
             ArrayList<String> list = new ArrayList<String>();
-            list.add("Avatar");
-            list.add("The Lord of the Rings: The Return of the King");
-            list.add("Pirates of the Caribbean: Dead Man's Chest");
-            list.add("The Dark Knight");
-            list.add("Harry Potter and the Philosopher's Stone");
-            list.add("Pirates of the Caribbean: At World's End");
-            list.add("Harry Potter and the Order of the Phoenix");
-            list.add("Harry Potter and the Half-Blood Prince");
-            list.add("The Lord of the Rings: The Two Towers");
-            list.add("Shrek 2");
-            list.add("Harry Potter and the Goblet of Fire");
-            list.add("Spider-Man 3");
-            list.add("Ice Age: Dawn of the Dinosaurs");
-            list.add("Harry Potter and the Chamber of Secrets");
-            list.add("The Lord of the Rings: The Fellowship of the Ring");
-            list.add("Finding Nemo");
-            list.add("Star Wars: Episode III – Revenge of the Sith");
-            list.add("Transformers: Revenge of the Fallen");
-            list.add("Spider-Man");
-            list.add("Shrek the Third");
+            list.add("$600");
+            list.add("$500");
+            list.add("$550");
+            list.add("$600");
+            list.add("$650");
+            list.add("Bankruptcy");
+            list.add("$650");
+            list.add("$500");
+            list.add("$600");
+            list.add("$650");
+            list.add("Bankruptcy");
+            list.add("$550");
+            list.add("$600");
+            list.add("$650");
+            list.add("Bankruptcy");
 
             selectionWheel = new SelectionWheel(list);
             selectionWheel.hasBorders(true);
-            wheelPanel.setLayout(new java.awt.BorderLayout());
-            wheelPanel.add(selectionWheel, java.awt.BorderLayout.CENTER);
+
+            wheelPanel.setLayout(new java.awt.FlowLayout(FlowLayout.CENTER, 0, 0));
+            wheelPanel.add(selectionWheel);
            
-            //wheelPanel.setLayout(new java.awt.BorderLayout());
-            //selectionWheel.setPreferredSize(new java.awt.Dimension(300, 300));
-            //selectionWheel.setMinimumSize(new java.awt.Dimension(300, 300));
-            //selectionWheel.setMaximumSize(new java.awt.Dimension(800, 800));
-            //wheelPanel.removeAll(); // Clear just in case 
-            //wheelPanel.add(selectionWheel);
-            //selectionWheel.setPreferredSize(new java.awt.Dimension(300, 300));
-            //selectionWheel.setPreferredSize(new java.awt.Dimension(245, 245));
-            //wheelPanel.add(selectionWheel, java.awt.BorderLayout.CENTER);
             System.out.println("SelectionWheel size: " + selectionWheel.getWidth() + "x" + selectionWheel.getHeight());
             
 
@@ -75,15 +62,13 @@ public class PlayFrame1 extends javax.swing.JFrame {
         
         wheelPanel.revalidate();
         wheelPanel.repaint();
+        
     }
 
     public String getUsername() {
         return username;
     }
-    /**
-    public String getUsername(){
-        return username;
-    }**/
+    
     public Player getPlayer(){
         return firstWindow.getPlayer();
     }
@@ -141,6 +126,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
                 spinButton1ActionPerformed(evt);
             }
         });
+
+        wheelPanel.setBackground(new java.awt.Color(0, 51, 204));
 
         javax.swing.GroupLayout wheelPanelLayout = new javax.swing.GroupLayout(wheelPanel);
         wheelPanel.setLayout(wheelPanelLayout);

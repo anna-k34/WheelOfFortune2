@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 public class SelectionWheel extends JPanel {
 
-    
     Wheel _wheel;
     Tick _tick;
 
@@ -22,8 +21,21 @@ public class SelectionWheel extends JPanel {
 		 * Adjust the bounds of the wheel and tick based on tick width.
          */
         super.setBounds(x, y, width, height);
-        _wheel.setBounds(0, 0, width - _tick.getTickWidth(), height);
-        _tick.setBounds(width - _tick.getTickWidth(), 0, _tick.getTickWidth(), height);
+        //_wheel.setBounds(0, 0, width - _tick.getTickWidth(), height);
+        //_tick.setBounds(width - _tick.getTickWidth(), 0, _tick.getTickWidth(), height);
+        
+        // Set bounds of the wheel to take full panel
+    _wheel.setBounds(0, 0, width, height);
+
+    // Tick size
+    int tickWidth = _tick.getTickWidth();
+    int tickHeight = _tick.getTickHeight();
+
+    // Place tick at top center above the wheel
+    int tickX = (width - tickWidth) / 2;
+    int tickY = -10; // or a bit above, like -10 for overlap
+
+    _tick.setBounds(tickX, tickY, tickWidth, tickHeight);
     }
 
     public void hasBorders(boolean borders) {
@@ -203,11 +215,45 @@ public class SelectionWheel extends JPanel {
          */
         _wheel = new Wheel(listOfStrings);
         _wheel.setLayout(null);
+        
         _tick = new Tick();
         _tick.setLayout(null);
-        this.setLayout(new java.awt.BorderLayout());
-        this.add(_wheel, java.awt.BorderLayout.CENTER);
-        this.add(_tick, java.awt.BorderLayout.EAST);
+        
+        this.add(_wheel);
+        this.add(_tick);
+        
+        _tick.setTickWidth(40);  // width of the base of triangle
+        _tick.setTickHeight(30); // height of the triangle
+        
+        //_tick.setOpaque(false);
+        //this.setLayout(null);
+        
+        
+        
+
+        
+        //this.setBounds(0, 0, getPreferredSize().width, getPreferredSize().height);
+        
+        //this.revalidate();
+        //this.repaint();
+        
+        // Set size of the full panel (SelectionWheel itself)
+    int panelWidth = 350;
+    int panelHeight = 350;
+    this.setBounds(0, 0, panelWidth, panelHeight);
+
+    // Set _wheel to take full panel
+    _wheel.setBounds(0, 0, panelWidth, panelHeight);
+
+    // Place _tick at the top-center
+    int tickX = (panelWidth - _tick.getTickWidth()) / 2;
+    int tickY = 0;
+    _tick.setBounds(tickX, tickY, _tick.getTickWidth(), _tick.getTickHeight());
+
+    _tick.repaint();
+        
+        
+        
     }
 
     public void spinStartAsync(double speed, int direction, double deceleration) throws Exception {

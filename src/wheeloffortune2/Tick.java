@@ -1,6 +1,7 @@
 
 package wheeloffortune2;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -61,6 +62,8 @@ public class Tick extends JPanel{
 	
 	public Tick() {
 		super();
+                setOpaque(true); // force visibility
+    setBackground(Color.RED);
 		this.repaint();
 	}
 	
@@ -111,10 +114,14 @@ public class Tick extends JPanel{
 		/*
 		 * Get triangle polygon - default shape of the tick.
 		 */
+                
+                if (this.getWidth() <= 0 || this.getHeight() <= 0) {
+        return new Polygon(); // avoid invalid triangle
+    }
 		Polygon polygon = new Polygon();
-		polygon.addPoint(0, this.getHeight() / 2);
-		polygon.addPoint(this.getWidth(), (int)(this.getHeight() / 2 - this.getWidth() * Math.tan(Math.toRadians(30))));
-		polygon.addPoint(this.getWidth(), (int)(this.getHeight() / 2 + this.getWidth() * Math.tan(Math.toRadians(30))));
+		polygon.addPoint(this.getWidth() / 2, 0);
+		polygon.addPoint((int)(this.getWidth() / 2 - this.getHeight() * Math.tan(Math.toRadians(30))), this.getHeight());
+                polygon.addPoint((int)(this.getWidth() / 2 + this.getHeight() * Math.tan(Math.toRadians(30))), this.getHeight());
 		return polygon;
 	}
 	
