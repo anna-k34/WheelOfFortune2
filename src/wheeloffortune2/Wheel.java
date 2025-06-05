@@ -301,43 +301,106 @@ public class Wheel extends JPanel {
 		 * Paintcomponent - if the image is null, create it and then draw it whilst keeping the current rotation.
 		 * The image can be larger than the displaying area, so after it is drawn it needs to be placed properly.
          */
-        super.paintComponent(g);
+        //super.paintComponent(g);
 
-        if (_image == null) {
-            _image = drawImage();
-            _rotationCenter = new Point2D.Double(
-                    this.getWidth() - _image.getWidth(null) + _center.getX(),
-                    this.getHeight() / 2
+        //if (_image == null) {
+        //    _image = drawImage();
+         //   _rotationCenter = new Point2D.Double(
+        //            this.getWidth() - _image.getWidth(null) + _center.getX(),
+         //           this.getHeight() / 2
 
-            );
-            _imagePosition = new Point2D.Double(
-            (int) (this.getWidth() - _image.getWidth(null)),
-            (int) (this.getHeight() / 2 - _center.getY())
+        //    );
+        //    _imagePosition = new Point2D.Double(
+         //   (int) (this.getWidth() - _image.getWidth(null)),
+          //  (int) (this.getHeight() / 2 - _center.getY())
 
-            );
-        }
+         //   );
+        //}
+        
+        //if (_image == null) {
+    //_image = drawImage();
 
-        Graphics2D gPanel = (Graphics2D) g;
-        gPanel.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        gPanel.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+    // Center the image in the panel
+    //int panelWidth = getWidth();
+    //int panelHeight = getHeight();
+    //int imageWidth = _image.getWidth(null);
+    //int imageHeight = _image.getHeight(null);
 
-        gPanel.rotate(Math.toRadians(_rotationAngle), _rotationCenter.getX(), _rotationCenter.getY());
-        gPanel.drawImage(_image, (int) _imagePosition.getX(), (int) _imagePosition.getY(), null);
+    //_rotationCenter = new Point2D.Double(panelWidth / 2.0, panelHeight / 2.0);
+    //_imagePosition = new Point2D.Double(
+    //    (panelWidth - imageWidth) / 2.0,
+    //    (panelHeight - imageHeight) / 2.0
+    
+    //);
+    
+    super.paintComponent(g);
+
+    int panelWidth = getWidth();
+    int panelHeight = getHeight();
+
+    // Redraw image only if necessary
+    if (_image == null || _image.getWidth(null) != panelWidth || _image.getHeight(null) != panelHeight) {
+        _image = drawImage();
+
+        // Define the center of rotation and image placement
+        _rotationCenter = new Point2D.Double(panelWidth / 2.0, panelHeight / 2.0);
+        _imagePosition = new Point2D.Double(
+            _rotationCenter.getX() - _image.getWidth(null) / 2.0,
+            _rotationCenter.getY() - _image.getHeight(null) / 2.0
+        );
     }
+
+    if (_image != null && _rotationCenter != null && _imagePosition != null) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+        g2.rotate(Math.toRadians(_rotationAngle), _rotationCenter.getX(), _rotationCenter.getY());
+        g2.drawImage(_image, (int) _imagePosition.getX(), (int) _imagePosition.getY(), null);
+    }
+}
+
+      //  Graphics2D gPanel = (Graphics2D) g;
+     //   gPanel.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+      //  gPanel.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+      //  gPanel.rotate(Math.toRadians(_rotationAngle), _rotationCenter.getX(), _rotationCenter.getY());
+     //   gPanel.drawImage(_image, (int) _imagePosition.getX(), (int) _imagePosition.getY(), null);
+    
 
     private BufferedImage drawImage() {
         /*
 		 * Calculate all the necessary parameters for the wheel and draw it section by section.
          */
-        int width = this.getWidth(), height = this.getHeight();
+       // int width = this.getWidth(), height = this.getHeight();
 
-        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+       // BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
-        Graphics2D g2d = (Graphics2D) img.getGraphics();
+       // Graphics2D g2d = (Graphics2D) img.getGraphics();
 
         // Calculate radius
         //_radius = Math.min(img.getWidth(), img.getHeight()) / 2 - BORDER;
-        _radius = Math.min(width, height) / 2 - 10;
+       // _radius = Math.min(width, height) / 2 - 10;
+       
+       int panelWidth = this.getWidth();
+int panelHeight = this.getHeight();
+
+// Make the image slightly smaller than the panel
+int imgSize = (int) (Math.min(panelWidth, panelHeight) * 0.5);
+if (imgSize <= 0) imgSize = 1;
+
+//BufferedImage img = new BufferedImage(imgSize, imgSize, BufferedImage.TYPE_INT_ARGB);
+//Graphics2D g2d = img.createGraphics();
+
+// New scaled radius based on the smaller image size
+//_radius = imgSize / 2 - 10;
+
+BufferedImage img = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D g2d = img.createGraphics();
+
+    // Radius based on 80% of the smaller panel dimension
+    int usableSize = (int) (Math.min(panelWidth, panelHeight) * 0.8);
+    _radius = usableSize / 2;
 
         double stringDistanceFromEdge = 0.05 * _radius;
         int fontSize, stringWidth, maxStringWidth;
@@ -349,13 +412,26 @@ public class Wheel extends JPanel {
         // Adjust the parameters (for "zoom in") - if the font size is too small
         if (fontSize < MINFONTSIZE) {
             _zoomFactor = (double) MINFONTSIZE / fontSize;
-            width += (int) 2 * ((_zoomFactor * _radius) - _radius);
-            height += (int) 2 * ((_zoomFactor * _radius) - _radius);
-            _radius = (int) (_zoomFactor * _radius);
-            img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            g2d = (Graphics2D) img.getGraphics();
-            maxStringWidth = (int) (_radius - 2 * stringDistanceFromEdge);
-            fontSize = calcFontSize(g2d, stringDistanceFromEdge, maxStringWidth);
+            //width += (int) 2 * ((_zoomFactor * _radius) - _radius);
+            //height += (int) 2 * ((_zoomFactor * _radius) - _radius);
+            //_radius = (int) (_zoomFactor * _radius);
+            
+            //img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            //g2d = (Graphics2D) img.getGraphics();
+            //maxStringWidth = (int) (_radius - 2 * stringDistanceFromEdge);
+            //fontSize = calcFontSize(g2d, stringDistanceFromEdge, maxStringWidth);
+            
+            _zoomFactor = (double) MINFONTSIZE / fontSize;
+
+    // Expand the image size to accommodate larger font
+    imgSize += (int) (2 * ((_zoomFactor * _radius) - _radius));
+    _radius = (int) (_zoomFactor * _radius);
+
+    img = new BufferedImage(imgSize, imgSize, BufferedImage.TYPE_INT_ARGB);
+    g2d = img.createGraphics();
+
+    maxStringWidth = (int) (_radius - 2 * stringDistanceFromEdge);
+    fontSize = calcFontSize(g2d, stringDistanceFromEdge, maxStringWidth);
         }
 
         // Calculate center point

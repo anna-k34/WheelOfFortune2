@@ -226,6 +226,6 @@ public class SelectionWheel extends JPanel {
 
     @Override
     public java.awt.Dimension getPreferredSize() {
-        return new java.awt.Dimension(265, 265); // or whatever size you need
+        return new java.awt.Dimension(350, 350); // or whatever size you need
     }
 }
