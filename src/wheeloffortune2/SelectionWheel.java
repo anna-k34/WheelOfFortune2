@@ -4,10 +4,14 @@
  */
 package wheeloffortune2;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Polygon;
 import java.util.ArrayList;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 public class SelectionWheel extends JPanel {
@@ -21,21 +25,19 @@ public class SelectionWheel extends JPanel {
 		 * Adjust the bounds of the wheel and tick based on tick width.
          */
         super.setBounds(x, y, width, height);
-        //_wheel.setBounds(0, 0, width - _tick.getTickWidth(), height);
-        //_tick.setBounds(width - _tick.getTickWidth(), 0, _tick.getTickWidth(), height);
-        
+
         // Set bounds of the wheel to take full panel
-    _wheel.setBounds(0, 0, width, height);
+        _wheel.setBounds(0, 0, width, height);
 
-    // Tick size
-    int tickWidth = _tick.getTickWidth();
-    int tickHeight = _tick.getTickHeight();
+        // Tick size
+        int tickWidth = _tick.getTickWidth();
+        int tickHeight = _tick.getTickHeight();
 
-    // Place tick at top center above the wheel
-    int tickX = (width - tickWidth) / 2;
-    int tickY = -10; // or a bit above, like -10 for overlap
+        // Place tick at top center above the wheel
+        int tickX = (width - tickWidth) / 2;
+        int tickY = -10; // or a bit above, like -10 for overlap
 
-    _tick.setBounds(tickX, tickY, tickWidth, tickHeight);
+        _tick.setBounds(tickX, tickY, tickWidth, tickHeight);
     }
 
     public void hasBorders(boolean borders) {
@@ -64,6 +66,16 @@ public class SelectionWheel extends JPanel {
 		 * Set current rotation angle of the wheel.
          */
         _wheel.setRotationAngle(rotationAngle);
+        rotationAngle = rotationAngle % 360;
+        this.repaint();
+        if (getParent() != null) {
+            for (Component c : getParent().getComponents()) {
+                if (c instanceof Tick) {
+                    c.repaint();
+                }
+            }
+        }
+
     }
 
     public Font getWheelFont() {
@@ -209,51 +221,61 @@ public class SelectionWheel extends JPanel {
         _tick.setPolygon(polygon);
     }
 
+    public void repaintTick() {
+        if (_tick != null) {
+            _tick.repaint();
+        }
+    }
+
+    public Tick getTick() {
+        return _tick;
+    }
+
     public SelectionWheel(ArrayList<String> listOfStrings) throws Exception {
         /*
-		 * Constructor - initializes tick and wheel.
-         */
-        _wheel = new Wheel(listOfStrings);
-        _wheel.setLayout(null);
-        
-        _tick = new Tick();
-        _tick.setLayout(null);
-        
-        this.add(_wheel);
-        this.add(_tick);
-        
-        _tick.setTickWidth(40);  // width of the base of triangle
-        _tick.setTickHeight(30); // height of the triangle
-        
-        //_tick.setOpaque(false);
-        //this.setLayout(null);
-        
-        
-        
+     * Constructor - initializes tick and wheel.
+     */
 
-        
-        //this.setBounds(0, 0, getPreferredSize().width, getPreferredSize().height);
-        
-        //this.revalidate();
-        //this.repaint();
-        
-        // Set size of the full panel (SelectionWheel itself)
+    // Create wheel and tick
+    _wheel = new Wheel(listOfStrings);
+    _wheel.setLayout(null);
+
+    _tick = new Tick();
+    _tick.setLayout(null);
+    _tick.setTickWidth(40);
+    _tick.setTickHeight(30);
+    _tick.setOpaque(false);
+    _tick.setBackground(new Color(0, 0, 0, 0));
+
+    // Set preferred size
     int panelWidth = 350;
     int panelHeight = 350;
-    this.setBounds(0, 0, panelWidth, panelHeight);
+    this.setPreferredSize(new Dimension(panelWidth, panelHeight));
+    this.setLayout(new BorderLayout());
 
-    // Set _wheel to take full panel
+    // Create layered pane and set bounds/layout
+    JLayeredPane layeredPane = new JLayeredPane();
+    layeredPane.setPreferredSize(new Dimension(panelWidth, panelHeight));
+    layeredPane.setLayout(null); // absolute positioning
+
+    // Set bounds for wheel and tick
     _wheel.setBounds(0, 0, panelWidth, panelHeight);
-
-    // Place _tick at the top-center
     int tickX = (panelWidth - _tick.getTickWidth()) / 2;
     int tickY = 0;
     _tick.setBounds(tickX, tickY, _tick.getTickWidth(), _tick.getTickHeight());
 
+    // Add components to layered pane
+    layeredPane.add(_wheel, JLayeredPane.DEFAULT_LAYER);       // behind
+    layeredPane.add(_tick, JLayeredPane.PALETTE_LAYER);        // on top
+
+    // Add layered pane to this panel
+    this.add(layeredPane, BorderLayout.CENTER);
+
+    // Force repaint to confirm it's showing
     _tick.repaint();
-        
-        
-        
+    _wheel.repaint();
+    this.repaint();
+
     }
 
     public void spinStartAsync(double speed, int direction, double deceleration) throws Exception {

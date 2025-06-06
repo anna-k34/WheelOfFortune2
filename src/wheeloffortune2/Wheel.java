@@ -619,18 +619,15 @@ public class Wheel extends JPanel {
 		 * To be used in case when no explicit color list is set.
          */
         ArrayList<Color> colors = new ArrayList<Color>();
-        colors.add(Color.BLUE);
-        colors.add(Color.CYAN);
-        colors.add(Color.DARK_GRAY);
-        colors.add(Color.GRAY);
-        colors.add(Color.GREEN);
-        colors.add(Color.LIGHT_GRAY);
-        colors.add(Color.MAGENTA);
-        colors.add(Color.ORANGE);
-        colors.add(Color.PINK);
-        colors.add(Color.RED);
+        colors.add(new Color(52, 149, 235));
+        colors.add(new Color(29, 219, 165));
+        colors.add(new Color(91, 212, 95));
+        colors.add(new Color(215, 80, 230));
+        colors.add(new Color(247, 131, 64));
+        colors.add(new Color(247, 156, 197));
+        colors.add(new Color(245, 66, 66));
         colors.add(Color.WHITE);
-        colors.add(Color.YELLOW);
+        colors.add(new Color(245, 240, 98));
         return colors;
     }
 }

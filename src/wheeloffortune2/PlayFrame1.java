@@ -1,10 +1,9 @@
 package wheeloffortune2;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.awt.*;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  *
@@ -14,7 +13,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     private PlayFrame2 secondFrame;
     GamePlay firstWindow;
-    
+
     private PlayFrame3 thirdFrame;
     private String username;
     private Player player;
@@ -52,26 +51,26 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
             wheelPanel.setLayout(new java.awt.FlowLayout(FlowLayout.CENTER, 0, 0));
             wheelPanel.add(selectionWheel);
-           
+
             System.out.println("SelectionWheel size: " + selectionWheel.getWidth() + "x" + selectionWheel.getHeight());
-            
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         wheelPanel.revalidate();
         wheelPanel.repaint();
-        
+
     }
 
     public String getUsername() {
         return username;
     }
-    
-    public Player getPlayer(){
+
+    public Player getPlayer() {
         return firstWindow.getPlayer();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,8 +125,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
                 spinButton1ActionPerformed(evt);
             }
         });
-
-        wheelPanel.setBackground(new java.awt.Color(0, 51, 204));
 
         javax.swing.GroupLayout wheelPanelLayout = new javax.swing.GroupLayout(wheelPanel);
         wheelPanel.setLayout(wheelPanelLayout);
@@ -248,26 +245,31 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-        while (true) {
-            // wait for action
-            try {
-                selectionWheel.spinStartAsync(300, -1, -50);
+        spinButton1.setEnabled(false); // disable spin button while spinning
 
-                if (selectionWheel.isSpinning()) {
-                    break;
-                }
+        try {
+            selectionWheel.spinStartAsync(300, -1, -50);
 
-                // while spinning
+            Timer tickTimer = new Timer(33, e -> selectionWheel.repaintTick());
+            tickTimer.start();
+
+            new Thread(() -> {
                 while (selectionWheel.isSpinning()) {
-                    Thread.sleep(10);
-
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ignored) {
+                    }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+                tickTimer.stop();
+
+                SwingUtilities.invokeLater(() -> spinButton1.setEnabled(true));
+            }).start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        
 
     }//GEN-LAST:event_spinButton1ActionPerformed
 
