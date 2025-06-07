@@ -37,7 +37,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
         highscore = player.getHighscore();
 
         initComponents();
-        currentMoneyLabel.setText("Current Earnings:  " + money.format(highscore));
+        currentEarningsLabel.setText("Current Earnings:  " + money.format(highscore));
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         try {
             ArrayList<String> list = new ArrayList<String>();
@@ -329,7 +329,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel currentMoneyLabel;
+    private javax.swing.JLabel currentEarningsLabel;
     private javax.swing.JButton guessPhraseButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel moneyLabel;
