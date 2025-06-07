@@ -184,7 +184,7 @@ public class SelectionWheel extends JPanel {
          */
         return _tick.getTickWidth();
     }
-
+    
     public void setTickWidth(int width) {
         /*
 		 * Set tick width. Resets the bounds of both tick and wheel.
