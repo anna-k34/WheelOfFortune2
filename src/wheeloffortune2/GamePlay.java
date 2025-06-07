@@ -242,7 +242,7 @@ public class GamePlay extends javax.swing.JFrame {
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
-
+    
     private void highScoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoresButtonActionPerformed
         if (score == null) {
             score = new HighScores(this);
@@ -259,9 +259,10 @@ public class GamePlay extends javax.swing.JFrame {
         
         boolean usernameTest = usernameCheck(usernameTextField.getText());
         if (firstPlayScreen == null && usernameTest) {
+                        player = new Player(usernameTextField.getText(), 0, 3);
+
             firstPlayScreen = new PlayFrame1(this);
             firstPlayScreen.setVisible(true);
-            player = new Player(usernameTextField.getText(), 0);
             this.setVisible(false);
         } else if (!usernameTest) {
             usernameTextField.setText("");

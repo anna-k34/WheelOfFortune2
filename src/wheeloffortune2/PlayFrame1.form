@@ -51,7 +51,7 @@
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Component id="spinsLeftLabel" min="-2" pref="143" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="spinsLeftLabel1" min="-2" pref="258" max="-2" attributes="0"/>
+                          <Component id="currentMoneyLabel" min="-2" pref="258" max="-2" attributes="0"/>
                           <EmptySpace pref="33" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -81,7 +81,7 @@
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="spinsLeftLabel" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="spinsLeftLabel1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="currentMoneyLabel" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="spinButton1" min="-2" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
             <Property name="text" type="java.lang.String" value="Spins Left:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="spinsLeftLabel1">
+        <Component class="javax.swing.JLabel" name="currentMoneyLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="MS UI Gothic" size="18" style="1"/>

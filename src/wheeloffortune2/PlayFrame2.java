@@ -23,9 +23,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private Player player;
     private JTextField clue;
     private Phrase p;
+
     private String answer;
     private boolean answerStatus;
-    private int totalMoney=1000;
+    private int totalMoney;
     //private int guessesLeft=firstFrame.getGuessesLeft();
     private int guessesLeft = 6;
 
@@ -42,9 +43,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }
 
     public PlayFrame2(PlayFrame1 f) {
-        DecimalFormat money = new DecimalFormat("$0,00");
+        DecimalFormat money = new DecimalFormat("$0.00");
         initComponents();
         firstFrame = f;
+        player=firstFrame.getPlayer();
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
@@ -53,8 +55,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
         player = firstFrame.getPlayer();
         p = firstFrame.getPhrase();
         answer = p.getAnswer();
+        totalMoney=player.getHighscore();
         guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
-                totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
+        totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
+        
 
     }
 
@@ -607,8 +611,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
     public void changeAmountMoney() {
         DecimalFormat money = new DecimalFormat("$0,00");
         totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
-        
-        
+
     }
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed
         countGuesses();

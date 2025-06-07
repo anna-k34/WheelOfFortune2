@@ -2,6 +2,7 @@ package wheeloffortune2;
 
 import java.awt.Color;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -16,18 +17,28 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     private PlayFrame3 thirdFrame;
     private String username;
-    private Player player;
+    private int highscore;
     private ArrayList<Phrase> phrases;
     private Phrase p;
     private SelectionWheel selectionWheel;
+    private Player player;
 
     public PlayFrame1(GamePlay f) {
-        initComponents();
-        firstWindow = f;
-        username = firstWindow.getUsername();
-        player = firstWindow.getPlayer();
-        phrases = firstWindow.getPhrases();
 
+        DecimalFormat money = new DecimalFormat("$0.00");
+        firstWindow = f;
+        player = firstWindow.getPlayer();
+        System.out.println(f);
+
+        int spinsLeft = player.getSpinsLeft();
+        player.setSpinsLeft(spinsLeft - 1); // or spinsLeft -= 1;
+        username = firstWindow.getUsername();
+        phrases = firstWindow.getPhrases();
+        highscore = player.getHighscore();
+
+        initComponents();
+        currentMoneyLabel.setText("Current Earnings:  " + money.format(highscore));
+        spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         try {
             ArrayList<String> list = new ArrayList<String>();
             list.add("$600");
@@ -80,7 +91,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         spinsLeftLabel = new javax.swing.JLabel();
-        spinsLeftLabel1 = new javax.swing.JLabel();
+        currentMoneyLabel = new javax.swing.JLabel();
         guessPhraseButton = new javax.swing.JButton();
         spinMoneyLabel = new javax.swing.JLabel();
         spinButton1 = new javax.swing.JButton();
@@ -94,9 +105,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
         spinsLeftLabel.setForeground(new java.awt.Color(255, 255, 255));
         spinsLeftLabel.setText("Spins Left:");
 
-        spinsLeftLabel1.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
-        spinsLeftLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        spinsLeftLabel1.setText("Current Earnings:");
+        currentMoneyLabel.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+        currentMoneyLabel.setForeground(new java.awt.Color(255, 255, 255));
+        currentMoneyLabel.setText("Current Earnings:");
 
         guessPhraseButton.setBackground(new java.awt.Color(255, 255, 102));
         guessPhraseButton.setFont(new java.awt.Font("MS UI Gothic", 1, 21)); // NOI18N
@@ -147,7 +158,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(spinsLeftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(currentMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 31, Short.MAX_VALUE)
@@ -169,7 +180,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spinsLeftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(currentMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(spinButton1)
                         .addGap(31, 31, 31)
@@ -242,9 +253,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
+
         spinButton1.setEnabled(false); // disable spin button while spinning
         selectionWheel.setRotationAngle(Math.random() * 360);
-        
 
         try {
             selectionWheel.spinStartAsync(300, -1, -50);
@@ -272,7 +283,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         String result = selectionWheel.getSelectedString();
         System.out.println("Landed On: " + result);
-
+        String additionResult = result.substring(1);
+        player.setHighscore(highscore + Integer.parseInt(additionResult));
     }//GEN-LAST:event_spinButton1ActionPerformed
 
     /**
@@ -280,12 +292,12 @@ public class PlayFrame1 extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel currentMoneyLabel;
     private javax.swing.JButton guessPhraseButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton spinButton1;
     private javax.swing.JLabel spinMoneyLabel;
     private javax.swing.JLabel spinsLeftLabel;
-    private javax.swing.JLabel spinsLeftLabel1;
     private javax.swing.JPanel wheelPanel;
     // End of variables declaration//GEN-END:variables
 }
