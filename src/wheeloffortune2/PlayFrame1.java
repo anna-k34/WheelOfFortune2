@@ -52,8 +52,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
             wheelPanel.setLayout(new java.awt.FlowLayout(FlowLayout.CENTER, 0, 0));
             wheelPanel.add(selectionWheel);
 
-            System.out.println("SelectionWheel size: " + selectionWheel.getWidth() + "x" + selectionWheel.getHeight());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -235,7 +233,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         }
 
-        System.out.println(p);
         JTextField clue = secondFrame.getClueField();
         clue.setText(p.getQuestion());
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
@@ -246,6 +243,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
         spinButton1.setEnabled(false); // disable spin button while spinning
+        selectionWheel.setRotationAngle(Math.random() * 360);
+        
 
         try {
             selectionWheel.spinStartAsync(300, -1, -50);
@@ -268,8 +267,11 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         } catch (Exception e) {
             e.printStackTrace();
+            return;
         }
 
+        String result = selectionWheel.getSelectedString();
+        System.out.println("Landed On: " + result);
 
     }//GEN-LAST:event_spinButton1ActionPerformed
 

@@ -227,7 +227,12 @@ public class Wheel extends JPanel {
 		 * This number is added to the size of the string arraylist, and then MODed by the size of the string arraylist,
 		 * in order to avoid negative indices.
          */
-        return _stringList.get((int) Math.floor(_noElem + (_rotationAngle % 360) / _delta) % _noElem);
+        //return _stringList.get((int) Math.floor(_noElem + (_rotationAngle % 360) / _delta) % _noElem);
+    double angle = (_rotationAngle % 360 + 360) % 360;
+    double correctedAngle = (360 - angle + 90 + 360) % 360; // Rotate tick to -90°
+    int index = (int)(correctedAngle / _delta);
+    return _stringList.get((_noElem - 1 - index + _noElem) % _noElem);
+    
     }
 
     public Wheel(ArrayList<String> listOfStrings) throws Exception {
@@ -302,31 +307,7 @@ public class Wheel extends JPanel {
 		 * Paintcomponent - if the image is null, create it and then draw it whilst keeping the current rotation.
 		 * The image can be larger than the displaying area, so after it is drawn it needs to be placed properly.
          */
-        //super.paintComponent(g);
 
-        //if (_image == null) {
-        //    _image = drawImage();
-        //   _rotationCenter = new Point2D.Double(
-        //            this.getWidth() - _image.getWidth(null) + _center.getX(),
-        //           this.getHeight() / 2
-        //    );
-        //    _imagePosition = new Point2D.Double(
-        //   (int) (this.getWidth() - _image.getWidth(null)),
-        //  (int) (this.getHeight() / 2 - _center.getY())
-        //   );
-        //}
-        //if (_image == null) {
-        //_image = drawImage();
-        // Center the image in the panel
-        //int panelWidth = getWidth();
-        //int panelHeight = getHeight();
-        //int imageWidth = _image.getWidth(null);
-        //int imageHeight = _image.getHeight(null);
-        //_rotationCenter = new Point2D.Double(panelWidth / 2.0, panelHeight / 2.0);
-        //_imagePosition = new Point2D.Double(
-        //    (panelWidth - imageWidth) / 2.0,
-        //    (panelHeight - imageHeight) / 2.0
-        //);
         super.paintComponent(g);
 
         int panelWidth = getWidth();
@@ -354,22 +335,11 @@ public class Wheel extends JPanel {
         }
     }
 
-    //  Graphics2D gPanel = (Graphics2D) g;
-    //   gPanel.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-    //  gPanel.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-    //  gPanel.rotate(Math.toRadians(_rotationAngle), _rotationCenter.getX(), _rotationCenter.getY());
-    //   gPanel.drawImage(_image, (int) _imagePosition.getX(), (int) _imagePosition.getY(), null);
     private BufferedImage drawImage() {
         /*
 		 * Calculate all the necessary parameters for the wheel and draw it section by section.
          */
-        // int width = this.getWidth(), height = this.getHeight();
 
-        // BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        // Graphics2D g2d = (Graphics2D) img.getGraphics();
-        // Calculate radius
-        //_radius = Math.min(img.getWidth(), img.getHeight()) / 2 - BORDER;
-        // _radius = Math.min(width, height) / 2 - 10;
         int panelWidth = this.getWidth();
         int panelHeight = this.getHeight();
 
@@ -379,10 +349,6 @@ public class Wheel extends JPanel {
             imgSize = 1;
         }
 
-//BufferedImage img = new BufferedImage(imgSize, imgSize, BufferedImage.TYPE_INT_ARGB);
-//Graphics2D g2d = img.createGraphics();
-// New scaled radius based on the smaller image size
-//_radius = imgSize / 2 - 10;
         BufferedImage img = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
 

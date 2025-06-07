@@ -676,7 +676,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
                     for (int i = 0; i < answer.length(); i++) {
                         answerLetter = answer.charAt(i);
                         if (Character.toLowerCase(answerLetter) == Character.toLowerCase(consonant)) {
-                            letters[i].setText("" + Character.toString((Character.toUpperCase(consonant))));
+                            letters[i].setText(Character.toString((Character.toUpperCase(consonant))));
                             count++;
                         }
 
