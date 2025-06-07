@@ -59,6 +59,11 @@ public class PlayFrame1 extends javax.swing.JFrame {
         wheelPanel.revalidate();
         wheelPanel.repaint();
 
+        //Dimension fixedSize = moneyLabel.getPreferredSize();
+        //moneyLabel.setMinimumSize(fixedSize);
+        //moneyLabel.setMaximumSize(fixedSize);
+        // moneyLabel.setPreferredSize(fixedSize);
+        //moneyLabel.setVisible(false);
     }
 
     public String getUsername() {
@@ -80,11 +85,12 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         spinsLeftLabel = new javax.swing.JLabel();
-        spinsLeftLabel1 = new javax.swing.JLabel();
+        currentEarningsLabel = new javax.swing.JLabel();
         guessPhraseButton = new javax.swing.JButton();
         spinMoneyLabel = new javax.swing.JLabel();
         spinButton1 = new javax.swing.JButton();
         wheelPanel = new javax.swing.JPanel();
+        moneyLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,9 +100,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
         spinsLeftLabel.setForeground(new java.awt.Color(255, 255, 255));
         spinsLeftLabel.setText("Spins Left:");
 
-        spinsLeftLabel1.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
-        spinsLeftLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        spinsLeftLabel1.setText("Current Earnings:");
+        currentEarningsLabel.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+        currentEarningsLabel.setForeground(new java.awt.Color(255, 255, 255));
+        currentEarningsLabel.setText("Current Earnings:");
 
         guessPhraseButton.setBackground(new java.awt.Color(255, 255, 102));
         guessPhraseButton.setFont(new java.awt.Font("MS UI Gothic", 1, 21)); // NOI18N
@@ -135,6 +141,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
             .addGap(0, 292, Short.MAX_VALUE)
         );
 
+        moneyLabel.setForeground(new java.awt.Color(255, 255, 255));
+        moneyLabel.setPreferredSize(new java.awt.Dimension(57, 51));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -142,24 +151,24 @@ public class PlayFrame1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(wheelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(spinsLeftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(33, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 31, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(spinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(spinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(currentEarningsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(moneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(12, 12, 12))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,13 +178,18 @@ public class PlayFrame1 extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spinsLeftLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                            .addComponent(currentEarningsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
                         .addComponent(spinButton1)
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(moneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(wheelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -244,7 +258,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
         spinButton1.setEnabled(false); // disable spin button while spinning
         selectionWheel.setRotationAngle(Math.random() * 360);
-        
+        ////moneyLabel.setPreferredSize(new Dimension(57,51));
+        //moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        moneyLabel.setVisible(false);
 
         try {
             selectionWheel.spinStartAsync(300, -1, -50);
@@ -262,16 +278,37 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
                 tickTimer.stop();
 
+                try {
+                    // Give the wheel a moment to finalize angle updates
+                    Thread.sleep(1000);  // sometimes the rotation angle finalizes right after spin stops
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 SwingUtilities.invokeLater(() -> spinButton1.setEnabled(true));
+
+                
+                
+                moneyLabel.setVisible(true);
             }).start();
 
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
-
         String result = selectionWheel.getSelectedString();
-        System.out.println("Landed On: " + result);
+        
+
+            
+            if (result.equalsIgnoreCase("Bankruptcy")) {
+                    moneyLabel.setText("$500");
+                } else {
+                    moneyLabel.setText(result);
+                }
+
+
+        System.out.println(selectionWheel.getSelectedString());
+
 
     }//GEN-LAST:event_spinButton1ActionPerformed
 
@@ -280,12 +317,13 @@ public class PlayFrame1 extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel currentEarningsLabel;
     private javax.swing.JButton guessPhraseButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel moneyLabel;
     private javax.swing.JButton spinButton1;
     private javax.swing.JLabel spinMoneyLabel;
     private javax.swing.JLabel spinsLeftLabel;
-    private javax.swing.JLabel spinsLeftLabel1;
     private javax.swing.JPanel wheelPanel;
     // End of variables declaration//GEN-END:variables
 }
