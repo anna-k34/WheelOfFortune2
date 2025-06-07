@@ -96,7 +96,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         spinsLeftLabel = new javax.swing.JLabel();
-        currentMoneyLabel = new javax.swing.JLabel();
+        currentEarningsLabel = new javax.swing.JLabel();
         guessPhraseButton = new javax.swing.JButton();
         spinMoneyLabel = new javax.swing.JLabel();
         spinButton1 = new javax.swing.JButton();
