@@ -31,7 +31,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
         System.out.println(f);
 
         int spinsLeft = player.getSpinsLeft();
-        player.setSpinsLeft(spinsLeft - 1); // or spinsLeft -= 1;
         username = firstWindow.getUsername();
         phrases = firstWindow.getPhrases();
         highscore = player.getHighscore();
@@ -299,8 +298,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
                 SwingUtilities.invokeLater(() -> spinButton1.setEnabled(true));
 
-                
-                
                 moneyLabel.setVisible(true);
             }).start();
 
@@ -309,17 +306,18 @@ public class PlayFrame1 extends javax.swing.JFrame {
             return;
         }
         String result = selectionWheel.getSelectedString();
-        
 
-            
-            if (result.equalsIgnoreCase("Bankruptcy")) {
-                    moneyLabel.setText("$500");
-                } else {
-                    moneyLabel.setText(result);
-                }
-
+        if (result.equalsIgnoreCase("Bankruptcy")) {
+            moneyLabel.setText("$500");
+        } else {
+            moneyLabel.setText(result);
+        }
 
         System.out.println(selectionWheel.getSelectedString());
+        int spinsLeft = player.getSpinsLeft();
+        spinsLeft-=1;
+        spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
+        player.setSpinsLeft(spinsLeft); // or spinsLeft -= 1;
 
 
     }//GEN-LAST:event_spinButton1ActionPerformed
