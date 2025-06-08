@@ -22,6 +22,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
     private Phrase p;
     private SelectionWheel selectionWheel;
     private Player player;
+    private int spinMoney;
+    private int spinsLeft;
 
     public PlayFrame1(GamePlay f) {
 
@@ -30,7 +32,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
         player = firstWindow.getPlayer();
         System.out.println(f);
 
-        int spinsLeft = player.getSpinsLeft();
+        spinsLeft = player.getSpinsLeft();
         username = firstWindow.getUsername();
         phrases = firstWindow.getPhrases();
         highscore = player.getHighscore();
@@ -68,12 +70,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         wheelPanel.revalidate();
         wheelPanel.repaint();
+        guessPhraseButton.setEnabled(false);
 
-        //Dimension fixedSize = moneyLabel.getPreferredSize();
-        //moneyLabel.setMinimumSize(fixedSize);
-        //moneyLabel.setMaximumSize(fixedSize);
-        // moneyLabel.setPreferredSize(fixedSize);
-        //moneyLabel.setVisible(false);
     }
 
     public String getUsername() {
@@ -82,6 +80,14 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     public Player getPlayer() {
         return firstWindow.getPlayer();
+    }
+    
+    public int getSpinMoney() {
+        return spinMoney;
+    }
+    
+    public int getSpinsLeft() {
+        return spinsLeft;
     }
 
     /**
@@ -151,6 +157,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
             .addGap(0, 292, Short.MAX_VALUE)
         );
 
+        moneyLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         moneyLabel.setForeground(new java.awt.Color(255, 255, 255));
         moneyLabel.setPreferredSize(new java.awt.Dimension(57, 51));
 
@@ -269,8 +276,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         spinButton1.setEnabled(false); // disable spin button while spinning
         selectionWheel.setRotationAngle(Math.random() * 360);
-        ////moneyLabel.setPreferredSize(new Dimension(57,51));
-        //moneyLabel.setHorizontalAlignment(SwingConstants.CENTER);
         moneyLabel.setVisible(false);
 
         try {
@@ -289,16 +294,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
                 tickTimer.stop();
 
-                try {
-                    // Give the wheel a moment to finalize angle updates
-                    Thread.sleep(1000);  // sometimes the rotation angle finalizes right after spin stops
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                SwingUtilities.invokeLater(() -> spinButton1.setEnabled(true));
-
-                moneyLabel.setVisible(true);
+                SwingUtilities.invokeLater(()
+                        -> moneyLabel.setVisible(true));
+                guessPhraseButton.setEnabled(true);
             }).start();
 
         } catch (Exception e) {
@@ -308,14 +306,13 @@ public class PlayFrame1 extends javax.swing.JFrame {
         String result = selectionWheel.getSelectedString();
 
         if (result.equalsIgnoreCase("Bankruptcy")) {
-            moneyLabel.setText("$500");
-        } else {
-            moneyLabel.setText(result);
-        }
+            result = "$500";
+        } 
 
-        System.out.println(selectionWheel.getSelectedString());
-        int spinsLeft = player.getSpinsLeft();
-        spinsLeft-=1;
+        moneyLabel.setText(result);
+        spinMoney = Integer.parseInt(result.substring(1));   
+        
+        spinsLeft -= 1;
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         player.setSpinsLeft(spinsLeft); // or spinsLeft -= 1;
 

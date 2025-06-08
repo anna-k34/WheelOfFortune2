@@ -15,6 +15,7 @@ public class PlayFrame3 extends javax.swing.JFrame {
         initComponents();
         secondFrame=f;
         phraseAnswer = phraseAnswerLabel;
+        
         if(!secondFrame.getStatus()){
             correctLabel.setText("That's incorrect.");
         }
