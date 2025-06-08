@@ -24,13 +24,14 @@ public class PlayFrame1 extends javax.swing.JFrame {
     private Player player;
     private int spinMoney;
     private int spinsLeft;
+    private JButton spin;
+    private JButton guess;
 
     public PlayFrame1(GamePlay f) {
 
         DecimalFormat money = new DecimalFormat("$0.00");
         firstWindow = f;
         player = firstWindow.getPlayer();
-        System.out.println(f);
 
         spinsLeft = player.getSpinsLeft();
         username = firstWindow.getUsername();
@@ -70,7 +71,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         wheelPanel.revalidate();
         wheelPanel.repaint();
-        guessPhraseButton.setEnabled(false);
+        spin = spinButton1;
+        guess = guessPhraseButton;
 
     }
 
@@ -81,17 +83,25 @@ public class PlayFrame1 extends javax.swing.JFrame {
     public Player getPlayer() {
         return firstWindow.getPlayer();
     }
-    
+
     public int getSpinMoney() {
         return spinMoney;
     }
-    
+
     public int getSpinsLeft() {
         return spinsLeft;
     }
-    
+
     public GamePlay getFirstWindow() {
         return firstWindow;
+    }
+
+    public JButton getSpin() {
+        return spin;
+    }
+
+    public JButton getGuess() {
+        return guess;
     }
 
     /**
@@ -284,9 +294,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-                DecimalFormat money = new DecimalFormat("$0.00");
-                currentEarningsLabel1.setVisible(false);
-        spinButton1.setEnabled(false); // disable spin button while spinning
+        DecimalFormat money = new DecimalFormat("$0.00");
+        currentEarningsLabel1.setVisible(false);
+        spin.setEnabled(false); // disable spin button while spinning
         selectionWheel.setRotationAngle(Math.random() * 360);
         moneyLabel.setVisible(false);
 
@@ -308,9 +318,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
                 SwingUtilities.invokeLater(()
                         -> moneyLabel.setVisible(true));
-                 SwingUtilities.invokeLater(()
-                        -> currentEarningsLabel1.setVisible(true));
-                guessPhraseButton.setEnabled(true);
+                currentEarningsLabel1.setVisible(true);
+                guess.setEnabled(true);
+
             }).start();
 
         } catch (Exception e) {
@@ -321,17 +331,17 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         if (result.equalsIgnoreCase("Bankruptcy")) {
             result = "$500";
-        } 
+        }
 
         moneyLabel.setText(result);
-        spinMoney = Integer.parseInt(result.substring(1));   
-        String total=String.valueOf(spinMoney + player.getHighscore());
+        spinMoney = Integer.parseInt(result.substring(1));
+        String total = String.valueOf(spinMoney + player.getHighscore());//why are we adding the spin money isnt that for when they are guessing? should it not just be their highscore as the time?
         System.out.println(total);
         currentEarningsLabel1.setText(total);
         spinsLeft -= 1;
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         player.setSpinsLeft(spinsLeft); // or spinsLeft -= 1;
-        
+
 
     }//GEN-LAST:event_spinButton1ActionPerformed
 

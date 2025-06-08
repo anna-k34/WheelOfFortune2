@@ -145,6 +145,8 @@ public class PlayFrame3 extends javax.swing.JFrame {
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
         firstFrame.setVisible(true);
         this.setVisible(false);
+        firstFrame.getSpin().setEnabled(true);
+        firstFrame.getGuess().setEnabled(false);
     }//GEN-LAST:event_spinButton1ActionPerformed
 
    
