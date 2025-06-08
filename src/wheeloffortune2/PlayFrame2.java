@@ -24,7 +24,6 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private Phrase p;
 
     private String answer;
-    private boolean answerStatus;
     private int totalMoney;
     private int spinMoney;
     private DecimalFormat money;
@@ -65,6 +64,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
     public JTextField getClueField() {
         return clueField;
+    }
+    
+    public PlayFrame1 getFirstFrame() {
+        return firstFrame;
     }
 
     /**
@@ -719,6 +722,8 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
         countGuesses();
         int spinsLeft = firstFrame.getSpinsLeft();
+        JLabel correct;
+       
         
         if (spinsLeft != 0) {
             if (thirdFrame == null) {
@@ -727,18 +732,15 @@ public class PlayFrame2 extends javax.swing.JFrame {
             
             JLabel phraseAnswer = thirdFrame.getPhraseAnswerLabel();
             phraseAnswer.setText(answer);
-            String userInput = phraseTextField.getText();
 
-            if (answer.equalsIgnoreCase(userInput)) {//FIX
-                answerStatus = true;
-                System.out.println("Setting answerStatus to TRUE in PlayFrame2");
+            correct = thirdFrame.getCorrectLabel();
+
+            if (answer.equalsIgnoreCase(phraseTextField.getText())) {//FIX
+                correct.setText("That is correct!");
             } else {
-                answerStatus = false;
-                System.out.println("Setting answerStatus to FALSE in PlayFrame2");
+                correct.setText("That is incorrect!");
             }
             
-            System.out.println("answer: " + answer );
-            System.out.println("Input: " + phraseTextField.getText());
             thirdFrame.setVisible(true);
             this.setVisible(false);
         } else {
@@ -748,10 +750,13 @@ public class PlayFrame2 extends javax.swing.JFrame {
                 phraseAnswer.setText(answer);
 
             }
+            
+            correct = thirdFrame.getCorrectLabel();
+            
             if (answer.equalsIgnoreCase(phraseTextField.getText())) {//FIX
-                answerStatus = true;
+                correct.setText("That is correct!");
             } else {
-                answerStatus = false;
+                correct.setText("That is incorrect!");
             }
             fourthFrame.setVisible(true);
             this.setVisible(false);
@@ -759,9 +764,6 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
-    public boolean getStatus() {
-        return answerStatus;
-    }
 
     public int getGuessesLeft() {
         return guessesLeft;

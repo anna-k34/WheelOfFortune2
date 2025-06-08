@@ -10,19 +10,22 @@ public class PlayFrame3 extends javax.swing.JFrame {
     PlayFrame2 secondFrame;
     private JLabel phraseAnswer;
     PlayFrame1 firstFrame;
+    private JLabel correct;
     
     public PlayFrame3(PlayFrame2 f) {
         initComponents();
         secondFrame=f;
-        phraseAnswer = phraseAnswerLabel;
-        
-        if(!secondFrame.getStatus()){
-            correctLabel.setText("That's incorrect.");
-        }
+        correct = correctLabel;
+        firstFrame = secondFrame.getFirstFrame();
+
     }
 
     public JLabel getPhraseAnswerLabel() {
         return phraseAnswerLabel;
+    }
+    
+    public JLabel getCorrectLabel() {
+        return correct;
     }
 
     /**
@@ -140,10 +143,6 @@ public class PlayFrame3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-        if (firstFrame == null) {
-            GamePlay play=new GamePlay();
-            firstFrame = new PlayFrame1(play);
-        }
         firstFrame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_spinButton1ActionPerformed
