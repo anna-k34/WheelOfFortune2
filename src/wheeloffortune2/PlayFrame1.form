@@ -54,7 +54,7 @@
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="spinsLeftLabel" min="-2" pref="201" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="currentEarningsLabel" min="-2" pref="207" max="-2" attributes="0"/>
+                          <Component id="currentEarningsLabel" min="-2" pref="244" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="currentEarningsLabel1" min="-2" pref="156" max="-2" attributes="0"/>
                       </Group>
@@ -71,7 +71,7 @@
                           <Component id="guessPhraseButton" min="-2" pref="235" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -81,18 +81,20 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="spinsLeftLabel" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="currentEarningsLabel" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="currentEarningsLabel1" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="spinsLeftLabel" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="currentEarningsLabel" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="spinButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="spinMoneyLabel" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="moneyLabel" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="guessPhraseButton" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="spinMoneyLabel" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
