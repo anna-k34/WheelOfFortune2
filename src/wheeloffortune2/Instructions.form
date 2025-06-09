@@ -71,8 +71,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="496" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="504" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="backButton" pref="117" max="32767" attributes="0"/>
                               <Component id="quitButton" max="32767" attributes="0"/>
@@ -90,7 +90,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="143" max="32767" attributes="0"/>
                   <Component id="backButton" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="quitButton" min="-2" pref="34" max="-2" attributes="0"/>
@@ -100,8 +100,8 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="howToPlayLabel" min="-2" pref="71" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="209" max="-2" attributes="0"/>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="199" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -178,7 +178,11 @@
                   <Color blue="66" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="columns" type="int" value="20"/>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="33" red="0" type="rgb"/>
+                </Property>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="text" type="java.lang.String" value="&#xa;- First, press play and spin the wheel. The money you land on is the money you have to play&#xa;with in the next screen&#xa;&#xa;- On the board, green squares are where the letters of the phrase are, white squares are for&#xa;spaces, and red squares are just empty spaces. Guess constants for free, but vowels cost&#xa;money. Once you think you know what the phrase it, type it out and press guess!&#xa;&#xa;-Repeat the first two steps twice more for a total of 3 spins, and then save your score and&#xa;go look at the highscores leaderboard!&#xa;"/>
               </Properties>
             </Component>
           </SubComponents>
