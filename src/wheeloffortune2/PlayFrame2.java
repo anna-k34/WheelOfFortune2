@@ -38,6 +38,9 @@ public class PlayFrame2 extends javax.swing.JFrame {
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
+        for(int i=0;i<26;i++){
+            letters[i].setText("");
+        }
         clue = clueField;
         highscore = Integer.parseInt("100");
         p = firstFrame.getPhrase();
@@ -47,6 +50,8 @@ public class PlayFrame2 extends javax.swing.JFrame {
         guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
         totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
         spinMoney = firstFrame.getSpinMoney();
+        phraseTextField.setText("");
+        hintTextField.setText("");
 
     }
 
@@ -596,8 +601,9 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public void countGuesses() {
         guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
+
         if (guessesLeft > 1) {
-            guessesLeft -= 1;
+        guessesLeft -= 1;
 
         } else if (guessesLeft == 1) {
             JOptionPane.showMessageDialog(null, "You have one more guess, choose carefully");
@@ -702,7 +708,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
         }
         consField1.setText("");
-        totalMoneyLabel.setText(money.format(totalMoney));
+        totalMoneyLabel.setText("Total Money:  " + money.format(totalMoney));
 
     }//GEN-LAST:event_guessConsonantButtonActionPerformed
 
