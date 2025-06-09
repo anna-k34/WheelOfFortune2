@@ -22,6 +22,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private Player player;
     private JTextField clue;
     private Phrase p;
+    private JTextField hint;
 
     private String answer;
     private int totalMoney;
@@ -723,7 +724,6 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_hintTextFieldActionPerformed
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
-        countGuesses();
         int spinsLeft = firstFrame.getSpinsLeft();
         JLabel correct;
         player.setHighscore(totalMoney);

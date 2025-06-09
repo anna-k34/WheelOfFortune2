@@ -46,7 +46,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         initComponents();
         //currentEarningsLabel.setText("Current Earnings:  " + money.format(highscore));
-        currentEarningsLabel.setText("Current Earnings:  " );
+        currentEarningsLabel.setText("Current Earnings:  ");
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         try {
             ArrayList<String> list = new ArrayList<String>();
@@ -263,8 +263,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
         if (secondFrame == null) {
             secondFrame = new PlayFrame2(this);
         }
-        secondFrame.setVisible(true);
-        this.setVisible(false);
 
         String answer;
         String answerSplit[];
@@ -275,6 +273,10 @@ public class PlayFrame1 extends javax.swing.JFrame {
         answerSplit = answer.split(" ");
 
         TextField letters[] = secondFrame.getLetters();
+
+        for (int j = 0; j < letters.length; j++) {
+            letters[j].setText("");
+        }
 
         for (int i = 0; i < answerSplit.length; i++) {
             count = answerSplit[i].length();
@@ -292,6 +294,11 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         JTextField clue = secondFrame.getClueField();
         clue.setText(p.getQuestion());
+        
+        secondFrame.pack();
+        secondFrame.repaint();
+        secondFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
 
     public Phrase getPhrase() {

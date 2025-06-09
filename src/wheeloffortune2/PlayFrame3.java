@@ -6,6 +6,7 @@ package wheeloffortune2;
 
 import java.text.DecimalFormat;
 import javax.swing.*;
+import java.awt.*;
 
 public class PlayFrame3 extends javax.swing.JFrame {
 
