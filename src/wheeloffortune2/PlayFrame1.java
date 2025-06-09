@@ -43,7 +43,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
         username = firstWindow.getUsername();
         phrases = firstWindow.getPhrases();
         highscore = player.getHighscore();
-
+        
         initComponents();
         //currentEarningsLabel.setText("Current Earnings:  " + money.format(highscore));
         currentEarningsLabel.setText("Current Earnings:  ");
@@ -82,7 +82,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
         guess = guessPhraseButton;
 
     }
-
+    public int spinMoney(){
+        return spinMoney;
+    }
     public String getUsername() {
         return username;
     }

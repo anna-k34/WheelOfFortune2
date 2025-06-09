@@ -22,6 +22,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private Player player;
     private JTextField clue;
     private Phrase p;
+    private int currentTotal;
     private JTextField hint;
 
     private String answer;
@@ -39,15 +40,15 @@ public class PlayFrame2 extends javax.swing.JFrame {
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
-        for(int i=0;i<26;i++){
+        for (int i = 0; i < 26; i++) {
             letters[i].setText("");
         }
         clue = clueField;
         highscore = Integer.parseInt("100");
         p = firstFrame.getPhrase();
         answer = p.getAnswer();
-        totalMoney = player.getHighscore();
-        System.out.println(totalMoney);
+        totalMoney = 0;
+        spinMoney = firstFrame.getSpinMoney();
         guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
         totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
         spinMoney = firstFrame.getSpinMoney();
@@ -74,6 +75,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
     public PlayFrame1 getFirstFrame() {
         return firstFrame;
+    }
+
+    public int getCurrentTotal() {
+        return currentTotal;
     }
 
     /**
@@ -604,7 +609,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
 
         if (guessesLeft > 1) {
-        guessesLeft -= 1;
+            guessesLeft -= 1;
 
         } else if (guessesLeft == 1) {
             JOptionPane.showMessageDialog(null, "You have one more guess, choose carefully");
@@ -727,7 +732,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         int spinsLeft = firstFrame.getSpinsLeft();
         JLabel correct;
         player.setHighscore(totalMoney);
-
+        currentTotal = totalMoney;
         if (spinsLeft != 0) {
             if (thirdFrame == null) {
                 thirdFrame = new PlayFrame3(this);
@@ -738,14 +743,18 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
             correct = thirdFrame.getCorrectLabel();
 
-            if (answer.equalsIgnoreCase(phraseTextField.getText())) {//FIX
+            if (answer.equalsIgnoreCase(phraseTextField.getText())) {
                 correct.setText("That is correct!");
+                totalMoney = totalMoney * 3;
             } else {
                 correct.setText("That is incorrect!");
             }
 
             thirdFrame.setVisible(true);
             this.setVisible(false);
+            currentTotal = totalMoney;
+            player.setHighscore(totalMoney);
+
         } else {
             if (fourthFrame == null) {
                 fourthFrame = new PlayFrame4(this);
@@ -758,10 +767,12 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
             if (answer.equalsIgnoreCase(phraseTextField.getText())) {
                 correct.setText("That is correct!");
+
             } else {
                 correct.setText("That is incorrect!");
             }
             fourthFrame.setVisible(true);
+
             this.setVisible(false);
         }
 
