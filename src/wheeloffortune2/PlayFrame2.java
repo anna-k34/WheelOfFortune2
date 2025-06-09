@@ -612,11 +612,6 @@ public class PlayFrame2 extends javax.swing.JFrame {
         }
     }
 
-    public void changeAmountMoney() {
-        DecimalFormat money = new DecimalFormat("$0,00");
-        totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
-
-    }
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed
         countGuesses();
         boolean letterCheck;
@@ -725,7 +720,6 @@ public class PlayFrame2 extends javax.swing.JFrame {
         countGuesses();
         int spinsLeft = firstFrame.getSpinsLeft();
         JLabel correct;
-        phraseTextField.setText("");
         player.setHighscore(totalMoney);
 
         if (spinsLeft != 0) {
@@ -756,7 +750,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
             correct = thirdFrame.getCorrectLabel();
 
-            if (answer.equalsIgnoreCase(phraseTextField.getText())) {//FIX
+            if (answer.equalsIgnoreCase(phraseTextField.getText())) {
                 correct.setText("That is correct!");
             } else {
                 correct.setText("That is incorrect!");
