@@ -22,10 +22,10 @@ public class PlayFrame3 extends javax.swing.JFrame {
         correct = correctLabel;
         firstFrame = secondFrame.getFirstFrame();
         player = secondFrame.getPlayer();
-        int currentMoney = player.getHighscore();
+        int currentMoney = secondFrame.getCurrentTotal();
+        System.out.println(currentMoney);
         totalMoneyLabel.setText("Total money: " + currentMoney);
         guessesLeftLabel.setText("Spins Left:    " + firstFrame.getSpinsLeft());
-        player.setHighscore(currentMoney);
     }
 
     public JLabel getPhraseAnswerLabel() {
