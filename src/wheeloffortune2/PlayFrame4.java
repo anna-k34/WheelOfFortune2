@@ -6,9 +6,11 @@ package wheeloffortune2;
 
 import java.io.*;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import javax.swing.JLabel;
 
 public class PlayFrame4 extends javax.swing.JFrame {
+
     GamePlay playFrame;
     HighScores highScoresFrame;
     PlayFrame2 secondFrame;
@@ -18,8 +20,10 @@ public class PlayFrame4 extends javax.swing.JFrame {
     public PlayFrame4(PlayFrame2 f) {
         secondFrame = f;
         initComponents();
+        DecimalFormat money = new DecimalFormat("$##,###.00");
         phraseAnswer = phraseAnswerLabel;
-
+        player = secondFrame.getPlayer();
+        totalMoneyLabel.setText("Final Score:   " + money.format(player.getHighscore()));
     }
 
     public JLabel getPhraseAnswerLabel() {
@@ -83,7 +87,7 @@ public class PlayFrame4 extends javax.swing.JFrame {
 
         totalMoneyLabel.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
         totalMoneyLabel.setForeground(new java.awt.Color(255, 255, 255));
-        totalMoneyLabel.setText("Total Money:");
+        totalMoneyLabel.setText("Final Score: ");
         totalMoneyLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
 
         highscoresButton1.setBackground(new java.awt.Color(255, 255, 102));
@@ -193,7 +197,7 @@ public class PlayFrame4 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainButtonActionPerformed
-        if(playFrame==null){
+        if (playFrame == null) {
             playFrame = new GamePlay();
         }
         playFrame.setVisible(true);
@@ -201,8 +205,8 @@ public class PlayFrame4 extends javax.swing.JFrame {
     }//GEN-LAST:event_playAgainButtonActionPerformed
 
     private void highscoresButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highscoresButton1ActionPerformed
-        if(highScoresFrame==null){
-            GamePlay play=new GamePlay();
+        if (highScoresFrame == null) {
+            GamePlay play = new GamePlay();
             highScoresFrame = new HighScores(play);
         }
         highScoresFrame.setVisible(true);
@@ -214,19 +218,17 @@ public class PlayFrame4 extends javax.swing.JFrame {
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void saveScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveScoreButtonActionPerformed
-       Player player = secondFrame.getPlayer();
-int highscore = secondFrame.getHighscore();
-player.setHighscore(highscore);
+        Player player = secondFrame.getPlayer();
+        int highscore = secondFrame.getHighscore();
+        player.setHighscore(highscore);
 
-try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList", true);
-     BufferedWriter bw = new BufferedWriter(fw);
-     PrintWriter out = new PrintWriter(bw)) {
+        try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList", true); BufferedWriter bw = new BufferedWriter(fw); PrintWriter out = new PrintWriter(bw)) {
 
-    out.println(player.toString());  // Writes player's data on a new line
+            out.println(player.toString());  // Writes player's data on a new line
 
-} catch (IOException e) {
-    e.printStackTrace();
-}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_saveScoreButtonActionPerformed
 
     /**

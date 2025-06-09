@@ -4,28 +4,42 @@
  */
 package wheeloffortune2;
 
+import java.text.DecimalFormat;
 import javax.swing.*;
 
 public class PlayFrame3 extends javax.swing.JFrame {
+
     PlayFrame2 secondFrame;
     private JLabel phraseAnswer;
     PlayFrame1 firstFrame;
     private JLabel correct;
-    
+    private Player player;
+
     public PlayFrame3(PlayFrame2 f) {
         initComponents();
-        secondFrame=f;
+        DecimalFormat money = new DecimalFormat("$##,###.00");
+        secondFrame = f;
         correct = correctLabel;
         firstFrame = secondFrame.getFirstFrame();
-
+        player = secondFrame.getPlayer();
+        int currentMoney = player.getHighscore();
+        totalMoneyLabel.setText("Total money: " + currentMoney);
+        guessesLeftLabel.setText("Spins Left:    " + firstFrame.getSpinsLeft());
+        player.setHighscore(currentMoney);
     }
 
     public JLabel getPhraseAnswerLabel() {
         return phraseAnswerLabel;
     }
-    
+
     public JLabel getCorrectLabel() {
         return correct;
+    }
+    public boolean getStatus(){
+        return true;
+    }
+    public Player getPlayer() {
+        return player;
     }
 
     /**
@@ -149,8 +163,6 @@ public class PlayFrame3 extends javax.swing.JFrame {
         firstFrame.getGuess().setEnabled(false);
     }//GEN-LAST:event_spinButton1ActionPerformed
 
-   
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel correctLabel;

@@ -6,6 +6,7 @@ package wheeloffortune2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,17 +17,21 @@ import java.util.Scanner;
 public class HighScores extends javax.swing.JFrame {
 
     GamePlay mainScreen;
-    private ArrayList username;
-    private ArrayList highscore;
+    // private ArrayList username;
+    // private ArrayList highscore;
+    private ArrayList username = new ArrayList<>();
+    private ArrayList highscore = new ArrayList<>();
     //add a searching method somehow???
-    
-    
+
     /**
      * Creates new form HighScores
      */
     public HighScores(GamePlay g) {
         initComponents();
         mainScreen = g;
+        scanHighscores();
+        ArrayList<Integer> sorted = (quickSort(highscore, 0, highscore.size() - 1));
+        sortedOutput(sorted);
     }
 
     /**
@@ -44,6 +49,10 @@ public class HighScores extends javax.swing.JFrame {
         highScoreButton = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         quitButton1 = new javax.swing.JButton();
+        highScoreButton1 = new javax.swing.JLabel();
+        usernameTextField = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        usernameOutputLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +61,8 @@ public class HighScores extends javax.swing.JFrame {
         highscoresTextArea.setEditable(false);
         highscoresTextArea.setBackground(new java.awt.Color(255, 255, 102));
         highscoresTextArea.setColumns(20);
+        highscoresTextArea.setFont(new java.awt.Font("MS UI Gothic", 0, 18)); // NOI18N
+        highscoresTextArea.setForeground(new java.awt.Color(0, 51, 204));
         highscoresTextArea.setRows(5);
         jScrollPane1.setViewportView(highscoresTextArea);
 
@@ -59,6 +70,7 @@ public class HighScores extends javax.swing.JFrame {
         highScoreButton.setFont(new java.awt.Font("MS UI Gothic", 1, 40)); // NOI18N
         highScoreButton.setForeground(new java.awt.Color(255, 255, 102));
         highScoreButton.setText(" HIGHSCORES");
+        highScoreButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 7, true));
 
         backButton.setBackground(new java.awt.Color(255, 255, 102));
         backButton.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
@@ -82,6 +94,30 @@ public class HighScores extends javax.swing.JFrame {
             }
         });
 
+        highScoreButton1.setBackground(new java.awt.Color(255, 255, 102));
+        highScoreButton1.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+        highScoreButton1.setForeground(new java.awt.Color(255, 255, 102));
+        highScoreButton1.setText("Search for a username:");
+
+        usernameTextField.setBackground(new java.awt.Color(255, 255, 102));
+        usernameTextField.setForeground(new java.awt.Color(0, 51, 204));
+
+        searchButton.setBackground(new java.awt.Color(255, 255, 102));
+        searchButton.setFont(new java.awt.Font("MS UI Gothic", 1, 14)); // NOI18N
+        searchButton.setForeground(new java.awt.Color(0, 51, 204));
+        searchButton.setText("Search");
+        searchButton.setToolTipText("");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        usernameOutputLabel.setBackground(new java.awt.Color(255, 255, 102));
+        usernameOutputLabel.setFont(new java.awt.Font("MS UI Gothic", 1, 18)); // NOI18N
+        usernameOutputLabel.setForeground(new java.awt.Color(255, 255, 102));
+        usernameOutputLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 124)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -89,16 +125,25 @@ public class HighScores extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(quitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(searchButton))
+                                .addComponent(usernameOutputLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(highScoreButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(quitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addComponent(highScoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,21 +151,31 @@ public class HighScores extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(highScoreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(highScoreButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usernameOutputLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backButton)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(quitButton1)
-                .addGap(86, 86, 86))
+                .addGap(108, 108, 108))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,11 +187,11 @@ public class HighScores extends javax.swing.JFrame {
 
     public void scanHighscores() {
         try {
-            File f = new File("src/wheeloffortune2/playerList");
+            File f = new File("src/wheeloffortune2/playerList.txt");
             Scanner s = new Scanner(f);
-            int i=0;
+            int i = 0;
             while (s.hasNextLine()) {
-                i+=1;
+                i += 1;
                 username.add(s.nextLine());
                 highscore.add(Integer.parseInt(s.nextLine()));
             }
@@ -145,6 +200,7 @@ public class HighScores extends javax.swing.JFrame {
         }
 
     }
+
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.setVisible(false);
         GamePlay main = new GamePlay();
@@ -155,93 +211,98 @@ public class HighScores extends javax.swing.JFrame {
     private void quitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_quitButton1ActionPerformed
-    public boolean binarySearch(int array[], int left, int right, int x) {
-        int middle;
-        if (left > right) {
-            return false;
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+
+        DecimalFormat money = new DecimalFormat("$0.00");
+        System.out.println(username);
+        String userInput = usernameTextField.getText();
+        boolean equals = false;
+        for (int i = 0; i < username.size(); i++) {
+            String currentU = String.valueOf(username.get(i));
+            String ScurrentH = String.valueOf(highscore.get(i));
+            int high = Integer.parseInt(ScurrentH);
+            if (currentU.equalsIgnoreCase(userInput)) {
+                //usernameOutputLabel.setText("Found! \nUsername: " + currentU + "\nHighscore: " + money.format(high));
+                //had to use this cause jfield doesn't support \n
+                usernameOutputLabel.setText("<html>Found!<br>Username: " + currentU + "<br>Highscore: " + money.format(high) + "</html>");
+
+                equals = true;
+            }
         }
-        //determine the middle of this array section
-        middle = (left + right) / 2;
-        //is the middle what we are looking for?
-        if (array[middle] == x) {
-            return true;
+        if (!equals) {
+            usernameOutputLabel.setText("User not found. Try again.");
         }
-        //search the half of the array that might contain x
-        if (array[middle] > x) { //search for x to the left
-            return binarySearch(array, left, middle - 1, x);
-        } else { //search for x to the right
-            return binarySearch(array, middle + 1, right, x);
+
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    public static ArrayList quickSort(ArrayList<Integer> items, int start, int end) {
+        if (start >= end) {
+            return null;
         }
-    }
-    public static int[] quickSort(int[] items, int start, int end) {
-    // Base case for recursion:
-    
-    if (start >= end) {
-        return new int[0];
-    }
-    // Otherwise recursively call the function
-    else {
-        int pivotValue = items[0]; // Set to first item in the partition
-        int lowMark = start + 1; // Set to second position in the partition
-        int highMark = end; // Set to last position in the partition
-        int temp;
+
+        int pivotValue = items.get(start); // pivot is the first item in the partition
+        int lowMark = start + 1;
+        int highMark = end;
         boolean finished = false;
 
-        // Repeat until low and high values have been swapped as needed
-        while (finished == false) {
-            // Move the left pivot
-            while (lowMark <= highMark && items[lowMark] <= pivotValue) {
-                lowMark = lowMark + 1; // Increment lowMark
+        while (!finished) {
+            // Move lowMark to the right while items[lowMark] <= pivot
+            while (lowMark <= highMark && items.get(lowMark) <= pivotValue) {
+                lowMark++;
             }
 
-            // Move the right pivot
-            while (items[highMark] >= pivotValue && highMark >= lowMark) {
-                highMark = highMark - 1; // Decrement highMark
+            // Move highMark to the left while items[highMark] >= pivot
+            while (highMark >= lowMark && items.get(highMark) >= pivotValue) {
+                highMark--;
             }
 
-            // Check that the low mark doesn't overlap with the high mark
             if (lowMark < highMark) {
-                // Swap the values at lowMark and highMark
-                temp = items[lowMark];
-                items[lowMark] = items[highMark];
-                items[highMark] = temp;
-            }
-
-            // Otherwise end the loop
-            else {
+                // Swap items at lowMark and highMark
+                int temp = items.get(lowMark);
+                items.set(lowMark, items.get(highMark));
+                items.set(highMark, temp);
+            } else {
                 finished = true;
             }
         }
 
-        // Swap the pivot value and the value at highMark
-        temp = items[start];
-        items[start] = items[highMark];
-        items[highMark] = temp;
+        // Swap pivot with item at highMark
+        int temp = items.get(start);
+        items.set(start, items.get(highMark));
+        items.set(highMark, temp);
 
-        // Recursive call on the left partition
+        // Recursively sort left and right partitions
         quickSort(items, start, highMark - 1);
-
-        // Recursive call on the right partition
         quickSort(items, highMark + 1, end);
 
         return items;
     }
-}
-public void sortedOutput(){
-    //int sortedItems[]=quickSort();
-    ArrayList <String>output=new ArrayList<String>();
-    for(int i=0;i<highscore.size();i++){
-    }
-}
 
+    public void sortedOutput(ArrayList<Integer> sorted) {
+        DecimalFormat money = new DecimalFormat("$0.00");
+        String output = "";
+        for (int i = 0; i < sorted.size(); i++) {
+            int counter = i + 1;
+            int out = sorted.get(i);
+            //output+=("<html>" + counter+ ". " + sorted.get(i) + "      User: " + username.get(i) + "<br></html>");
+            output += (counter + ". " + money.format(out) + "      User: " + username.get(i) + "\n");
+
+        }
+        highscoresTextArea.setText(output);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JLabel highScoreButton;
+    private javax.swing.JLabel highScoreButton1;
     private javax.swing.JTextArea highscoresTextArea;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton quitButton1;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JLabel usernameOutputLabel;
+    private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }

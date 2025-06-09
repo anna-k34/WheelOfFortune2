@@ -40,10 +40,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
         clue = clueField;
         highscore = Integer.parseInt("100");
-        player = firstFrame.getPlayer();
         p = firstFrame.getPhrase();
         answer = p.getAnswer();
         totalMoney = player.getHighscore();
+        System.out.println(totalMoney);
         guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
         totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
         spinMoney = firstFrame.getSpinMoney();
@@ -59,13 +59,13 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }
 
     public Player getPlayer() {
-        return firstFrame.getPlayer();
+        return player;
     }
 
     public JTextField getClueField() {
         return clueField;
     }
-    
+
     public PlayFrame1 getFirstFrame() {
         return firstFrame;
     }
@@ -650,7 +650,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
                             }
 
                         }
-                        
+
                         totalMoney += spinMoney * count;
                     }
                 }
@@ -660,7 +660,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You do not have enough money to buy a vowel", "Error", JOptionPane.ERROR_MESSAGE);
         }
         vowelField.setText("");
-        totalMoneyLabel.setText(money.format(totalMoney));
+        totalMoneyLabel.setText("Total money: " + money.format(totalMoney));
 
     }//GEN-LAST:event_guessVowelButtonActionPerformed
 
@@ -695,7 +695,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
                         }
 
                     }
-                    
+
                     totalMoney += spinMoney * count;
                 }
             }
@@ -713,6 +713,8 @@ public class PlayFrame2 extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "You do not have enough money to buy a hint", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        totalMoneyLabel.setText("Total Money: " + money.format(totalMoney));
+
     }//GEN-LAST:event_hintButtonActionPerformed
 
     private void hintTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintTextFieldActionPerformed
@@ -723,13 +725,14 @@ public class PlayFrame2 extends javax.swing.JFrame {
         countGuesses();
         int spinsLeft = firstFrame.getSpinsLeft();
         JLabel correct;
-       
-        
+        phraseTextField.setText("");
+        player.setHighscore(totalMoney);
+
         if (spinsLeft != 0) {
             if (thirdFrame == null) {
                 thirdFrame = new PlayFrame3(this);
             }
-            
+
             JLabel phraseAnswer = thirdFrame.getPhraseAnswerLabel();
             phraseAnswer.setText(answer);
 
@@ -740,7 +743,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
             } else {
                 correct.setText("That is incorrect!");
             }
-            
+
             thirdFrame.setVisible(true);
             this.setVisible(false);
         } else {
@@ -750,9 +753,9 @@ public class PlayFrame2 extends javax.swing.JFrame {
                 phraseAnswer.setText(answer);
 
             }
-            
+
             correct = thirdFrame.getCorrectLabel();
-            
+
             if (answer.equalsIgnoreCase(phraseTextField.getText())) {//FIX
                 correct.setText("That is correct!");
             } else {

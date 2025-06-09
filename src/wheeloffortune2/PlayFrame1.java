@@ -31,8 +31,14 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         DecimalFormat money = new DecimalFormat("$0.00");
         firstWindow = f;
-        player = firstWindow.getPlayer();
+        
+        if (thirdFrame != null) {
+            player = thirdFrame.getPlayer();
+            // use player
+        } else {
+            player = firstWindow.getPlayer();
 
+        }
         spinsLeft = player.getSpinsLeft();
         username = firstWindow.getUsername();
         phrases = firstWindow.getPhrases();
@@ -192,20 +198,19 @@ public class PlayFrame1 extends javax.swing.JFrame {
                         .addComponent(spinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(currentEarningsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(currentEarningsLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(moneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(12, 12, 12))))
+                        .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(moneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(guessPhraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(currentEarningsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(currentEarningsLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,12 +341,12 @@ public class PlayFrame1 extends javax.swing.JFrame {
         moneyLabel.setText(result);
         spinMoney = Integer.parseInt(result.substring(1));
         String total = String.valueOf(spinMoney + player.getHighscore());//why are we adding the spin money isnt that for when they are guessing? should it not just be their highscore as the time?
-        System.out.println(total);
+        int Itotal = (spinMoney + player.getHighscore());
         currentEarningsLabel1.setText(total);
         spinsLeft -= 1;
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         player.setSpinsLeft(spinsLeft); // or spinsLeft -= 1;
-
+        player.setHighscore(Itotal);
 
     }//GEN-LAST:event_spinButton1ActionPerformed
 
