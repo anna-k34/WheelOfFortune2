@@ -30,7 +30,6 @@ public class GamePlay extends javax.swing.JFrame {
     public Player getPlayer(){
         return player;
     }
-    
     //public int getGuessesLeft(){
         //return guessesLeft;
     //}
@@ -39,6 +38,8 @@ public class GamePlay extends javax.swing.JFrame {
      */
     public GamePlay() {
         initComponents();
+            System.out.println("pls work");
+
     }
 
     public static ArrayList scanPlayerListFile() {
