@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
  */
 public class PlayFrame2 extends javax.swing.JFrame {
 
-    PlayFrame1 firstFrame;
+    private PlayFrame1 firstFrame;
     private PlayFrame3 thirdFrame;
     private PlayFrame4 fourthFrame;
     private TextField letters[];
@@ -24,26 +24,30 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private Phrase p;
     private int currentTotal;
     private JTextField hint;
+    private JButton hintBtn;
 
     private String answer;
     private int totalMoney;
     private int spinMoney;
+    private JTextField guessPhrase;
+
     private DecimalFormat money;
     //private int guessesLeft=firstFrame.getGuessesLeft();
     private int guessesLeft = 6;
 
     public PlayFrame2(PlayFrame1 f) {
-        money = new DecimalFormat("$##,###.00");
+        money = new DecimalFormat("$#,##0.00");
         initComponents();
         firstFrame = f;
         player = firstFrame.getPlayer();
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
-        for (int i = 0; i < 26; i++) {
-            letters[i].setText("");
-        }
+        
         clue = clueField;
+        hint = hintTextField;
+        hintBtn = hintButton;
+        guessPhrase = phraseTextField;
         highscore = Integer.parseInt("100");
         p = firstFrame.getPhrase();
         answer = p.getAnswer();
@@ -80,6 +84,30 @@ public class PlayFrame2 extends javax.swing.JFrame {
     public int getCurrentTotal() {
         return currentTotal;
     }
+    
+    public JTextField getGuessPhrase() {
+        return guessPhrase;
+    }
+
+    public JTextField getHint() {
+        return hint;
+    }
+
+    public JButton getHintBtn() {
+        return hintBtn;
+    }
+
+    public void setP(Phrase p) {
+        this.p = p;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -679,6 +707,8 @@ public class PlayFrame2 extends javax.swing.JFrame {
         char consonant;
         char answerLetter;
         int count = 0;
+        System.out.println("Frame 2: " + p);
+        System.out.println(answer);
 
         if (checkConsonant.length() != 1) {
             JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -717,6 +747,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         if (totalMoney >= 500) {
             totalMoney -= 500;
             hintTextField.setText(p.getHint());
+            hintButton.setEnabled(false);
         } else {
             JOptionPane.showMessageDialog(null, "You do not have enough money to buy a hint", "Error", JOptionPane.ERROR_MESSAGE);
         }

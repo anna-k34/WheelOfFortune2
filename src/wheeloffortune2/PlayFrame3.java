@@ -158,10 +158,13 @@ public class PlayFrame3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-        firstFrame.setVisible(true);
-        this.setVisible(false);
         firstFrame.getSpin().setEnabled(true);
-        firstFrame.getGuess().setEnabled(false);
+        firstFrame.getGuess().setEnabled(false);  
+        secondFrame.getGuessPhrase().setText("");
+        secondFrame.getHint().setText("");
+        secondFrame.getHintBtn().setEnabled(true);
+        firstFrame.setVisible(true);
+        this.setVisible(false); 
     }//GEN-LAST:event_spinButton1ActionPerformed
 
 

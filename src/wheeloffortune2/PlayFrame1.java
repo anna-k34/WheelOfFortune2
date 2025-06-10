@@ -257,10 +257,13 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
 
+        
         ArrayList<Phrase> copy = (ArrayList<Phrase>) phrases.clone();
         int rNum = (int) (Math.random() * copy.size()) + 0;
         p = copy.get(rNum);
         copy.remove(p);
+        
+        System.out.println(p);
 
         if (secondFrame == null) {
             secondFrame = new PlayFrame2(this);
@@ -272,6 +275,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
         int totalCount = 0;
 
         answer = p.getAnswer();
+        
+        System.out.println(answer);
         answerSplit = answer.split(" ");
 
         TextField letters[] = secondFrame.getLetters();
@@ -299,6 +304,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
         
         secondFrame.pack();
         secondFrame.repaint();
+        
+        secondFrame.setP(p);
+        secondFrame.setAnswer(answer);
         secondFrame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_guessPhraseButtonActionPerformed

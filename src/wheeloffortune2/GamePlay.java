@@ -38,7 +38,6 @@ public class GamePlay extends javax.swing.JFrame {
      */
     public GamePlay() {
         initComponents();
-            System.out.println("pls work");
 
     }
 
@@ -256,6 +255,7 @@ public class GamePlay extends javax.swing.JFrame {
                         player = new Player(usernameTextField.getText(), 0, 3);
 
             firstPlayScreen = new PlayFrame1(this);
+            firstPlayScreen.getGuess().setEnabled(false);
             firstPlayScreen.setVisible(true);
             this.setVisible(false);
         } else if (!usernameTest) {
