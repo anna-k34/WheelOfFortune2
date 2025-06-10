@@ -632,7 +632,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         char vowel;
         char answerLetter;
         int count = 0;
-
+        boolean equals=false;
         if (totalMoney >= 300) {
             totalMoney -= 300;
             if (checkVowel.length() != 1) {
@@ -654,11 +654,15 @@ public class PlayFrame2 extends javax.swing.JFrame {
                             if (Character.toLowerCase(answerLetter) == Character.toLowerCase(vowel)) {
                                 letters[i].setText(Character.toString((Character.toUpperCase(vowel))));
                                 count++;
+                                equals=true;
                             }
 
                         }
 
                         totalMoney += spinMoney * count;
+                    }
+                    if (!equals) {
+                        JOptionPane.showMessageDialog(null, "Letter not present in phrase");
                     }
                 }
 
@@ -679,7 +683,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         char consonant;
         char answerLetter;
         int count = 0;
-
+        boolean equals = false;
         if (checkConsonant.length() != 1) {
             JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -699,10 +703,13 @@ public class PlayFrame2 extends javax.swing.JFrame {
                         if (Character.toLowerCase(answerLetter) == Character.toLowerCase(consonant)) {
                             letters[i].setText(Character.toString((Character.toUpperCase(consonant))));
                             count++;
+                            equals = true;
                         }
 
                     }
-
+                    if (!equals) {
+                        JOptionPane.showMessageDialog(null, "Letter not present in phrase");
+                    }
                     totalMoney += spinMoney * count;
                 }
             }

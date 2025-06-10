@@ -38,7 +38,6 @@ public class GamePlay extends javax.swing.JFrame {
      */
     public GamePlay() {
         initComponents();
-            System.out.println("pls work");
 
     }
 
