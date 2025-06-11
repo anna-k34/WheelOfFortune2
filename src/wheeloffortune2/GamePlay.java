@@ -246,7 +246,6 @@ public class GamePlay extends javax.swing.JFrame {
     }//GEN-LAST:event_highScoresButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        // add error checking for username!!!!
         phrases = new ArrayList();
         scanFile(phrases);
         

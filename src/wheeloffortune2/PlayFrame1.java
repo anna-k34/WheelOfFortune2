@@ -205,11 +205,11 @@ public class PlayFrame1 extends javax.swing.JFrame {
                             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(spinsLeftLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(21, 21, 21)
+                            .addGap(15, 15, 15)
                             .addComponent(currentEarningsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(currentEarningsLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(14, 14, 14)))
+                            .addGap(26, 26, 26)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -280,6 +280,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
         for (int j = 0; j < letters.length; j++) {
             letters[j].setText("");
+            letters[j].setBackground(Color.red);
         }
 
         for (int i = 0; i < answerSplit.length; i++) {
