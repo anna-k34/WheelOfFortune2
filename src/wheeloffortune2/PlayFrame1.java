@@ -45,6 +45,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
         highscore = player.getHighscore();
 
         initComponents();
+        
+        
         currentEarningsLabel.setText("Current Earnings:  ");
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         try {
