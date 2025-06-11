@@ -10,48 +10,86 @@ import java.awt.image.BufferedImage;
 
 public class Wheel extends JPanel {
 
+    /**
+     * enumeration that represents the options for the wheel's segments
+     * can be a circular shape (like pie slices)
+     * can be a umbrella shape (like the ribs of the umbrella)
+     */
     public static enum Shape {
         CIRCLE,
         UMBRELLA
     }
 
+    //a temporary placeholder for the fully drawn wheel image
     Image _image = null;
+    //a boolean that determines whether the wheel needs borders drawn around the segments and center (it does not so initialize false)
     private boolean hasBorders = false;
+    //the angle of each segment (360 degrees/ the number of segments in the wheel)
     private double _delta;
+    
+    //the position of the wheel image in the panel
     private Point2D _imagePosition;
+    //the center the image is going to use to rotate around
     private Point2D _rotationCenter;
+    //the current rotation angle of the wheel (in degrees)
     private double _rotationAngle = 0;
-    private double _zoomFactor = 1;
-
+    
+    //an array list of colors for the color scheme of the wheel segments
     private ArrayList<Color> _colors;
+    //the counter that keeps track of the current colour index when drawing segments
     int _colorCounter = 0;
 
+    //the shape of each segment which is initialized to circular segments
     private Shape _shape = Shape.CIRCLE;
-    private final int BORDER = 1;
+    //the radius of the wheel 
     private int _radius;
+    //the center point of the wheel (important for drawing and rotating the wheel
     private Point2D _center = new Point2D.Double();
 
+    //a list of strings that will be displayed in the segments of the wheel
     ArrayList<String> _stringList;
+    //the number of segments in the wheel
     private int _noElem;
+    //the maximum number of segments allowed
     private final int LIMIT = 100;
-    private final int MAXFONTSIZE = 60, MINFONTSIZE = 18;
+    //the maximum font size for the labels in the segments of the wheel
+    private final int MAXFONTSIZE = 60;
+    //the default font for the labels in the segment
     private final Font DEFAULTFONT = new Font("TimesRoman", Font.PLAIN, 12);
+    //the current font for the labels is initialized to the default font
     private Font _font = DEFAULTFONT;
 
+    //a boolean to indicate whether the wheel is spinning (initialized to false because the wheel is not spinning currently)
     private boolean _spinOnOff = false;
+    //the speed the wheel spins (initialized to 0 because the wheel is not spinning currently)
     private double _spinSpeed = 0;
+    //the maximum spin speed of the wheel
     private double _maxSpinSpeed = 360;
+    //the rate at which the wheel decelerates (must be negative or it is accelerating which is not wanted)
     private double _spinDeceleration = -20;
+    //the timer used to calculate the current speed periodically
     private Timer _speedTimer;
+    
+    //the times and angles utilzed to calculate the drag speed
     private long _timeStart, _timeEnd;
     private double _rotationAngleStart, _rotationAngleEnd;
+    
+    //the frequency to update the spin animation
     private int _refreshRate = 100;
+    //the last recorded mouse position during a drag
     private Point2D _mouseDragPosition;
 
+    /**
+     * a method that resets the bounds of the wheel whenever the panel is resized or repositioned. This ensures that the wheel is redraw correctly with the right dimensions
+     * @param x
+     * @param y
+     * @param width
+     * @param height 
+     */
     @Override
     public void setBounds(int x, int y, int width, int height) {
-        _image = null;
-        super.setBounds(x, y, width, height);
+        _image = null;//make the image null because this image has the old bounds and is no longer needed
+        super.setBounds(x, y, width, height);//invoke the 
     }
 
     public void hasBorders(boolean borders) {
@@ -581,8 +619,8 @@ public class Wheel extends JPanel {
 
     private ArrayList<Color> getDefaultColorList() {
         /*
-		 * Returns default color list.
-		 * To be used in case when no explicit color list is set.
+	 * Returns default color list.
+	 * To be used in case when no explicit color list is set.
          */
         ArrayList<Color> colors = new ArrayList<Color>();
         colors.add(new Color(52, 149, 235));
