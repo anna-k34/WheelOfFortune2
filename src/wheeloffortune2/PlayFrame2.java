@@ -25,6 +25,8 @@ public class PlayFrame2 extends javax.swing.JFrame {
     private int currentTotal;
     private JTextField hint;
     private JButton hintBtn;
+    private JButton vowelBtn;
+    private JButton consBtn;
 
     private String answer;
     private int totalMoney;
@@ -43,7 +45,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
-        
+
         clue = clueField;
         hint = hintTextField;
         hintBtn = hintButton;
@@ -53,7 +55,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
         answer = p.getAnswer();
         totalMoney = 0;
         spinMoney = firstFrame.getSpinMoney();
-        guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
+        guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
         totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
         spinMoney = firstFrame.getSpinMoney();
         phraseTextField.setText("");
@@ -84,7 +86,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
     public int getCurrentTotal() {
         return currentTotal;
     }
-    
+
     public JTextField getGuessPhrase() {
         return guessPhrase;
     }
@@ -104,10 +106,14 @@ public class PlayFrame2 extends javax.swing.JFrame {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
-    
-    
-    
-    
+
+    public JButton getGuessConsonantButton() {
+        return guessConsonantButton;
+    }
+
+    public JButton getGuessVowelButton() {
+        return guessVowelButton;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -634,15 +640,17 @@ public class PlayFrame2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void countGuesses() {
-        guessesLeftLabel.setText("Guesses left:    " + String.valueOf(guessesLeft));
 
-        if (guessesLeft > 1) {
+        if (guessesLeft > 2) {
             guessesLeft -= 1;
-
-        } else if (guessesLeft == 1) {
+            guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
+        } else if (guessesLeft == 2) {
+            guessesLeft -= 1;
+            guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
             JOptionPane.showMessageDialog(null, "You have one more guess, choose carefully");
+        } else if (guessesLeft == 1) {
             guessesLeft -= 1;
-        } else if (guessesLeft == 0) {
+            guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
             JOptionPane.showMessageDialog(null, "That was your last guess, you must guess the phrase now");
             guessVowelButton.setEnabled(false);
             guessConsonantButton.setEnabled(false);
@@ -650,53 +658,62 @@ public class PlayFrame2 extends javax.swing.JFrame {
             consField1.setEditable(false);
             vowelField.setEditable(false);
         }
+
     }
 
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed
-        countGuesses();
+
         boolean letterCheck;
         int vowValue;
         String checkVowel = vowelField.getText();
         char vowel;
         char answerLetter;
         int count = 0;
-        boolean equals=false;
+        boolean equals = false;
         if (totalMoney >= 300) {
             totalMoney -= 300;
             if (checkVowel.length() != 1) {
                 JOptionPane.showMessageDialog(null, "You can only answer one vowel at a time!", "Error", JOptionPane.ERROR_MESSAGE);
+                countGuesses();
             } else {
                 vowel = checkVowel.charAt(0);
                 letterCheck = Character.isLetter(vowel);
 
                 if (!letterCheck) {
                     JOptionPane.showMessageDialog(null, "That is not a letter, let alone a vowel! Try again", "Error", JOptionPane.ERROR_MESSAGE);
+                    countGuesses();
                 } else {
                     vowValue = Character.getNumericValue(vowel);
 
                     if (vowValue != 10 && vowValue != 14 && vowValue != 18 && vowValue != 24 && vowValue != 30) {
                         JOptionPane.showMessageDialog(null, "That is a consonant not a vowel!", "Error", JOptionPane.ERROR_MESSAGE);
+                        countGuesses();
                     } else {
                         for (int i = 0; i < answer.length(); i++) {
                             answerLetter = answer.charAt(i);
                             if (Character.toLowerCase(answerLetter) == Character.toLowerCase(vowel)) {
                                 letters[i].setText(Character.toString((Character.toUpperCase(vowel))));
                                 count++;
-                                equals=true;
+                                equals = true;
                             }
 
                         }
 
-                        totalMoney += spinMoney * count;
+                        if (!equals) {
+                            JOptionPane.showMessageDialog(null, "Letter not present in phrase");
+                            countGuesses();
+                        } else {
+                            totalMoney += spinMoney * count;
+                        }
+
                     }
-                    if (!equals) {
-                        JOptionPane.showMessageDialog(null, "Letter not present in phrase");
-                    }
+
                 }
 
             }
         } else {
             JOptionPane.showMessageDialog(null, "You do not have enough money to buy a vowel", "Error", JOptionPane.ERROR_MESSAGE);
+            countGuesses();
         }
         vowelField.setText("");
         totalMoneyLabel.setText("Total money: " + money.format(totalMoney));
@@ -704,30 +721,30 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_guessVowelButtonActionPerformed
 
     private void guessConsonantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessConsonantButtonActionPerformed
-        countGuesses();
         boolean letterCheck;
         int consValue;
         String checkConsonant = consField1.getText();
         char consonant;
         char answerLetter;
         int count = 0;
-        System.out.println("Frame 2: " + p);
-        System.out.println(answer);
 
         boolean equals = false;
         if (checkConsonant.length() != 1) {
             JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!", "Error", JOptionPane.ERROR_MESSAGE);
+            countGuesses();
         } else {
             consonant = checkConsonant.charAt(0);
             letterCheck = Character.isLetter(consonant);
 
             if (!letterCheck) {
                 JOptionPane.showMessageDialog(null, "That is not a letter, let alone a consonant! Try again", "Error", JOptionPane.ERROR_MESSAGE);
+                countGuesses();
             } else {
                 consValue = Character.getNumericValue(consonant);
 
                 if (consValue == 10 || consValue == 14 || consValue == 18 || consValue == 24 || consValue == 30) {
                     JOptionPane.showMessageDialog(null, "That is a vowel not a consonant!", "Error", JOptionPane.ERROR_MESSAGE);
+                    countGuesses();
                 } else {
                     for (int i = 0; i < answer.length(); i++) {
                         answerLetter = answer.charAt(i);
@@ -738,10 +755,14 @@ public class PlayFrame2 extends javax.swing.JFrame {
                         }
 
                     }
+
                     if (!equals) {
                         JOptionPane.showMessageDialog(null, "Letter not present in phrase");
+                        countGuesses();
+                    } else {
+                        totalMoney += spinMoney * count;
                     }
-                    totalMoney += spinMoney * count;
+
                 }
             }
 
@@ -784,15 +805,16 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
             if (answer.equalsIgnoreCase(phraseTextField.getText())) {
                 correct.setText("That is correct!");
-                totalMoney = totalMoney * 3;
+                totalMoney += spinMoney * 3;
             } else {
                 correct.setText("That is incorrect!");
             }
-
-            thirdFrame.setVisible(true);
-            this.setVisible(false);
             currentTotal = totalMoney;
             player.setHighscore(totalMoney);
+
+            thirdFrame.getTotalMoneyLabel().setText(money.format(totalMoney));
+            thirdFrame.setVisible(true);
+            this.setVisible(false);
 
         } else {
             if (fourthFrame == null) {

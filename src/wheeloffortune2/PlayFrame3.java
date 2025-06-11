@@ -18,14 +18,10 @@ public class PlayFrame3 extends javax.swing.JFrame {
 
     public PlayFrame3(PlayFrame2 f) {
         initComponents();
-        DecimalFormat money = new DecimalFormat("$##,###.00");
         secondFrame = f;
         correct = correctLabel;
         firstFrame = secondFrame.getFirstFrame();
         player = secondFrame.getPlayer();
-        int currentMoney = secondFrame.getCurrentTotal();
-        System.out.println(currentMoney);
-        totalMoneyLabel.setText("Total money: " + currentMoney);
         guessesLeftLabel.setText("Spins Left:    " + firstFrame.getSpinsLeft());
     }
 
@@ -41,6 +37,10 @@ public class PlayFrame3 extends javax.swing.JFrame {
     }
     public Player getPlayer() {
         return player;
+    }
+
+    public JLabel getTotalMoneyLabel() {
+        return totalMoneyLabel;
     }
 
     /**
@@ -163,6 +163,8 @@ public class PlayFrame3 extends javax.swing.JFrame {
         secondFrame.getGuessPhrase().setText("");
         secondFrame.getHint().setText("");
         secondFrame.getHintBtn().setEnabled(true);
+        secondFrame.getGuessConsonantButton().setEnabled(true);
+        secondFrame.getGuessVowelButton().setEnabled(true);
         firstFrame.setVisible(true);
         this.setVisible(false); 
     }//GEN-LAST:event_spinButton1ActionPerformed

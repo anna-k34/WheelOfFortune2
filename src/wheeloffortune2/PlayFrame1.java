@@ -45,7 +45,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
         highscore = player.getHighscore();
 
         initComponents();
-        //currentEarningsLabel.setText("Current Earnings:  " + money.format(highscore));
         currentEarningsLabel.setText("Current Earnings:  ");
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         try {
@@ -199,24 +198,25 @@ public class PlayFrame1 extends javax.swing.JFrame {
                 .addComponent(wheelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(66, 66, 66)
+                            .addComponent(spinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(spinsLeftLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(21, 21, 21)
+                            .addComponent(currentEarningsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
+                            .addComponent(currentEarningsLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(14, 14, 14)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(moneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(guessPhraseButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(spinsLeftLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(currentEarningsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addComponent(spinButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(currentEarningsLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24))
+                        .addComponent(guessPhraseButton)
+                        .addGap(31, 31, 31))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,8 +263,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
         int rNum = (int) (Math.random() * copy.size()) + 0;
         p = copy.get(rNum);
         copy.remove(p);
-        
-        System.out.println(p);
 
         if (secondFrame == null) {
             secondFrame = new PlayFrame2(this);
@@ -276,8 +274,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
         int totalCount = 0;
 
         answer = p.getAnswer();
-        
-        System.out.println(answer);
         answerSplit = answer.split(" ");
 
         TextField letters[] = secondFrame.getLetters();
@@ -317,7 +313,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-        DecimalFormat money = new DecimalFormat("$0.00");
+        DecimalFormat money = new DecimalFormat("$##,##0.00");
         currentEarningsLabel1.setVisible(false);
         spin.setEnabled(false); // disable spin button while spinning
         selectionWheel.setRotationAngle(Math.random() * 360);
@@ -351,27 +347,22 @@ public class PlayFrame1 extends javax.swing.JFrame {
             return;
         }
         String result = selectionWheel.getSelectedString();
-        boolean bankruptcy = false;
-        int Itotal;
+
+        int total;
         if (result.equalsIgnoreCase("Bankruptcy")) {
             result = "$500";
-            bankruptcy = true;
+            player.setHighscore(0);
+
         }
         moneyLabel.setText(result);
         spinMoney = Integer.parseInt(result.substring(1));
-        String total = String.valueOf(spinMoney + player.getHighscore());//why are we adding the spin money isnt that for when they are guessing? should it not just be their highscore as the time?
-        if (bankruptcy) {
-            Itotal = 0;
-            total="0";
 
-        }
-        Itotal = (spinMoney + player.getHighscore());
-        currentEarningsLabel1.setText("$" + total + ".00");
+        total = player.getHighscore();
+        
+        currentEarningsLabel1.setText(money.format(total));
         spinsLeft -= 1;
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
         player.setSpinsLeft(spinsLeft); // or spinsLeft -= 1;
-        player.setHighscore(Itotal);
-
 
     }//GEN-LAST:event_spinButton1ActionPerformed
 
