@@ -1,20 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+Wheel of Fortune Game
+ICS4U Final Summative
+Instructions frame
  */
 package wheeloffortune2;
 
-/**
- *
- * @author annak
- */
+
 public class Instructions extends javax.swing.JFrame {
+    //this frame is invoked after the user presses the instructions button on the GamePlay screen
     GamePlay firstWindow;
-    /**
-     * Creates new form Instructions
-     */
     public Instructions(GamePlay f) {
         initComponents();
+        //construct it using the GamePlay screen
         firstWindow=f;
     }
 
@@ -80,7 +77,7 @@ public class Instructions extends javax.swing.JFrame {
         howToTextArea.setColumns(20);
         howToTextArea.setForeground(new java.awt.Color(0, 51, 204));
         howToTextArea.setRows(5);
-        howToTextArea.setText("\n- First, press play and spin the wheel. The money you land on is the money you have to play\nwith in the next screen\n\n- On the board, green squares are where the letters of the phrase are, white squares are for\nspaces, and red squares are just empty spaces. Guess constants for free, but vowels cost\nmoney. Once you think you know what the phrase it, type it out and press guess!\n\n-Repeat the first two steps twice more for a total of 3 spins, and then save your score and\ngo look at the highscores leaderboard!\n");
+        howToTextArea.setText("-First, press play and spin the wheel. The money the ticker lands on is your 'spin money'.\n\n-You will get this amount for every correct letter you guess, and if you get the phrase correct, \nyou will get this amount multiplied by 3 added onto your total.\n\n-If you land on bankrupcy, your total money will reset to 0, however your 'spin money' will \nbe $500, so you can earn some money back.\n\n- On the board, green squares are where the letters of the phrase are, white squares are for\nspaces, and red squares are just empty spaces. Guess constants for free, but vowels cost\nmoney. Once you think you know what the phrase it, type it out and press guess!\n\n-Repeat the first two steps twice more for a total of 3 spins, and then save your score and\ngo look at the highscores leaderboard!\n");
         jScrollPane2.setViewportView(howToTextArea);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -90,14 +87,14 @@ public class Instructions extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(43, 43, 43)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                             .addComponent(quitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
+                        .addGap(156, 156, 156)
                         .addComponent(howToPlayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -110,9 +107,9 @@ public class Instructions extends javax.swing.JFrame {
                 .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(14, 14, 14)
                 .addComponent(howToPlayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -130,16 +127,20 @@ public class Instructions extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        //if the user wants to return to the 'homescreen' 
+        //set this screen's visibilty to false
         this.setVisible(false);
+        //create a new gameplay screen and set its visibility to true
         GamePlay main = new GamePlay();
         main.setVisible(true);
         
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-       System.exit(0);
+        //if the user wants to quit, close the GUI
+        System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
 
     /**
