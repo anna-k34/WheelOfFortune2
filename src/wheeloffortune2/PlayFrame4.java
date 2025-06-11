@@ -222,7 +222,7 @@ public class PlayFrame4 extends javax.swing.JFrame {
         int highscore = secondFrame.getHighscore();
         player.setHighscore(highscore);
 
-        try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList", true); BufferedWriter bw = new BufferedWriter(fw); PrintWriter out = new PrintWriter(bw)) {
+        try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList.txt", true); BufferedWriter bw = new BufferedWriter(fw); PrintWriter out = new PrintWriter(bw)) {
 
             out.println(player.toString());  // Writes player's data on a new line
 

@@ -60,6 +60,8 @@ public class PlayFrame2 extends javax.swing.JFrame {
         spinMoney = firstFrame.getSpinMoney();
         phraseTextField.setText("");
         hintTextField.setText("");
+        guessesLeft=6;
+        
 
     }
 

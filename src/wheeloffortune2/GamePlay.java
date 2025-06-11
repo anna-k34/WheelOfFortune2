@@ -1,4 +1,10 @@
+/**
+ * Wheel of Fortune game
+ * ICS4U Final Project
+ * Homepage/GamePlay jFrame
+ */
 package wheeloffortune2;
+//import statements
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,6 +14,7 @@ import javax.swing.JOptionPane;
 
 public class GamePlay extends javax.swing.JFrame {
 
+    //define private variables that will be used throughout the jFrame
     private Instructions instructions;
     private HighScores score;
     private PlayFrame1 firstPlayScreen;
@@ -15,24 +22,35 @@ public class GamePlay extends javax.swing.JFrame {
     private String username;
     private Player player;
     private int spinMoney;
-    //private int guessesLeft=8;
-
+    /**
+     * Accessor that returns a Phrases arraylist which has all the Phrase objects from the data file
+     * @return arrayList of phrases
+     */
     public ArrayList<Phrase> getPhrases() {
         return phrases;
     }
-
+    /**
+     * Mutator that sets the Phrases arrayList which has all the Phrase objects from file
+     * @param phrases ArrayList containing Phrase objects
+     */
     public void setPhrases(ArrayList<Phrase> phrases) {
         this.phrases = phrases;
     }
+    /**
+     * Accessor that returns the username that the user has entered
+     * @return valid string that is used to differentiate users 
+     */
     public String getUsername() {
         return username;
     }
-    public Player getPlayer(){
+    /**
+     * Accessor that returns the Player object, defined by username, highscore, and spins left
+     * @return Player object for current user
+     */
+    public Player getPlayer() {
         return player;
     }
-    //public int getGuessesLeft(){
-        //return guessesLeft;
-    //}
+
     /**
      * Creates new form GamePlay
      */
@@ -41,65 +59,99 @@ public class GamePlay extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Method that reads the playList file to use for the username check
+     *
+     * @return an arrayList of the usernames read from the file
+     */
     public static ArrayList scanPlayerListFile() {
+        //new arraylist that will store all the usernames from the file
         ArrayList<String> username = new ArrayList();
-        Player p;
-        int highscore;
+
         try {
-            File f = new File("src/wheeloffortune2/playerList");
+            //create new File using the PlayerList file stored in this package
+            File f = new File("src/wheeloffortune2/playerList.txt");
+            //scan the file
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
+                //add the username to the arraylist
                 username.add(s.nextLine());
-                highscore = Integer.parseInt(s.nextLine());
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error " + e);
-        }
+                //this is where the highscore is, but not necessary because it isn't needed in this frame
+                s.nextLine();
 
+            }
+        } catch (FileNotFoundException e) {//error checking to make sure the file is found
+            System.out.println("Error " + e);//print statement if not found
+        }
+        //return the arraylist with all of the usernames so far
         return username;
 
     }
 
+    /**
+     * UsernameCheck method that determines whether or not username entered is
+     * valid
+     * @param u the String that the user entered in the GUI text field
+     * @return true or false based on whether its valid
+     */
     public static boolean usernameCheck(String u) {
+        //create a new arraylist for the username
         ArrayList<String> usernameList = new ArrayList();
+        //initialize variable with the scan method
         usernameList = scanPlayerListFile();
+        //set the check equal var to false
         boolean equals = false;
+        //for statement to determine if the username has alrady been used/stored in the file
         for (int i = 0; i < usernameList.size(); i++) {
+            //go through the username list and see if any indexes equal the user input
             if (usernameList.get(i).equals(u)) {
                 equals = true;
             }
         }
-        if (u.length() > 20) {
+        if (u.length() > 20) {//if the character length is longer than 20, username isn't valid
             JOptionPane.showMessageDialog(null, "Username is too long. Try again");
             return false;
-        } else if (equals) {
+
+        } else if (equals) {//if the username equals another one already stored, username isn't valid
             JOptionPane.showMessageDialog(null, "Username has already been used. Try again");
             return false;
-        } else if (u.equals("")) {
+        } else if (u.equals("")) {//if the user didn't enter any characters, username isn't valid
             JOptionPane.showMessageDialog(null, "Please enter a valid username.");
             return false;
         }
+        //otherwise, username is valid and return true
         return true;
     }
-
+    /**
+     * method that reads the phrases file to get the hints and answers and assigns it to an object
+     * @param phrases the arrayList that has the  
+     */
     public static void scanFile(ArrayList<Phrase> phrases) {
+        //intialize variables for the atrributes of the Phrases class
         String question, hint, answer;
+        //create a new Phrase
         Phrase p;
         try {
-            File f = new File("src/wheeloffortune2/phrase.txt");//THIS DOESN'T WORK
+            //create a new file using the phrase txt file in this package
+            File f = new File("src/wheeloffortune2/phrase.txt");
+            //create a new scanner and scan the file
             Scanner s = new Scanner(f);
+            
             while (s.hasNextLine()) {
+                //set the string variables to what is on the next line
                 question = s.nextLine();
                 hint = s.nextLine();
                 answer = s.nextLine();
+                //create a new Phrase using these variables
                 p = new Phrase(question, hint, answer);
+                //add this phrase to the phrase list
                 phrases.add(p);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error " + e);
+        } catch (FileNotFoundException e) {//catch if the file isn't found
+            System.out.println("Error " + e);//print an error statement
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -233,46 +285,62 @@ public class GamePlay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        //if the user wants to quit, close the GUI
         System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
-    
+
     private void highScoresButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoresButtonActionPerformed
+        //When the user presses the highscores button the highscores jFrame will open
+        //check that the score is null before creating a new frame
         if (score == null) {
+            //create a new jFrame using the current frame
             score = new HighScores(this);
         }
 
-        score.setVisible(true);
-        this.setVisible(false);
+        score.setVisible(true);//set new frame's visibility to true
+        this.setVisible(false);//set this frame's visiblity to false
     }//GEN-LAST:event_highScoresButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        //create a new arrayList for the phrases which will be read in from the phrase.txt file
         phrases = new ArrayList();
+        //scan phrase.txt file
         scanFile(phrases);
-        
+        //call the usernameCheck method and assign it to a boolean 
         boolean usernameTest = usernameCheck(usernameTextField.getText());
+        //in order to move onto the next screen, the username must be valid and the next screen must be null
         if (firstPlayScreen == null && usernameTest) {
-                        player = new Player(usernameTextField.getText(), 0, 3);
-
+            //create a new player using the valid username, start the highscore at 0, and full spins left
+            player = new Player(usernameTextField.getText(), 0, 3);
+            //create a new screen for the next frame, using this frame as the paramter
             firstPlayScreen = new PlayFrame1(this);
+            //On the next screen make sure the user can't press the guess button, as they have to press spin button first
             firstPlayScreen.getGuess().setEnabled(false);
+            //set the next sceen's visiblity to true so user can sede it
             firstPlayScreen.setVisible(true);
+            //close this screen by setting it equal to false
             this.setVisible(false);
+            
+//Otherwise, if the username is not valid, don't switch screens, and set the text in the field back to nothing so user can reenter a username
         } else if (!usernameTest) {
             usernameTextField.setText("");
 
         }
 
-        
-        
 
     }//GEN-LAST:event_playButtonActionPerformed
-    
+
     private void instructionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
-        if (instructions == null) {
+        //if the instructions button is pressed, the instructions jFrame will open
+        
+        if (instructions == null) {//if the instructions screen is null
+            //initialize it with the instructions frame using this frame as a parameter
             instructions = new Instructions(this);
 
         }
+        //set the instructions frame's visibilty to true
         instructions.setVisible(true);
+        //set this frame's visibility to false
         this.setVisible(false);
     }//GEN-LAST:event_instructionsButtonActionPerformed
 

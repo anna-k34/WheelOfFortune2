@@ -70,16 +70,16 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="504" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="528" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="backButton" pref="117" max="32767" attributes="0"/>
                               <Component id="quitButton" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                           <Component id="howToPlayLabel" min="-2" pref="326" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -97,9 +97,9 @@
                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Component id="howToPlayLabel" min="-2" pref="71" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="199" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -182,7 +182,7 @@
                   <Color blue="cc" green="33" red="0" type="rgb"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="&#xa;- First, press play and spin the wheel. The money you land on is the money you have to play&#xa;with in the next screen&#xa;&#xa;- On the board, green squares are where the letters of the phrase are, white squares are for&#xa;spaces, and red squares are just empty spaces. Guess constants for free, but vowels cost&#xa;money. Once you think you know what the phrase it, type it out and press guess!&#xa;&#xa;-Repeat the first two steps twice more for a total of 3 spins, and then save your score and&#xa;go look at the highscores leaderboard!&#xa;"/>
+                <Property name="text" type="java.lang.String" value="-First, press play and spin the wheel. The money the ticker lands on is your &apos;spin money&apos;.&#xa;&#xa;-You will get this amount for every correct letter you guess, and if you get the phrase correct, &#xa;you will get this amount multiplied by 3 added onto your total.&#xa;&#xa;-If you land on bankrupcy, your total money will reset to 0, however your &apos;spin money&apos; will &#xa;be $500, so you can earn some money back.&#xa;&#xa;- On the board, green squares are where the letters of the phrase are, white squares are for&#xa;spaces, and red squares are just empty spaces. Guess constants for free, but vowels cost&#xa;money. Once you think you know what the phrase it, type it out and press guess!&#xa;&#xa;-Repeat the first two steps twice more for a total of 3 spins, and then save your score and&#xa;go look at the highscores leaderboard!&#xa;"/>
               </Properties>
             </Component>
           </SubComponents>
