@@ -81,22 +81,23 @@ public class Wheel extends JPanel {
 
     /**
      * a method that resets the bounds of the wheel whenever the panel is resized or repositioned. This ensures that the wheel is redraw correctly with the right dimensions
-     * @param x
-     * @param y
-     * @param width
-     * @param height 
+     * @param x - the new x position of the wheel
+     * @param y - the new y position of the wheel
+     * @param width - the new width of the wheel
+     * @param height - the new height of the wheel
      */
     @Override
     public void setBounds(int x, int y, int width, int height) {
         _image = null;//make the image null because this image has the old bounds and is no longer needed
-        super.setBounds(x, y, width, height);//invoke the 
+        super.setBounds(x, y, width, height);//invoke the the original JPanel method to update the panel's position and size
     }
 
+    /**
+     * Borders on/off. If switched on, borders of sections and circle + circle center will be visible.
+     * @param borders - a boolean indicating whether the wheel 
+     */
     public void hasBorders(boolean borders) {
-        /*
-		 * Borders on/off.
-		 * If switched on, borders of sections and circle + circle center will be visible.
-         */
+
         hasBorders = borders;
         _image = null;
         _spinOnOff = false;
@@ -104,11 +105,11 @@ public class Wheel extends JPanel {
         this.repaint();
     }
 
+    /**
+     * Set the shape of the wheel, Options in Shape enum
+     * @param shape - the shape of the wheel
+     */
     public void setShape(Shape shape) {
-        /*
-		 * Set the shape of the wheel.
-		 * Options in Shape enum.
-         */
         _shape = shape;
         _image = null;
         _spinOnOff = false;
@@ -118,26 +119,34 @@ public class Wheel extends JPanel {
 
     public double getRotationAngle() {
         /*
-		 * Get current rotation of the wheel.
+	 * Get current rotation of the wheel.
          */
         return _rotationAngle;
     }
 
+    /**
+     * set the current rotation of the wheel
+     * @param rotationAngle - the rotation angle of the wheel
+     */
     public void setRotationAngle(double rotationAngle) {
-        /*
-		 * Set the current rotation of the wheel.
-         */
+
         _rotationAngle = rotationAngle % 360;
         this.repaint();
     }
 
+    /**
+     * an accessor method for the array list of colours used for the colour scheme of the wheel
+     * @return the array list of colours
+     */
     public ArrayList<Color> getColorScheme() {
-        /*
-		 * Get ArrayList of colors used for sections of the wheel.
-         */
+
         return _colors;
     }
 
+    /**
+     * a mutator method for the array list of colours
+     * @param colors 
+     */
     public void setColorScheme(ArrayList<Color> colors) {
         /*
 		 * Set ArrayList of colors used for sections of the wheel.
@@ -149,10 +158,12 @@ public class Wheel extends JPanel {
         this.repaint();
     }
 
+    /**
+     * a method to add a new colour to the existing colour scheme for the sections of the wheel.
+     * @param color - the colour being added
+     */
     public void addColor(Color color) {
-        /*
-		 * Add a new color to the existing color scheme for the sections of the wheel.
-         */
+
         if (_colors == null) {
             _colors = new ArrayList<Color>();
         }
@@ -163,26 +174,28 @@ public class Wheel extends JPanel {
         this.repaint();
     }
 
+    /**
+     * an accessor method for the radius of the wheel, the radius in the DrawImage method is based on the dimensions of this
+     * @return the radius of the wheel
+     */
     public int getRadius() {
-        /*
-		 * Get radius of the wheel.
-		 * The radius is set in DrawImage method based on the dimensions of this.
-         */
         return _radius;
     }
 
+    /**
+     * an accessor method for the array list of strings displayed inside the sections of the wheel
+     * @return 
+     */
     public ArrayList<String> getListOfStrings() {
-        /*
-		 * Get list of strings displayed inside the sections of the wheel.
-         */
         return _stringList;
     }
 
+    /**
+     * a mutator method for the array list of strings displayed inside the wheel
+     * @param list - the array list of strings displayed in the wheel
+     * @throws Exception - if the list of strings is larger than the limit of 100
+     */
     public void setListOfStrings(ArrayList<String> list) throws Exception {
-        /*
-		 * Set list of strings displayed inside the sections of the wheel.
-		 * The initial list is set in constructor method and can be changed during runtime.
-         */
         _noElem = list.size();
         if (_noElem > LIMIT) {
             throw new Exception("String list is larger then limit (" + LIMIT + ")");
@@ -195,19 +208,21 @@ public class Wheel extends JPanel {
         this.repaint();
     }
 
+    /**
+     * an accessor method for the font used for the labels in the segments of the wheel
+     * @return the current font for the labels
+     */
     @Override
     public Font getFont() {
-        /*
-		 * Get current font of the displayed strings in the wheel.
-         */
         return _font;
     }
 
+    /**
+     * a mutator method to set the font used for the labels in the segments of the wheel
+     * @param font - the font for the labels
+     */
     @Override
     public void setFont(Font font) {
-        /*
-		 * Set current font of the displayed strings in the wheel.
-         */
         super.setFont(font);
         _font = font;
         _image = null;
@@ -216,33 +231,44 @@ public class Wheel extends JPanel {
         this.repaint();
     }
 
+    /**
+     * an accessor method for the spinning speed of the wheel, if the spining is off return 0
+     * @return the spinning speed of the wheel
+     */
     public double getSpinSpeed() {
-        /*
-		 * Get current spinning speed.
-		 * If the spinning is off, it returns 0.
-         */
         return _spinOnOff ? _spinSpeed : 0;
     }
 
+    /**
+     * an accessor method for the maximum speed limit of the wheel
+     * @return - the current maximum speed limit
+     */
     public double getMaxSpinSpeed() {
-        /*
-		 * Get current speed limit.
-         */
         return _maxSpinSpeed;
     }
 
+    /**
+     * a mutator method to set the maximum speed limit of the wheel
+     * @param speed - the maximum speed limit
+     */
     public void setMaxSpinSpeed(double speed) {
-        /*
-		 * Set current speed limit.
-         */
         _spinOnOff = false;
         _maxSpinSpeed = speed;
     }
 
+    /**
+     * an accessor method for the spin deceleration of the wheel
+     * @return the rate at which the wheel decelerates
+     */
     public double getSpinDeceleration() {
         return _spinDeceleration;
     }
 
+    /**
+     * a mutator method for the spin deceleration of the wheel
+     * @param deceleration - the rate at which the wheel decelerates
+     * @throws Exception - if the spin deceleration is positive (means its accelerating not decelerating)
+     */
     public void setSpinDeceleration(double deceleration) throws Exception {
         if (deceleration > 0) {
             throw new Exception("Illegal parameter value: acceleration must be < 0");
@@ -250,6 +276,10 @@ public class Wheel extends JPanel {
         _spinDeceleration = deceleration;
     }
 
+    /**
+     * an accessor method for the boolean which indicates if the wheel is spinning
+     * @return - the boolean that indicates whether the wheel is spinning
+     */
     public boolean isSpinning() {
         /*
 		 * Check if the wheel is spinning.
@@ -257,15 +287,12 @@ public class Wheel extends JPanel {
         return _spinOnOff;
     }
 
+    /**
+     * a method for getting the current selection of the wheel. The idea is to get the number of deltas in current rotationAngle. This number is added to the size of the string array list, and then MODed by the size of the string array list, in order to avoid negative indices.
+     * @return Returns the string which is displayed in the section of the wheel that is currently positioned between 0 and delta degrees.
+     */
     public String getSelectedString() {
-        /*
-		 * Get current selection.
-		 * Returns the string which is displayed in the section of the wheel that is currently positioned between 0 and delta degrees.
-		 * The idea is to get the number of deltas in current rotationAngle.
-		 * This number is added to the size of the string arraylist, and then MODed by the size of the string arraylist,
-		 * in order to avoid negative indices.
-         */
-        //return _stringList.get((int) Math.floor(_noElem + (_rotationAngle % 360) / _delta) % _noElem);
+
     double angle = (_rotationAngle % 360 + 360) % 360;
     double correctedAngle = (360 - angle + 90 + 360) % 360; // Rotate tick to -90°
     int index = (int)(correctedAngle / _delta);
@@ -273,15 +300,22 @@ public class Wheel extends JPanel {
     
     }
 
+    /**
+     * a constructor that allows for the creation of a wheel with a list of strings containing the labels of each segment
+     * @param listOfStrings - the array list of strings that are displayed as the labels on each wheel segment
+     * @throws Exception - if the array list of strings exceeds the limit of 100 strings
+     */
     public Wheel(ArrayList<String> listOfStrings) throws Exception {
-        /*
-		 * Constructor of the class.
-		 * Sets the string arraylist, adds mouse listeners and stast TimerTask to measure the rotation speed.
-         */
+
         setListOfStrings(listOfStrings);
         setBackground(new Color(0,51,204));
 
         addMouseListener(new MouseAdapter() {
+            /**
+             * a method that handles the event of when the mouse is pressed. 
+             * This is done by recording the initial drag position and time stamp to calculate the drag speed and stop the wheel if it is spinning and the click occurred inside the wheels radius
+             * @param e - the even of when the mouse is pressed
+             */
             @Override
             public void mousePressed(MouseEvent e) {
                 _mouseDragPosition = new Point2D.Double(e.getX(), e.getY());
@@ -295,6 +329,12 @@ public class Wheel extends JPanel {
                 _rotationAngleStart = _rotationAngle;
             }
 
+            /**
+             * a method that handles the event of the mouse being released after dragging the wheel. 
+             * This is done by calculating the drag speed based on the angle and time difference.
+             * It uses this information to start the wheel spinning with deceleration
+             * @param e - the event of the mouse being released after dragging the wheel
+             */
             @Override
             public void mouseReleased(MouseEvent e) {
                 setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -312,15 +352,21 @@ public class Wheel extends JPanel {
         });
 
         addMouseMotionListener(new MouseAdapter() {
+            /**
+             * a method that handles the event when the mouse is dragged across the wheel.
+             * This is done by calculating the angle between the start and current drag positions relative to the wheel's center and updates the rotation
+             * It also stops the ongoing spin while dragging
+             * @param e - the event when the mouse is dragged across the wheel
+             */
             @Override
             public void mouseDragged(MouseEvent e) {
                 setCursor(new Cursor(Cursor.HAND_CURSOR));
                 spinStop();
                 /*
-				 * Use the equation for angle between two vectors:
-				 * vector 1 between last position of mouse and center of circle
-				 * vector 2 between current position of mouse and center of circle
-				 * ("k" is direction coefficient)
+		 * Use the equation for angle between two vectors:
+		 * vector 1 between last position of mouse and center of circle
+		 * vector 2 between current position of mouse and center of circle
+		 * ("k" is direction coefficient)
                  */
                 Point2D mousePos = new Point2D.Double(e.getX(), e.getY());
                 double k1 = (_mouseDragPosition.getY() - _rotationCenter.getY()) / (_mouseDragPosition.getX() - _rotationCenter.getX());
@@ -339,11 +385,15 @@ public class Wheel extends JPanel {
         _speedTimer.schedule(timerTask, 0);
     }
 
+    /**
+     * a method for drawing the wheel onto the JPanel
+     * @param g - the drawing tool used to paint the wheel onto the screen
+     */
     @Override
     public void paintComponent(Graphics g) {
         /*
-		 * Paintcomponent - if the image is null, create it and then draw it whilst keeping the current rotation.
-		 * The image can be larger than the displaying area, so after it is drawn it needs to be placed properly.
+	 * Paintcomponent - if the image is null, create it and then draw it whilst keeping the current rotation.
+	 * The image can be larger than the displaying area, so after it is drawn it needs to be placed properly.
          */
 
         super.paintComponent(g);
@@ -375,13 +425,13 @@ public class Wheel extends JPanel {
 
     private BufferedImage drawImage() {
         /*
-		 * Calculate all the necessary parameters for the wheel and draw it section by section.
+	 * Calculate all the necessary parameters for the wheel and draw it section by section.
          */
 
         int panelWidth = this.getWidth();
         int panelHeight = this.getHeight();
 
-// Make the image slightly smaller than the panel
+        // Make the image slightly smaller than the panel
         int imgSize = (int) (Math.min(panelWidth, panelHeight) * 0.5);
         if (imgSize <= 0) {
             imgSize = 1;
@@ -397,7 +447,6 @@ public class Wheel extends JPanel {
         int fontSize, stringWidth, maxStringWidth;
 
         maxStringWidth = (int) (_radius - 2 * stringDistanceFromEdge);
-        fontSize = calcFontSize(g2d, stringDistanceFromEdge, maxStringWidth);
 
         fontSize = calcFontSize(g2d, stringDistanceFromEdge, maxStringWidth);
 
@@ -453,13 +502,20 @@ public class Wheel extends JPanel {
 
         return img;
     }
-
+    
+    /**
+     * a method for calculating the optimal font size for the labels inside the wheel segments
+     * @param g - the drawing tool to draw the labels in the segments
+     * @param stringDistanceFromEdge - the distance between the label and the edge of the wheel
+     * @param maxStringWidth - the maximum string width of the label
+     * @return the optimal font size
+     */
     private int calcFontSize(Graphics g, double stringDistanceFromEdge, int maxStringWidth) {
         /*
-		 * Calculates the optimal font size for the strings inside the sections.
-		 * The strings need to be positioned next to the broader end of the section.
-		 * The optimal size will depend on the longest string length and maximum height of the section
-		 * in the left border of the rectangle surrounding the string.
+	 * Calculates the optimal font size for the strings inside the sections.
+	 * The strings need to be positioned next to the broader end of the section.
+	 * The optimal size will depend on the longest string length and maximum height of the section
+	 * in the left border of the rectangle surrounding the string.
          */
 
         // Find the longest string
@@ -512,10 +568,12 @@ public class Wheel extends JPanel {
         }
     }
 
+    /**
+     * a method that draws the sections as triangles for in the umbrella shape is chosen for the shape of the segments
+     * @param g2d - the graphics used to draw the triangle
+     */
     private void fillTriangle(Graphics2D g2d) {
-        /*
-		 * Method that draws section as a triangle (in case Shape=UMBRELLA was chosen)
-         */
+
         int[] xpoints = new int[3];
         xpoints[0] = (int) _center.getX();
         xpoints[1] = (int) _center.getX() + _radius;
@@ -533,13 +591,13 @@ public class Wheel extends JPanel {
         }
     }
 
+    /**
+     * A runnable nested class that handles the spinning of the wheel
+     * It does this setting the rotation angle by calculating the speed through time based on deceleration.
+     * Each setRotationAngle call will cause the wheel to be redrawn.
+     */
     private class SpinRunnable implements Runnable {
 
-        /*
-		 * Runnable class that handles the spinning of the wheel.
-		 * It sets the rotation angle by calculating the speed through time based on deceleration.
-		 * Each setRotationAngle call will cause the wheel to be redrawn.
-         */
         private double spinSpeed;
         private int spinDirection;
         private double spinDeceleration;
@@ -568,14 +626,14 @@ public class Wheel extends JPanel {
         }
     }
 
+    /**
+     * a method that starts the spinning thread
+     * @param speed - the speed of the wheel in degrees per second
+     * @param direction - the direction the wheel spins (direction under 0 means clockwise, over 0 means counterclockwise) 
+     * @param deceleration - the rate at which the wheel is decelerating
+     * @throws Exception - if the deceleration is positive (therefore it is not decelerating but accelerating)
+     */
     public void spinStartAsync(double speed, int direction, double deceleration) throws Exception {
-        /*
-		 * Method that starts the spinning thread.
-		 * Parameters:
-		 * speed => degrees per second
-		 * direction => "< 0" = clockwise , "> 0" = counter-clockwise, "=0" = stand still
-		 * deceleration => "< 0" = degrees per second per second reducing speed, "= 0" = perpetual spin, "> 0" = throw exception
-         */
 
         if (deceleration > 0) {
             throw new Exception("Illegal parameter value: acceleration must be < 0");
@@ -585,22 +643,27 @@ public class Wheel extends JPanel {
         t.start();
     }
 
+    /**
+     * a method that sets the flag to stop the spinning
+     */
     public void spinStop() {
-        /*
-		 * Sets the flag to stop the spinnning.
-         */
         _spinOnOff = false;
     }
 
+    /**
+     * a nested class that monitors and refreshes the spin speed
+     */
     private class speedTimerTask extends TimerTask {
 
-        /*
-		 * TimerTask class that monitors and refreshes the _spinSpeed
-		 * The speed is calculated as a difference of two rotation angles over a period of time.
-		 * We add the 360 to the "now" angle and then MOD it by 360 to avoid miscalculation when passing the full circle.
+        /**
+         * a method that continuously calculates the spin speed of the wheel
          */
         @Override
         public void run() {
+            /*
+             * The speed is calculated as a difference of two rotation angles over a period of time.
+             * We add the 360 to the "now" angle and then MOD it by 360 to avoid miscalculation when passing the full circle.
+            */
             double prevAngle, nowAngle;
             long sleepTime = 100;
             while (true) {
@@ -617,6 +680,10 @@ public class Wheel extends JPanel {
         }
     }
 
+    /**
+     * an accessor method for the array list of colours for the colour scheme of the wheel
+     * @return 
+     */
     private ArrayList<Color> getDefaultColorList() {
         /*
 	 * Returns default color list.

@@ -15,38 +15,43 @@ public class Tick extends JPanel {
     private int _tickWidth = 20;
     private int _tickHeight = 20;
 
+    /**
+     * an accessor method for the width of the tick
+     * @return the width of the tick
+     */
     public int getTickWidth() {
-        /*
-		 * Get tick width.
-         */
         return _tickWidth;
     }
 
+    /**
+     * a mutator method for the width of the tick
+     * @param width - the width of the tick
+     */
     public void setTickWidth(int width) {
-        /*
-		 * Set tick width.
-         */
         _tickWidth = width;
     }
 
+    /**
+     * an accessor method for the height of the tick
+     * @return the height of the tick
+     */
     public int getTickHeight() {
-        /*
-		 * Get tick height.
-         */
         return _tickHeight;
     }
 
+    /**
+     * a mutator method for the height of the tick
+     * @param height - the height of the tick
+     */
     public void setTickHeight(int height) {
-        /*
-		 * Set tick height.
-         */
         _tickHeight = height;
     }
 
+    /**
+     * an accessor method for the polygon shape of the tick
+     * @return the polygon shape of the tick
+     */
     public Polygon getPolygon() {
-        /*
-		 * Get polygon shape of the tick.
-         */
         return _polygon;
     }
 
