@@ -95,10 +95,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }
 
     /**
-     * Accessor that returns the username that is assigned to the Player object
+     * an accessor that returns the username that is assigned to the Player object
      * This is necessary because sometimes variables don't update in the next
      * screen if they're just stored in the Player object
-     *
      * @return the username of current player
      */
     public String getUsername() {
@@ -106,9 +105,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }
 
     /**
-     * Accessor that returns the Player object, defined by username, highscore,
-     * and spins left
-     *
+     * an ccessor that returns the Player object, defined by username, highscore, and spins left
      * @return Player object for current user
      */
     public Player getPlayer() {
@@ -172,6 +169,16 @@ public class PlayFrame1 extends javax.swing.JFrame {
     public Phrase getPhrase() {
         return p;
     }
+
+    /**
+     * an accessor method that returns the current earnings JLabel to used in another frame
+     * @return the current earnings JLabel
+     */
+    public JLabel getCurrentEarningsLabel1() {
+        return currentEarningsLabel1;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -267,8 +274,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
                             .addGap(15, 15, 15)
                             .addComponent(currentEarningsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(currentEarningsLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(26, 26, 26)))
+                            .addComponent(currentEarningsLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap()))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(spinMoneyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

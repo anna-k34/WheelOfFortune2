@@ -1,7 +1,9 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Laura Garcia and Anna Kelley
+ * June 11th, 2025
+ * This code was taken from the source https://www.codeproject.com/Articles/5272754/Wheel-of-Fortune-in-Java
  */
+
 package wheeloffortune2;
 
 import java.awt.BorderLayout;
@@ -19,11 +21,15 @@ public class SelectionWheel extends JPanel {
     Wheel _wheel;
     Tick _tick;
 
+    /**
+     * a method that adjusts the bounds of the wheel and tick based on the tick width
+     * @param x - the new x position of the wheel
+     * @param y - the new y position of the wheel
+     * @param width - the new width of the wheel
+     * @param height - the new height of the wheel
+     */
     @Override
     public void setBounds(int x, int y, int width, int height) {
-        /*
-		 * Adjust the bounds of the wheel and tick based on tick width.
-         */
         super.setBounds(x, y, width, height);
 
         // Set bounds of the wheel to take full panel
@@ -40,31 +46,35 @@ public class SelectionWheel extends JPanel {
         _tick.setBounds(tickX, tickY, tickWidth, tickHeight);
     }
 
+    /**
+     * a method that checks if the wheel has borders on it
+     * @param borders - the boolean that indicates whether the wheel has borders on it
+     */
     public void hasBorders(boolean borders) {
-        /*
-		 * Check if the wheel borders are on.
-         */
         _wheel.hasBorders(borders);
     }
 
+    /**
+     * an accessor method for the radius of the wheel
+     * @return the radius of the wheel
+     */
     public int getRadius() {
-        /*
-		 * Get radius of the wheel.
-         */
         return _wheel.getRadius();
     }
 
+    /**
+     * an accessor method for the rotation angle of the wheel
+     * @return the rotation angle of the wheel
+     */
     public double getRotationAngle() {
-        /*
-		 * Get current rotation angle of the wheel.
-         */
         return _wheel.getRotationAngle();
     }
 
+    /**
+     * a mutator method for the rotation angle of the wheel
+     * @param rotationAngle - the rotation angle of the wheel
+     */
     public void setRotationAngle(double rotationAngle) {
-        /*
-		 * Set current rotation angle of the wheel.
-         */
         _wheel.setRotationAngle(rotationAngle);
         rotationAngle = rotationAngle % 360;
         this.repaint();
@@ -78,163 +88,202 @@ public class SelectionWheel extends JPanel {
 
     }
 
+    /**
+     * an accessor method for the font of the labels of the wheel
+     * @return the current font of the wheel
+     */
     public Font getWheelFont() {
-        /*
-		 * Get current font of the wheel.
-         */
         return _wheel.getFont();
     }
 
+    /**
+     * a mutator method for the font of the labels of the wheel
+     * @param font - the font for the labels
+     */
     public void setWheelFont(Font font) {
-        /*
-		 * Set current font of the wheel.
-         */
         super.setFont(font);
         _wheel.setFont(font);
     }
 
+    /**
+     * an accessor method for the array list of strings displayed on the wheel
+     * @return the array list of strings containing the information for the labels
+     */
     public ArrayList<String> getListOfStrings() {
-        /*
-		 * Get the list of strings for the wheel.
-         */
         return _wheel.getListOfStrings();
     }
 
+    /**
+     * a mutator method for the array list of strings displayed on the wheel
+     * @param list - the array list of strings containing the information for the labels
+     * @throws Exception - if the array list of strings is over the limit of 100
+     */
     public void setListOfStrings(ArrayList<String> list) throws Exception {
-        /*
-		 * Set the list of strings for the wheel.
-         */
         _wheel.setListOfStrings(list);
     }
 
+    /**
+     * an accessor method for the current spin speed of the wheel
+     * @return the spin speed of the wheel
+     */
     public double getSpinSpeed() {
-        /*
-		 * Get current spin speed of the wheel.
-         */
         return _wheel.getSpinSpeed();
     }
 
+    /**
+     * an accessor method for the current spin speed limit of the wheel
+     * @return the spin speed limit of the wheel
+     */
     public double getMaxSpinSpeed() {
-        /*
-		 * Get current spin speed limit of the wheel.
-         */
         return _wheel.getMaxSpinSpeed();
     }
 
+    /**
+     * a mutator method for the spin speed limit of the wheel
+     * @param speed - the spin speed limit of the wheel
+     */
     public void setMaxSpinSpeed(double speed) {
-        /*
-		 * Set current spin speed limit of the wheel.
-         */
         _wheel.setMaxSpinSpeed(speed);
     }
 
+    /**
+     * an accessor method for the spin deceleration of the wheel
+     * @return the spin deceleration of the wheel
+     */
     public double getSpinDeceleration() {
         return _wheel.getSpinDeceleration();
     }
 
+    /**
+     * a mutator method for the spin deceleration of the wheel
+     * @param deceleration - the spin deceleration of the wheel
+     * @throws Exception - if the spin deceleration is positive (if it is positive it is accelerating not decelerating)
+     */
     public void setSpinDeceleration(double deceleration) throws Exception {
         _wheel.setSpinDeceleration(deceleration);
     }
 
+    /**
+     * an accessor method for the array list of colours that creates the colour scheme of the wheel
+     * @return the array list of colours
+     */
     public ArrayList<Color> getColorScheme() {
-        /*
-		 * Get color scheme of the wheel.
-         */
         return _wheel.getColorScheme();
     }
 
+    /**
+     * a mutator method for the array list of colours that creates the colour scheme of the wheel
+     * @param colors - the array list of colours
+     */
     public void setColorScheme(ArrayList<Color> colors) {
-        /*
-		 * Set color scheme of the wheel.
-         */
         _wheel.setColorScheme(colors);
     }
 
+    /**
+     * a method that adds a new colour to the colour scheme of the wheel
+     * @param color -  the colour being added
+     */
     public void addColor(Color color) {
-        /*
-		 * Add new color to the color scheme of the wheel.
-         */
         _wheel.addColor(color);
     }
 
+    /**
+     * an accessor method for the current string selection of the wheel
+     * @return the current string selection of the wheel
+     */
     public String getSelectedString() {
-        /*
-		 * Get current string selection for the wheel.
-         */
         return _wheel.getSelectedString();
     }
 
+    /**
+     * a method that checks if the wheel is spinning
+     * @return the boolean of whether the wheel is spinning
+     */
     public boolean isSpinning() {
-        /*
-		 * Check if wheel is spinning.
-         */
         return _wheel.isSpinning();
     }
 
+    /**
+     * a mutator method for the shape of the wheel
+     * @param shape - the shape of the wheel 
+     */
     public void setShape(Wheel.Shape shape) {
-        /*
-		 * Set shape of the wheel.
-         */
         _wheel.setShape(shape);
     }
 
+    /**
+     * an accessor method for the tick width 
+     * @return the tick width
+     */
     public double getTickWidth() {
-        /*
-		 * Get tick width.
-         */
         return _tick.getTickWidth();
     }
     
+    /**
+     * a mutator method that sets the width of the tick
+     * this method also resets the bound of both the tick and wheel
+     * @param width - the width of the tick
+     */
     public void setTickWidth(int width) {
-        /*
-		 * Set tick width. Resets the bounds of both tick and wheel.
-         */
         _tick.setTickWidth(width);
         this.setBounds(this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 
+    /**
+     * an accessor method for the height of the tick
+     * @return the height of the tick
+     */
     public double getTickHeight() {
-        /*
-		 * Get tick height.
-         */
         return _tick.getTickHeight();
     }
 
+    /**
+     * a mutator method for the height of the tick
+     * @param height - the height of the tick
+     */
     public void setTickHeight(int height) {
-        /*
-		 * Set tick height.
-         */
         _tick.setTickHeight(height);
     }
 
+    /**
+     * an accessor method for the polygon of the tick
+     * @return the polygon of the tick
+     */
     public Polygon getTickPolygon() {
-        /*
-		 * Get tick polygon.
-         */
         return _tick.getPolygon();
     }
 
+    /**
+     * a mutator method for the polygon of the tick
+     * @param polygon the polygon of the tick
+     */
     public void setTickPolygon(Polygon polygon) {
-        /*
-		 * Set tick polygon.
-         */
         _tick.setPolygon(polygon);
     }
 
+    /**
+     * a method that repaints the tick
+     */
     public void repaintTick() {
         if (_tick != null) {
             _tick.repaint();
         }
     }
 
+    /**
+     * an accessor method for the tick
+     * @return the tick
+     */
     public Tick getTick() {
         return _tick;
     }
 
-    public SelectionWheel(ArrayList<String> listOfStrings) throws Exception {
-        /*
-     * Constructor - initializes tick and wheel.
+    /**
+     * a constructor that allows for the creation of a selection wheel, while initializing the tick and wheel
+     * @param listOfStrings - the array list of strings that contains the labels for each segment of the wheel
+     * @throws Exception - of the array list of strings is over the limit of 100
      */
+    public SelectionWheel(ArrayList<String> listOfStrings) throws Exception {
 
     // Create wheel and tick
     _wheel = new Wheel(listOfStrings);
@@ -278,20 +327,28 @@ public class SelectionWheel extends JPanel {
 
     }
 
+    /**
+     * a method that starts the async wheel spin
+     * @param speed - the spin speed of the wheel
+     * @param direction - the direction the wheel is traveling (over 0 = clockwise, under 0 = counter clockwise)
+     * @param deceleration - the rate at which the wheel is slowing down
+     * @throws Exception - if the deceleration is positive (therefore accelerating)
+     */
     public void spinStartAsync(double speed, int direction, double deceleration) throws Exception {
-        /*
-		 * Start async wheel spin.
-         */
         _wheel.spinStartAsync(speed, direction, deceleration);
     }
 
+    /**
+     * a method that stops the wheel from spinning
+     */
     public void spinStop() {
-        /*
-		 * Stop spinning.
-         */
         _wheel.spinStop();
     }
 
+    /**
+     * a method to get the dimensions of the wheel
+     * @return the dimensions of the wheel
+     */
     @Override
     public java.awt.Dimension getPreferredSize() {
         return new java.awt.Dimension(350, 350); // or whatever size you need

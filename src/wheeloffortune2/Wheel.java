@@ -1,3 +1,9 @@
+/*
+ * Laura Garcia and Anna Kelley
+ * June 11th, 2025
+ * This code was taken from the source https://www.codeproject.com/Articles/5272754/Wheel-of-Fortune-in-Java
+ */
+
 package wheeloffortune2;
 
 import java.awt.*;

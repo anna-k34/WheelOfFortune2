@@ -1,3 +1,9 @@
+/*
+ * Laura Garcia and Anna Kelley
+ * June 11th, 2025
+ * This code was taken from the source https://www.codeproject.com/Articles/5272754/Wheel-of-Fortune-in-Java
+ */
+
 package wheeloffortune2;
 
 import java.awt.Color;
@@ -55,26 +61,30 @@ public class Tick extends JPanel {
         return _polygon;
     }
 
+    /**
+     * a mutator method for the polygon shape of the tick
+     * @param polygon - the polygon shape of the tick
+     */
     public void setPolygon(Polygon polygon) {
-        /*
-		 * Set polygon shape of the tick.
-         */
         _polygon_orig = polygon;
         _polygon = polygon;
         adjustPolygon();
         this.repaint();
     }
 
+    /**
+     * a constructor that allows for the creation of a tick
+     */
     public Tick() {
         super();
         setOpaque(true); // force visibility
         setDoubleBuffered(true);
     }
-
+    
+    /**
+     * a method that adjusts the size and position of the custom polygon shape of the tick.
+     */
     private void adjustPolygon() {
-        /*
-		 * Adjust the size and position of the custom polygon shape of the tick.
-         */
         int i;
         // calculate width/height of the polygon
         int xmax = Integer.MIN_VALUE, xmin = Integer.MAX_VALUE;
@@ -116,11 +126,12 @@ public class Tick extends JPanel {
         _polygon.translate(this.getWidth() / 2 - centerX, this.getHeight() / 2 - centerY);
     }
 
+    /**
+     * an accessor method to get the triangle polygon
+     * the triangle is the default shape of the tick
+     * @return 
+     */
     private Polygon getTriangle() {
-        /*
-		 * Get triangle polygon - default shape of the tick.
-         */
-
         if (this.getWidth() <= 0 || this.getHeight() <= 0) {
             return new Polygon(); // avoid invalid triangle
         }
@@ -138,12 +149,13 @@ public class Tick extends JPanel {
         return polygon;
     }
 
+    /**
+     * a method that draws the tick
+     * if the custom polygon is not set, the method automatically draws a triangle as the shape of the tick
+     * @param g - the drawing tool used to draw the tick
+     */
     @Override
     public void paintComponent(Graphics g) {
-        /*
-		 * Paintcomponent.
-		 * If custom polygon is not set, use default triangle.
-         */
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         RenderingHints rh = new RenderingHints(

@@ -73,131 +73,144 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }
 
     /**
- * Accessor that returns the array of letter text fields.
- *
- * @return array of TextFields for the letter board
- */
-public TextField[] getLetters() {
-    return letters;
-}
+     * Accessor that returns the array of letter text fields.
+     *
+     * @return array of TextFields for the letter board
+     */
+    public TextField[] getLetters() {
+        return letters;
+    }
 
-/**
- * Accessor that returns the players high score from p-in case the getter from class isn't working in some cases
- *
- * @return player's current highscore
- */
-public int getHighscore() {
-    return highscore;
-}
+    /**
+     * Accessor that returns the players high score from p-in case the getter
+     * from class isn't working in some cases
+     *
+     * @return player's current highscore
+     */
+    public int getHighscore() {
+        return highscore;
+    }
 
-/**
- * Accessor that returns the Player object, defined by username, highscore,
- * and spins left.
- *
- * @return Player object for current user
- */
-public Player getPlayer() {
-    return player;
-}
+    /**
+     * Accessor that returns the Player object, defined by username, highscore,
+     * and spins left.
+     *
+     * @return Player object for current user
+     */
+    public Player getPlayer() {
+        return player;
+    }
 
-/**
- * Accessor that returns the clue input field.
- *
- * @return JTextField used to display the clue
- */
-public JTextField getClueField() {
-    return clueField;
-}
+    /**
+     * Accessor that returns the clue input field.
+     *
+     * @return JTextField used to display the clue
+     */
+    public JTextField getClueField() {
+        return clueField;
+    }
 
-/**
- * Accessor that returns the first play frame (with the wheel)
- *
- * @return first frame-PlayFrame 1 object
- */
-public PlayFrame1 getFirstFrame() {
-    return firstFrame;
-}
+    /**
+     * Accessor that returns the first play frame (with the wheel)
+     *
+     * @return first frame-PlayFrame 1 object
+     */
+    public PlayFrame1 getFirstFrame() {
+        return firstFrame;
+    }
 
-/**
- * Accessor that returns the current total score of the round
- *
- * @return current total score
- */
-public int getCurrentTotal() {
-    return currentTotal;
-}
+    /**
+     * Accessor that returns the current total score of the round
+     *
+     * @return current total score
+     */
+    public int getCurrentTotal() {
+        return currentTotal;
+    }
 
-/**
- * Accessor that returns the field where the user guesses the phrase .
- *
- * @return jtextfield for guess phrase input
- */
-public JTextField getGuessPhrase() {
-    return guessPhrase;
-}
+    /**
+     * Accessor that returns the field where the user guesses the phrase .
+     *
+     * @return jtextfield for guess phrase input
+     */
+    public JTextField getGuessPhrase() {
+        return guessPhrase;
+    }
 
-/**
- * Accessor that returns the hint text field
- *
- * @return jTextfield for hint
- */
-public JTextField getHint() {
-    return hint;
-}
+    /**
+     * Accessor that returns the hint text field
+     *
+     * @return jTextfield for hint
+     */
+    public JTextField getHint() {
+        return hint;
+    }
 
-/**
- * Accessor that returns the button used for hint
- *
- * @return jButton for hint
- */
-public JButton getHintBtn() {
-    return hintBtn;
-}
+    /**
+     * Accessor that returns the button used for hint
+     *
+     * @return jButton for hint
+     */
+    public JButton getHintBtn() {
+        return hintBtn;
+    }
 
-/**
- * Mutator that sets the Phrase object being used
- *
- * @param p Phrase object used
- */
-public void setP(Phrase p) {
-    this.p = p;
-}
+    /**
+     * Mutator that sets the Phrase object being used
+     *
+     * @param p Phrase object used
+     */
+    public void setP(Phrase p) {
+        this.p = p;
+    }
 
-/**
- * Mutator that sets the answer to the answer stored in the Phrase object
- *
- * @param answer phrase answer
- */
-public void setAnswer(String answer) {
-    this.answer = answer;
-}
+    /**
+     * Mutator that sets the answer to the answer stored in the Phrase object
+     *
+     * @param answer phrase answer
+     */
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 
-/**
- * Accessor that returns the guess a consonant button
- *
- * @return jButton for consonant
- */
-public JButton getGuessConsonantButton() {
-    return guessConsonantButton;
-}
+    /**
+     * Accessor that returns the guess a consonant button
+     *
+     * @return jButton for consonant
+     */
+    public JButton getGuessConsonantButton() {
+        return guessConsonantButton;
+    }
 
-/**
- * Accessor that returns the guess a vowel button
- *
- * @return jButton for vowel
- */
-public JButton getGuessVowelButton() {
-    return guessVowelButton;
-}
+    /**
+     * Accessor that returns the guess a vowel button
+     *
+     * @return jButton for vowel
+     */
+    public JButton getGuessVowelButton() {
+        return guessVowelButton;
+    }
 
-/**
- * Accessor that returns the number of letter guesses that the user has left 
- *
- * @return remaining guesses
- */
-public int getGuessesLeft() {
-    return guessesLeft;
-}
+    /**
+     * Accessor that returns the number of letter guesses that the user has left
+     *
+     * @return remaining guesses
+     */
+    public int getGuessesLeft() {
+        return guessesLeft;
+    }
+
+    /**
+     * an accessor method 
+     * @return 
+     */
+    public JTextField getConsField1() {
+        return consField1;
+    }
+
+    public JTextField getVowelField() {
+        return vowelField;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -854,7 +867,7 @@ public int getGuessesLeft() {
             countGuesses();
 
         } else {
-           
+
             consonant = checkConsonant.charAt(0);
             letterCheck = Character.isLetter(consonant);
 
@@ -869,7 +882,7 @@ public int getGuessesLeft() {
                     JOptionPane.showMessageDialog(null, "That is a vowel not a consonant!", "Error", JOptionPane.ERROR_MESSAGE);
                     countGuesses();
                 } else {
-                    
+
                     for (int i = 0; i < answer.length(); i++) {
                         //for each letter in the phrase, check to see if it equasl the letter that the user entereed
                         answerLetter = answer.charAt(i);
@@ -929,7 +942,7 @@ public int getGuessesLeft() {
         JLabel correct;
         //set the highscore to the totalMoney the user made on this screen
         player.setHighscore(totalMoney);
-        currentTotal = totalMoney;
+        //currentTotal = totalMoney;
         //if there are more spins left-go to the the third frame instead of the fourth
         if (spinsLeft != 0) {
             if (thirdFrame == null) {
@@ -953,9 +966,11 @@ public int getGuessesLeft() {
                 correct.setText("That is incorrect!");
             }
             //update the currentTotal
-            currentTotal = totalMoney;
+            //currentTotal = totalMoney;
             //set the highscore again
             player.setHighscore(totalMoney);
+            //set the current earnings label in the previous screen to the user's current total money
+            firstFrame.getCurrentEarningsLabel1().setText(money.format(totalMoney));
             //set the label in the next screen to the user's current total money
             thirdFrame.getTotalMoneyLabel().setText(money.format(totalMoney));
             //set the frame's visibility to true so it appears

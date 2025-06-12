@@ -5,11 +5,13 @@ PlayFrame3-spin again frame
  */
 package wheeloffortune2;
 //import statements used through the code
+
 import java.text.DecimalFormat;
 import javax.swing.*;
 import java.awt.*;
 
 public class PlayFrame3 extends javax.swing.JFrame {
+
     //declare variables
     PlayFrame2 secondFrame;
     private JLabel phraseAnswer;
@@ -30,51 +32,44 @@ public class PlayFrame3 extends javax.swing.JFrame {
     }
 
     /**
- * Accessor that returns the label with the answer to the quesiton
- *
- * @return JLabel showing the answer to the question
- */
-public JLabel getPhraseAnswerLabel() {
-    return phraseAnswerLabel;
-}
+     * an accessor that returns the label with the answer to the question
+     * @return JLabel showing the answer to the question
+     */
+    public JLabel getPhraseAnswerLabel() {
+        return phraseAnswerLabel;
+    }
 
-/**
- * Accessor that returns the label which shows if the guess was correct
- *
- * @return jlabel showing the correctness of the user's answer
- */
-public JLabel getCorrectLabel() {
-    return correct;
-}
+    /**
+     * an accessor that returns the label which shows if the guess was correct
+     * @return JLabel showing the correctness of the user's answer
+     */
+    public JLabel getCorrectLabel() {
+        return correct;
+    }
 
-/**
- * Accessor that returns the current status
- *
- * @return status (true because its in frame 3)
- */
-public boolean getStatus() {
-    return true;
-}
+    /**
+     * an accessor that returns the current status
+     * @return status (true because its in frame 3)
+     */
+    public boolean getStatus() {
+        return true;
+    }
 
-/**
- * Accessor that returns the Player object, defined by username, highscore,
- * and spins left.
- *
- * @return Player object for current user
- */
-public Player getPlayer() {
-    return player;
-}
+    /**
+     * an accessor that returns the Player object, defined by username, highscore, and spins left.
+     * @return Player object for current user
+     */
+    public Player getPlayer() {
+        return player;
+    }
 
-/**
- * Accessor that returns the label showing the total money 
- *
- * @return label showing the players total money
- */
-public JLabel getTotalMoneyLabel() {
-    return totalMoneyLabel;
-}
-
+    /**
+     * an accessor that returns the label showing the total money
+     * @return label showing the players total money
+     */
+    public JLabel getTotalMoneyLabel() {
+        return totalMoneyLabel;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -191,10 +186,10 @@ public JLabel getTotalMoneyLabel() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
-        
+
         //set all the buttons to true and reset other values for the first two frames
         firstFrame.getSpin().setEnabled(true);
-        firstFrame.getGuess().setEnabled(false);  
+        firstFrame.getGuess().setEnabled(false);
         secondFrame.getGuessPhrase().setText("");
         secondFrame.getHint().setText("");
         secondFrame.getHintBtn().setEnabled(true);
@@ -203,7 +198,7 @@ public JLabel getTotalMoneyLabel() {
         //set the first frame's visiblity to true so it shows up (one with wheel)
         firstFrame.setVisible(true);
         //close this frame
-        this.setVisible(false); 
+        this.setVisible(false);
     }//GEN-LAST:event_spinButton1ActionPerformed
 
 
