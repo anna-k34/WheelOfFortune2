@@ -345,6 +345,9 @@ public class PlayFrame1 extends javax.swing.JFrame {
         answer = p.getAnswer();
         //split the answer at every word
         answerSplit = answer.split(" ");
+        JLabel guessesLeftlbl=secondFrame.getGuessesLeftLabel();
+        guessesLeftlbl.setText("Guesses Left: 6");
+        
         //get the letters for the phrase from secondFrame 
         TextField letters[] = secondFrame.getLetters();
         //for the letters, set the text fields equal to "" to make sure no letters from other spins are on the screen
