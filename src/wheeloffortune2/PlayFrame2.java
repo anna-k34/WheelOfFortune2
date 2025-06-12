@@ -201,16 +201,30 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }
 
     /**
-     * an accessor method 
-     * @return 
+     * an accessor method that returns the consonants JTextField to be used in another frame
+     * @return the consonants JtextField
      */
     public JTextField getConsField1() {
         return consField1;
     }
 
+    /**
+     * an accessor method that returns the vowels JTextField to be used in another
+     * @return the vowels JTextField
+     */
     public JTextField getVowelField() {
         return vowelField;
     }
+
+    /**
+     * an accessor 
+     * @return 
+     */
+    public JLabel getTotalMoneyLabel() {
+        return totalMoneyLabel;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -961,6 +975,7 @@ public class PlayFrame2 extends javax.swing.JFrame {
                 correct.setText("That is correct!");
                 //multiply the spinMoney by 3 as a prize
                 totalMoney += spinMoney * 3;
+                totalMoneyLabel.setText(money.format(totalMoney));
             } else {
                 //set the label in the next screen to incorrect
                 correct.setText("That is incorrect!");

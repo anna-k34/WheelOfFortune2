@@ -196,6 +196,8 @@ public class PlayFrame3 extends javax.swing.JFrame {
         secondFrame.getHintBtn().setEnabled(true);
         secondFrame.getGuessConsonantButton().setEnabled(true);
         secondFrame.getGuessVowelButton().setEnabled(true);
+        secondFrame.getConsField1().setEditable(true);
+        secondFrame.getVowelField().setEditable(true);
         //set the first frame's visiblity to true so it shows up (one with wheel)
         firstFrame.setVisible(true);
         //close this frame
