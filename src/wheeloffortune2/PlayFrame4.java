@@ -1,8 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Wheel of Fortune Game
+ * ICS4U final project
+ * Play Frame 4-final screen 
  */
 package wheeloffortune2;
+//import statements used through the code
 
 import java.io.*;
 import java.io.IOException;
@@ -10,24 +12,45 @@ import java.text.DecimalFormat;
 import javax.swing.JLabel;
 
 public class PlayFrame4 extends javax.swing.JFrame {
+    //declare variables
 
     GamePlay playFrame;
     HighScores highScoresFrame;
     PlayFrame2 secondFrame;
     private JLabel phraseAnswer;
     private Player player;
+    private JLabel correct;
 
     public PlayFrame4(PlayFrame2 f) {
         secondFrame = f;
         initComponents();
+        //new DecimalFormat for money formatting
         DecimalFormat money = new DecimalFormat("$##,###.00");
         phraseAnswer = phraseAnswerLabel;
+        correct = correctLabel;
+        //get variables from previous frames
         player = secondFrame.getPlayer();
+        //set label text
         totalMoneyLabel.setText("Final Score:   " + money.format(player.getHighscore()));
+
     }
 
+    /**
+     * Accessor that returns the label with the answer to the quesiton
+     *
+     * @return JLabel showing the answer to the question
+     */
     public JLabel getPhraseAnswerLabel() {
         return phraseAnswerLabel;
+    }
+
+    /**
+     * Accessor that returns the label which shows if the guess was correct
+     *
+     * @return jlabel showing the correctness of the user's answer
+     */
+    public JLabel getCorrectLabel() {
+        return correct;
     }
 
     /**
@@ -205,25 +228,33 @@ public class PlayFrame4 extends javax.swing.JFrame {
     }//GEN-LAST:event_playAgainButtonActionPerformed
 
     private void highscoresButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highscoresButton1ActionPerformed
+        
         if (highScoresFrame == null) {
+            //create a new GamePlay screen
             GamePlay play = new GamePlay();
+            //create new highscore frame using the gameplay screen
             highScoresFrame = new HighScores(play);
         }
+        //set the higshcores frame visible and set this frame invisible
         highScoresFrame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_highscoresButton1ActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        //quit the GUI
         System.exit(0);
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void saveScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveScoreButtonActionPerformed
+        //get the Player fromt he second frame
         Player player = secondFrame.getPlayer();
+        //get the highscore also from the second frame, as getting it from the player causes some errors
         int highscore = secondFrame.getHighscore();
+        //set the highscore as an extre precaution
         player.setHighscore(highscore);
-
+        //write the player name and highscore to the playerList.txt data file
         try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList.txt", true); BufferedWriter bw = new BufferedWriter(fw); PrintWriter out = new PrintWriter(bw)) {
-
+            
             out.println(player.toString());  // Writes player's data on a new line
 
         } catch (IOException e) {

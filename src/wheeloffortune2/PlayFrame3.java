@@ -1,15 +1,16 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+Wheel of Fortune Game
+ICS4U Final Project
+PlayFrame3-spin again frame
  */
 package wheeloffortune2;
-
+//import statements used through the code
 import java.text.DecimalFormat;
 import javax.swing.*;
 import java.awt.*;
 
 public class PlayFrame3 extends javax.swing.JFrame {
-
+    //declare variables
     PlayFrame2 secondFrame;
     private JLabel phraseAnswer;
     PlayFrame1 firstFrame;
@@ -17,31 +18,63 @@ public class PlayFrame3 extends javax.swing.JFrame {
     private Player player;
 
     public PlayFrame3(PlayFrame2 f) {
+        //create this frame using the second playframe, as it is right after it
         initComponents();
         secondFrame = f;
         correct = correctLabel;
+        //get variables from previous frames
         firstFrame = secondFrame.getFirstFrame();
         player = secondFrame.getPlayer();
+        //set label text
         guessesLeftLabel.setText("Spins Left:    " + firstFrame.getSpinsLeft());
     }
 
-    public JLabel getPhraseAnswerLabel() {
-        return phraseAnswerLabel;
-    }
+    /**
+ * Accessor that returns the label with the answer to the quesiton
+ *
+ * @return JLabel showing the answer to the question
+ */
+public JLabel getPhraseAnswerLabel() {
+    return phraseAnswerLabel;
+}
 
-    public JLabel getCorrectLabel() {
-        return correct;
-    }
-    public boolean getStatus(){
-        return true;
-    }
-    public Player getPlayer() {
-        return player;
-    }
+/**
+ * Accessor that returns the label which shows if the guess was correct
+ *
+ * @return jlabel showing the correctness of the user's answer
+ */
+public JLabel getCorrectLabel() {
+    return correct;
+}
 
-    public JLabel getTotalMoneyLabel() {
-        return totalMoneyLabel;
-    }
+/**
+ * Accessor that returns the current status
+ *
+ * @return status (true because its in frame 3)
+ */
+public boolean getStatus() {
+    return true;
+}
+
+/**
+ * Accessor that returns the Player object, defined by username, highscore,
+ * and spins left.
+ *
+ * @return Player object for current user
+ */
+public Player getPlayer() {
+    return player;
+}
+
+/**
+ * Accessor that returns the label showing the total money 
+ *
+ * @return label showing the players total money
+ */
+public JLabel getTotalMoneyLabel() {
+    return totalMoneyLabel;
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,6 +191,8 @@ public class PlayFrame3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
+        
+        //set all the buttons to true and reset other values for the first two frames
         firstFrame.getSpin().setEnabled(true);
         firstFrame.getGuess().setEnabled(false);  
         secondFrame.getGuessPhrase().setText("");
@@ -165,7 +200,9 @@ public class PlayFrame3 extends javax.swing.JFrame {
         secondFrame.getHintBtn().setEnabled(true);
         secondFrame.getGuessConsonantButton().setEnabled(true);
         secondFrame.getGuessVowelButton().setEnabled(true);
+        //set the first frame's visiblity to true so it shows up (one with wheel)
         firstFrame.setVisible(true);
+        //close this frame
         this.setVisible(false); 
     }//GEN-LAST:event_spinButton1ActionPerformed
 

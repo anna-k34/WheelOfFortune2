@@ -56,9 +56,11 @@ public class PlayFrame1 extends javax.swing.JFrame {
         //set the the labels to default text
         currentEarningsLabel.setText("Current Earnings:  ");
         spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
-
+        
         try {
+            //create a new arrayLIst for all values that will go on the wheel
             ArrayList<String> list = new ArrayList<String>();
+            //add all the wheel values to the arrayList in order
             list.add("$600");
             list.add("$500");
             list.add("$550");
@@ -74,19 +76,19 @@ public class PlayFrame1 extends javax.swing.JFrame {
             list.add("$600");
             list.add("$650");
             list.add("Bankruptcy");
-
+            //create a new selection wheel
             selectionWheel = new SelectionWheel(list);
             selectionWheel.hasBorders(true);
-
+            //set the panel layout for the wheel to be displayed on
             wheelPanel.setLayout(new java.awt.FlowLayout(FlowLayout.CENTER, 0, 0));
             wheelPanel.add(selectionWheel);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         wheelPanel.revalidate();
         wheelPanel.repaint();
+        
         spin = spinButton1;
         guess = guessPhraseButton;
 

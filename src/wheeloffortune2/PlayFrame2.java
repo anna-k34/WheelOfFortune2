@@ -1,121 +1,203 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+Wheel of Fortune Game
+ICS4U final project
+Play Frame 2-Guessing Board
  */
 package wheeloffortune2;
+//import statements to be used through the code
 
 import java.awt.TextField;
 import javax.swing.*;
 import java.text.DecimalFormat;
 
-/**
- *
- * @author annak
- */
 public class PlayFrame2 extends javax.swing.JFrame {
 
+    //private variables that will be used throughout the frame
+    //playframes for the previous + next screens
     private PlayFrame1 firstFrame;
     private PlayFrame3 thirdFrame;
     private PlayFrame4 fourthFrame;
+    //button & textField variables
     private TextField letters[];
-    private int highscore;
-    private Player player;
     private JTextField clue;
-    private Phrase p;
-    private int currentTotal;
-    private JTextField hint;
     private JButton hintBtn;
     private JButton vowelBtn;
     private JButton consBtn;
-
+    private JTextField hint;
+    private JTextField guessPhrase;
+    //other variables
+    private int highscore;
+    private Player player;
+    private Phrase p;
+    private int currentTotal;
     private String answer;
     private int totalMoney;
     private int spinMoney;
-    private JTextField guessPhrase;
-
     private DecimalFormat money;
-    //private int guessesLeft=firstFrame.getGuessesLeft();
     private int guessesLeft = 6;
 
+    //create this frame using the first play screen (wheel) as it is invoked after that screen
     public PlayFrame2(PlayFrame1 f) {
+        //new decimalformat for money formatting
         money = new DecimalFormat("$#,##0.00");
         initComponents();
         firstFrame = f;
+        //get the previous data stored about the player from the previous screen
         player = firstFrame.getPlayer();
+        //add the letters (boxes on screen) to the textField arrayList
         letters = new TextField[]{letter0, letter1, letter2, letter3, letter4, letter5, letter6, letter7,
             letter8, letter9, letter10, letter11, letter12, letter13, letter14, letter15, letter16, letter17,
             letter18, letter19, letter20, letter21, letter22, letter23, letter24, letter25};
-
+        //get clue, hint and phrase from the text fields previously set in the last screen
         clue = clueField;
         hint = hintTextField;
         hintBtn = hintButton;
         guessPhrase = phraseTextField;
-        highscore = Integer.parseInt("100");
+        //highscore = Integer.parseInt("100");
+        //get the phrase & answer the user has to guess
         p = firstFrame.getPhrase();
         answer = p.getAnswer();
+        //set the totalmoney won in this frame to 0
         totalMoney = 0;
+        //get the spin money from what the user landed on in the previous screen
         spinMoney = firstFrame.getSpinMoney();
+        //set the labels to the # of guesses user has left and totalMoney
         guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
         totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
-        spinMoney = firstFrame.getSpinMoney();
+        //set the phrase and hint text field to nothing so that the user can reenter their answer without deleting previously
+        //set text from a different spin
         phraseTextField.setText("");
         hintTextField.setText("");
-        guessesLeft=6;
-        
+        guessesLeft = 6;
 
     }
 
-    public TextField[] getLetters() {
-        return letters;
-    }
+    /**
+ * Accessor that returns the array of letter text fields.
+ *
+ * @return array of TextFields for the letter board
+ */
+public TextField[] getLetters() {
+    return letters;
+}
 
-    public int getHighscore() {
-        return highscore;
-    }
+/**
+ * Accessor that returns the players high score from p-in case the getter from class isn't working in some cases
+ *
+ * @return player's current highscore
+ */
+public int getHighscore() {
+    return highscore;
+}
 
-    public Player getPlayer() {
-        return player;
-    }
+/**
+ * Accessor that returns the Player object, defined by username, highscore,
+ * and spins left.
+ *
+ * @return Player object for current user
+ */
+public Player getPlayer() {
+    return player;
+}
 
-    public JTextField getClueField() {
-        return clueField;
-    }
+/**
+ * Accessor that returns the clue input field.
+ *
+ * @return JTextField used to display the clue
+ */
+public JTextField getClueField() {
+    return clueField;
+}
 
-    public PlayFrame1 getFirstFrame() {
-        return firstFrame;
-    }
+/**
+ * Accessor that returns the first play frame (with the wheel)
+ *
+ * @return first frame-PlayFrame 1 object
+ */
+public PlayFrame1 getFirstFrame() {
+    return firstFrame;
+}
 
-    public int getCurrentTotal() {
-        return currentTotal;
-    }
+/**
+ * Accessor that returns the current total score of the round
+ *
+ * @return current total score
+ */
+public int getCurrentTotal() {
+    return currentTotal;
+}
 
-    public JTextField getGuessPhrase() {
-        return guessPhrase;
-    }
+/**
+ * Accessor that returns the field where the user guesses the phrase .
+ *
+ * @return jtextfield for guess phrase input
+ */
+public JTextField getGuessPhrase() {
+    return guessPhrase;
+}
 
-    public JTextField getHint() {
-        return hint;
-    }
+/**
+ * Accessor that returns the hint text field
+ *
+ * @return jTextfield for hint
+ */
+public JTextField getHint() {
+    return hint;
+}
 
-    public JButton getHintBtn() {
-        return hintBtn;
-    }
+/**
+ * Accessor that returns the button used for hint
+ *
+ * @return jButton for hint
+ */
+public JButton getHintBtn() {
+    return hintBtn;
+}
 
-    public void setP(Phrase p) {
-        this.p = p;
-    }
+/**
+ * Mutator that sets the Phrase object being used
+ *
+ * @param p Phrase object used
+ */
+public void setP(Phrase p) {
+    this.p = p;
+}
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
+/**
+ * Mutator that sets the answer to the answer stored in the Phrase object
+ *
+ * @param answer phrase answer
+ */
+public void setAnswer(String answer) {
+    this.answer = answer;
+}
 
-    public JButton getGuessConsonantButton() {
-        return guessConsonantButton;
-    }
+/**
+ * Accessor that returns the guess a consonant button
+ *
+ * @return jButton for consonant
+ */
+public JButton getGuessConsonantButton() {
+    return guessConsonantButton;
+}
 
-    public JButton getGuessVowelButton() {
-        return guessVowelButton;
-    }
+/**
+ * Accessor that returns the guess a vowel button
+ *
+ * @return jButton for vowel
+ */
+public JButton getGuessVowelButton() {
+    return guessVowelButton;
+}
+
+/**
+ * Accessor that returns the number of letter guesses that the user has left 
+ *
+ * @return remaining guesses
+ */
+public int getGuessesLeft() {
+    return guessesLeft;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -641,22 +723,34 @@ public class PlayFrame2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void countGuesses() {
 
+    /**
+     * Method that is invoked whenever the user presses the guess vowel or guess
+     * consonant button & the letter isn't valid/isn't in phrase It tracks how
+     * many guesses the user has left and tracks if they get too low
+     */
+    public void countGuesses() {
+        //if the guesses left are greater than 2 (starts at 6)
         if (guessesLeft > 2) {
+            //take one off of the count
             guessesLeft -= 1;
+            //set the label to the new number of guesses left
             guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
         } else if (guessesLeft == 2) {
+            //if there are two guesses left, take one off then warn the user that they only have one left now
             guessesLeft -= 1;
             guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
             JOptionPane.showMessageDialog(null, "You have one more guess, choose carefully");
         } else if (guessesLeft == 1) {
+            //if there's only one guess left, take one off the counter and then tell the user they must guess the phrase
             guessesLeft -= 1;
             guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
             JOptionPane.showMessageDialog(null, "That was your last guess, you must guess the phrase now");
+            //set all buttons to false so they can't guess any more letters/get a hint
             guessVowelButton.setEnabled(false);
             guessConsonantButton.setEnabled(false);
             hintButton.setEnabled(false);
+            //set the text field edibility to false so the user can't type anything in the guess boxes
             consField1.setEditable(false);
             vowelField.setEditable(false);
         }
@@ -664,46 +758,61 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }
 
     private void guessVowelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessVowelButtonActionPerformed
+        //if the guess vowel button is clicked, error check to make sure the user entered a valid letter
+        //take away $300, and then check to see if vowel is in the phrase
+        //then, set the textfield where the vowel is to its letter
 
+        //first declare necessary variables
         boolean letterCheck;
         int vowValue;
-        String checkVowel = vowelField.getText();
         char vowel;
         char answerLetter;
         int count = 0;
+        String checkVowel = vowelField.getText();
         boolean equals = false;
+
+        //if the totalmoney is greater than 300 than the vowel can be bought
         if (totalMoney >= 300) {
+            //take away 300 from total money
             totalMoney -= 300;
+            //if the user enters more than one character, the letter can't be found-display error statement
             if (checkVowel.length() != 1) {
                 JOptionPane.showMessageDialog(null, "You can only answer one vowel at a time!", "Error", JOptionPane.ERROR_MESSAGE);
                 countGuesses();
+
             } else {
                 vowel = checkVowel.charAt(0);
                 letterCheck = Character.isLetter(vowel);
-
+                //if the letter isn't a letter-display error statement 
                 if (!letterCheck) {
                     JOptionPane.showMessageDialog(null, "That is not a letter, let alone a vowel! Try again", "Error", JOptionPane.ERROR_MESSAGE);
                     countGuesses();
+                    //otherwise-continue with the error checking
                 } else {
                     vowValue = Character.getNumericValue(vowel);
-
+                    //check the letter's numerical values to see if its actually a vowel-if its a consonant display error message
                     if (vowValue != 10 && vowValue != 14 && vowValue != 18 && vowValue != 24 && vowValue != 30) {
                         JOptionPane.showMessageDialog(null, "That is a consonant not a vowel!", "Error", JOptionPane.ERROR_MESSAGE);
                         countGuesses();
+
                     } else {
                         for (int i = 0; i < answer.length(); i++) {
+                            //go through the answer and set the comparison to each letter in the answer
                             answerLetter = answer.charAt(i);
                             if (Character.toLowerCase(answerLetter) == Character.toLowerCase(vowel)) {
+                                //if any of the answer letters equal the letter the user entered set the letter text field at that index to the letter
                                 letters[i].setText(Character.toString((Character.toUpperCase(vowel))));
+
                                 count++;
                                 equals = true;
                             }
 
                         }
-
+                        //check to see if letter was found in phrase-if it wasn't display error message
                         if (!equals) {
                             JOptionPane.showMessageDialog(null, "Letter not present in phrase");
                             countGuesses();
+                            //if letter was found in phrase, add the spinMoney multiplied by the number of times it was found to the totalMoney count
                         } else {
                             totalMoney += spinMoney * count;
                         }
@@ -713,55 +822,71 @@ public class PlayFrame2 extends javax.swing.JFrame {
                 }
 
             }
+            //if the user has less than $300, they can't buy a vowel
         } else {
             JOptionPane.showMessageDialog(null, "You do not have enough money to buy a vowel", "Error", JOptionPane.ERROR_MESSAGE);
             countGuesses();
         }
+        //reset the text field to nothing so that the user can guess again 
         vowelField.setText("");
+        //set the totalMoneyLabel to the new total
         totalMoneyLabel.setText("Total money: " + money.format(totalMoney));
 
     }//GEN-LAST:event_guessVowelButtonActionPerformed
 
     private void guessConsonantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessConsonantButtonActionPerformed
+        //if the guess consonant button is clicked, error check to make sure the user entered a valid letter, 
+        //check to see if vowel is in the phrase then set the textfield where the consonant is to its letter
+
+        //first declare necessary variables 
         boolean letterCheck;
         int consValue;
         String checkConsonant = consField1.getText();
         char consonant;
         char answerLetter;
         int count = 0;
-
         boolean equals = false;
+
+        //first check if the length is greater than one character
         if (checkConsonant.length() != 1) {
+            //if it is display error message
             JOptionPane.showMessageDialog(null, "You can only answer one consonant at a time!", "Error", JOptionPane.ERROR_MESSAGE);
             countGuesses();
+
         } else {
+           
             consonant = checkConsonant.charAt(0);
             letterCheck = Character.isLetter(consonant);
 
             if (!letterCheck) {
+                //if the letter isn't a letter-display error statement 
                 JOptionPane.showMessageDialog(null, "That is not a letter, let alone a consonant! Try again", "Error", JOptionPane.ERROR_MESSAGE);
                 countGuesses();
             } else {
                 consValue = Character.getNumericValue(consonant);
-
+                //check to see if the letter entered is actually a consonant or if its a vowel
                 if (consValue == 10 || consValue == 14 || consValue == 18 || consValue == 24 || consValue == 30) {
                     JOptionPane.showMessageDialog(null, "That is a vowel not a consonant!", "Error", JOptionPane.ERROR_MESSAGE);
                     countGuesses();
                 } else {
+                    
                     for (int i = 0; i < answer.length(); i++) {
+                        //for each letter in the phrase, check to see if it equasl the letter that the user entereed
                         answerLetter = answer.charAt(i);
                         if (Character.toLowerCase(answerLetter) == Character.toLowerCase(consonant)) {
+                            //if it does, set the text field(s) wtih the vowel entered
                             letters[i].setText(Character.toString((Character.toUpperCase(consonant))));
                             count++;
                             equals = true;
                         }
 
                     }
-
+                    //if the letter isn't found in phrase output statement
                     if (!equals) {
                         JOptionPane.showMessageDialog(null, "Letter not present in phrase");
                         countGuesses();
                     } else {
+                        //otherwise, multiplly the number of letters found by the spin money and add it to the totalMoney var
                         totalMoney += spinMoney * count;
                     }
 
@@ -769,19 +894,27 @@ public class PlayFrame2 extends javax.swing.JFrame {
             }
 
         }
+        //set the field to nothing so the user can reguess
         consField1.setText("");
+        //set the moneylabel to the new totalMoney
         totalMoneyLabel.setText("Total Money:  " + money.format(totalMoney));
 
     }//GEN-LAST:event_guessConsonantButtonActionPerformed
 
     private void hintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintButtonActionPerformed
+        //if the user presses the hint button-check to see if they have more than 500 in their totalMoney
         if (totalMoney >= 500) {
+            //take 500 away
             totalMoney -= 500;
+            //set the hint field to the hint found in the Player object
             hintTextField.setText(p.getHint());
+            //set the button to false so the user can't buy the hint again
             hintButton.setEnabled(false);
         } else {
+            //the user doesn't a have any money to buy the hint-nothing happens
             JOptionPane.showMessageDialog(null, "You do not have enough money to buy a hint", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        //set the total money label to the new number
         totalMoneyLabel.setText("Total Money: " + money.format(totalMoney));
 
     }//GEN-LAST:event_hintButtonActionPerformed
@@ -791,60 +924,73 @@ public class PlayFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_hintTextFieldActionPerformed
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
+
         int spinsLeft = firstFrame.getSpinsLeft();
         JLabel correct;
+        //set the highscore to the totalMoney the user made on this screen
         player.setHighscore(totalMoney);
         currentTotal = totalMoney;
+        //if there are more spins left-go to the the third frame instead of the fourth
         if (spinsLeft != 0) {
             if (thirdFrame == null) {
+                //create a new third frame using PlayFrame3
                 thirdFrame = new PlayFrame3(this);
             }
-
+            //set the phraseAnswer on the next screen to what the answer of the phrase is
             JLabel phraseAnswer = thirdFrame.getPhraseAnswerLabel();
             phraseAnswer.setText(answer);
 
+            //initialize the correct var with the correct label from the third frame 
             correct = thirdFrame.getCorrectLabel();
-
+            //if the user enters the right answer:
             if (answer.equalsIgnoreCase(phraseTextField.getText())) {
+                //set the label in the next screen to correct
                 correct.setText("That is correct!");
+                //multiply the spinMoney by 3 as a prize
                 totalMoney += spinMoney * 3;
             } else {
+                //set the label in the next screen to incorrect
                 correct.setText("That is incorrect!");
             }
+            //update the currentTotal
             currentTotal = totalMoney;
+            //set the highscore again
             player.setHighscore(totalMoney);
-
+            //set the label in the next screen to the user's current total money
             thirdFrame.getTotalMoneyLabel().setText(money.format(totalMoney));
+            //set the frame's visibility to true so it appears
             thirdFrame.setVisible(true);
+            //set this frame's visibilty to false so it disappears
             this.setVisible(false);
 
         } else {
+            //if the user doesn't have spins left-they go to the final (fourth) screen when they press next
             if (fourthFrame == null) {
+                //create a new playFrame 4 using this frame
                 fourthFrame = new PlayFrame4(this);
+                //set the answer label on the fourth frame to the phrase ans
                 JLabel phraseAnswer = fourthFrame.getPhraseAnswerLabel();
                 phraseAnswer.setText(answer);
 
             }
-
-            correct = thirdFrame.getCorrectLabel();
-
+            //use the previous code to determine if the phrase was correct
+            correct = fourthFrame.getCorrectLabel();
+            //if the answer is correct-set label as so
             if (answer.equalsIgnoreCase(phraseTextField.getText())) {
                 correct.setText("That is correct!");
-
+                //otherwise set label to it's incorrect
             } else {
                 correct.setText("That is incorrect!");
             }
+            //make the fourth frame visible
             fourthFrame.setVisible(true);
-
+            //make this frame invisible
             this.setVisible(false);
         }
 
 
     }//GEN-LAST:event_guessPhraseButtonActionPerformed
 
-    public int getGuessesLeft() {
-        return guessesLeft;
-    }
     private void letter0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_letter0ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_letter0ActionPerformed
