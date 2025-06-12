@@ -62,13 +62,13 @@ public class PlayFrame2 extends javax.swing.JFrame {
         //get the spin money from what the user landed on in the previous screen
         spinMoney = firstFrame.getSpinMoney();
         //set the labels to the # of guesses user has left and totalMoney
-        guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
         totalMoneyLabel.setText("Total money:   " + money.format(totalMoney));
         //set the phrase and hint text field to nothing so that the user can reenter their answer without deleting previously
         //set text from a different spin
         phraseTextField.setText("");
         hintTextField.setText("");
         guessesLeft = 6;
+        guessesLeftLabel.setText("Guesses left:    " + guessesLeft);
 
     }
 
@@ -199,8 +199,20 @@ public class PlayFrame2 extends javax.swing.JFrame {
     public int getGuessesLeft() {
         return guessesLeft;
     }
-
     /**
+     * mutator that sets the number of letter guesses the user has left
+     * @param guessesLeft remaining guesses
+     */
+    public void setGuessesLeft(int guessesLeft) {
+        this.guessesLeft = guessesLeft;
+    }
+    public JLabel getGuessesLeftLabel(){
+        return guessesLeftLabel;
+    }
+    /**
+     * an accessor method
+     *
+     * @return
      * an accessor method that returns the consonants JTextField to be used in another frame
      * @return the consonants JtextField
      */
