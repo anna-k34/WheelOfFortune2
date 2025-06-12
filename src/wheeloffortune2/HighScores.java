@@ -1,9 +1,12 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+Wheel of Fortune
+ICS4U Final project
+Highscores screen
+June 11th 2025
+
  */
 package wheeloffortune2;
-
+//import statements
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
@@ -29,6 +32,7 @@ public class HighScores extends javax.swing.JFrame {
     public HighScores(GamePlay g) {
         initComponents();
         mainScreen = g;
+        //invoke methods to sort highscores
         scanHighscores();
         ArrayList<Integer> sorted = (quickSort(highscore, 0, highscore.size() - 1));
         sortedOutput(sorted);
@@ -184,14 +188,16 @@ public class HighScores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Method that scans the PlayerList file to use in the sorting/searching
+     */
     public void scanHighscores() {
         try {
+            //create a new file and scan it
             File f = new File("src/wheeloffortune2/playerList.txt");
             Scanner s = new Scanner(f);
-            int i = 0;
             while (s.hasNextLine()) {
-                i += 1;
+                //add to the arraylists
                 username.add(s.nextLine());
                 highscore.add(Integer.parseInt(s.nextLine()));
             }
@@ -202,6 +208,7 @@ public class HighScores extends javax.swing.JFrame {
     }
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        //go back to the gamePlay screen, create a new frame for it
         this.setVisible(false);
         GamePlay main = new GamePlay();
         main.setVisible(true);
@@ -209,34 +216,44 @@ public class HighScores extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void quitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButton1ActionPerformed
+        //close GUI
         System.exit(0);
     }//GEN-LAST:event_quitButton1ActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-
+        //new DecimalFormat for money formatting
         DecimalFormat money = new DecimalFormat("$0.00");
-        System.out.println(username);
+        //get what the user wants to search for
         String userInput = usernameTextField.getText();
         boolean equals = false;
+        //look through the whole arrayList to see if the username can be found
         for (int i = 0; i < username.size(); i++) {
+            //create vars for the current usernames and highscores
             String currentU = String.valueOf(username.get(i));
             String ScurrentH = String.valueOf(highscore.get(i));
             int high = Integer.parseInt(ScurrentH);
+            //check to see if any of the usernames equal input
             if (currentU.equalsIgnoreCase(userInput)) {
-                //usernameOutputLabel.setText("Found! \nUsername: " + currentU + "\nHighscore: " + money.format(high));
-                //had to use this cause jfield doesn't support \n
+                //had to use this <html> formatting because jfield doesn't support \n
                 usernameOutputLabel.setText("<html>Found!<br>Username: " + currentU + "<br>Highscore: " + money.format(high) + "</html>");
-
                 equals = true;
             }
         }
+        //output if the username isn't in the file
         if (!equals) {
             usernameOutputLabel.setText("User not found. Try again.");
         }
 
     }//GEN-LAST:event_searchButtonActionPerformed
-
+    /**
+     * QuickSort method that sorts the highscores in file from highest to lowest
+     * @param items the unsorted list of highscores
+     * @param start first index in list
+     * @param end last index in list
+     * @return the sorted list of highscores
+     */
     public static ArrayList quickSort(ArrayList<Integer> items, int start, int end) {
+        //QuickSort code- Used Algorithm from ADA computer science
         if (start >= end) {
             return null;
         }
@@ -278,17 +295,26 @@ public class HighScores extends javax.swing.JFrame {
 
         return items;
     }
-
+    /**
+     * Method that formats and outputs the formatted arrayList of the sorted highscores
+     * @param sorted the arrayList that has the sorted highscore+usernames
+     */
     public void sortedOutput(ArrayList<Integer> sorted) {
+        //new money formatting
         DecimalFormat money = new DecimalFormat("$0.00");
+        //make a variable for the output to add to the sorted arrayList
         String output = "";
+        
         for (int i = 0; i < sorted.size(); i++) {
+            //counter starts at 1
             int counter = i + 1;
+            //get the sorted highscore at the specific index
             int out = sorted.get(i);
-            //output+=("<html>" + counter+ ". " + sorted.get(i) + "      User: " + username.get(i) + "<br></html>");
+            //output
             output += (counter + ". " + money.format(out) + "      User: " + username.get(i) + "\n");
 
         }
+        //set the output
         highscoresTextArea.setText(output);
     }
 
