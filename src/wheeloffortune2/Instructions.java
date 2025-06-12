@@ -1,7 +1,8 @@
 /*
 Wheel of Fortune Game
 ICS4U Final Summative
-Instructions frame
+Instructions fram
+June 11th 2025
  */
 package wheeloffortune2;
 
@@ -109,7 +110,7 @@ public class Instructions extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(howToPlayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
