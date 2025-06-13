@@ -1,7 +1,7 @@
 /**
  * Wheel of Fortune game
  * ICS4U Final Project
- * Homepage/GamePlay jFrame
+ * Homepage/GamePlay JFrame
  * June 11th 2025
 
  */

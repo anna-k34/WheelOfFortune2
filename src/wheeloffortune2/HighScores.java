@@ -1,9 +1,8 @@
 /*
-Wheel of Fortune
-ICS4U Final project
-Highscores screen
-June 11th 2025
-
+* Wheel of Fortune
+* ICS4U Final project
+* Highscores screen
+* June 11th 2025
  */
 package wheeloffortune2;
 //import statements
