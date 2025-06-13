@@ -115,7 +115,7 @@ public class Player {
      * @return output that will be put into the file when saved
      */
     public String toString() {
-        return username + "\n" + highscore;
+        return username + " " + highscore;
     }
 
 }

@@ -15,7 +15,6 @@ public class PlayFrame3 extends javax.swing.JFrame {
 
     //declare variables
     PlayFrame2 secondFrame;
-    private JLabel phraseAnswer;
     PlayFrame1 firstFrame;
     private JLabel correct;
     private Player player;
@@ -29,7 +28,7 @@ public class PlayFrame3 extends javax.swing.JFrame {
         firstFrame = secondFrame.getFirstFrame();
         player = secondFrame.getPlayer();
         //set label text
-        guessesLeftLabel.setText("Spins Left:    " + firstFrame.getSpinsLeft());
+        guessesLeftLabel.setText("Spins Left:    " + player.getSpinsLeft());
     }
 
     /**
@@ -71,7 +70,7 @@ public class PlayFrame3 extends javax.swing.JFrame {
     public JLabel getTotalMoneyLabel() {
         return totalMoneyLabel;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -198,6 +197,7 @@ public class PlayFrame3 extends javax.swing.JFrame {
         secondFrame.getGuessVowelButton().setEnabled(true);
         secondFrame.getConsField1().setEditable(true);
         secondFrame.getVowelField().setEditable(true);
+        secondFrame.setGuessesLeft(6);
         //set the first frame's visiblity to true so it shows up (one with wheel)
         firstFrame.setVisible(true);
         //close this frame

@@ -7,6 +7,7 @@ June 11th 2025
  */
 package wheeloffortune2;
 //import statements
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
@@ -19,11 +20,34 @@ import java.util.Scanner;
  */
 public class HighScores extends javax.swing.JFrame {
 
+    private class ScoreEntry {
+        String username;
+        int highscore;
+
+        public ScoreEntry(String username, int highscore) {
+            this.username = username;
+            this.highscore = highscore;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public int getHighscore() {
+            return highscore;
+        }
+        
+        
+        
+        
+    }
+
     GamePlay mainScreen;
     // private ArrayList username;
     // private ArrayList highscore;
-    private ArrayList username = new ArrayList<>();
-    private ArrayList highscore = new ArrayList<>();
+    //private ArrayList<String> username = new ArrayList<>();
+    //private ArrayList<Integer> highscore = new ArrayList<>();
+    private ArrayList<ScoreEntry> entries = new ArrayList<>();
     //add a searching method somehow???
 
     /**
@@ -34,7 +58,15 @@ public class HighScores extends javax.swing.JFrame {
         mainScreen = g;
         //invoke methods to sort highscores
         scanHighscores();
-        ArrayList<Integer> sorted = (quickSort(highscore, 0, highscore.size() - 1));
+
+        ArrayList<ScoreEntry> sorted;
+
+        if (entries.size() <= 1) {
+            sorted = new ArrayList<>(entries);
+        } else {
+            sorted = (quickSort(entries, 0, entries.size() - 1));
+        }
+
         sortedOutput(sorted);
     }
 
@@ -196,11 +228,21 @@ public class HighScores extends javax.swing.JFrame {
             //create a new file and scan it
             File f = new File("src/wheeloffortune2/playerList.txt");
             Scanner s = new Scanner(f);
+            String playerInfo[];
+
             while (s.hasNextLine()) {
-                //add to the arraylists
-                username.add(s.nextLine());
-                highscore.add(Integer.parseInt(s.nextLine()));
+                //split the 
+                playerInfo = s.nextLine().split(" ");
+                //add the player's username and highscore to the corresponding arrays
+                //username.add(playerInfo[0]);
+                //highscore.add(Integer.parseInt(playerInfo[1]));
+                String name = playerInfo[0];
+                int highscore = Integer.parseInt(playerInfo[1]);
+                ScoreEntry entry = new ScoreEntry(name, highscore);
+                entries.add(entry);
+                
             }
+
         } catch (FileNotFoundException e) {
             System.out.println("Error " + e);
         }
@@ -227,10 +269,10 @@ public class HighScores extends javax.swing.JFrame {
         String userInput = usernameTextField.getText();
         boolean equals = false;
         //look through the whole arrayList to see if the username can be found
-        for (int i = 0; i < username.size(); i++) {
+        for (int i = 0; i < entries.size(); i++) {
             //create vars for the current usernames and highscores
-            String currentU = String.valueOf(username.get(i));
-            String ScurrentH = String.valueOf(highscore.get(i));
+            String currentU = entries.get(i).getUsername();
+            String ScurrentH = String.valueOf(entries.get(i).getHighscore());
             int high = Integer.parseInt(ScurrentH);
             //check to see if any of the usernames equal input
             if (currentU.equalsIgnoreCase(userInput)) {
@@ -247,36 +289,37 @@ public class HighScores extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
     /**
      * QuickSort method that sorts the highscores in file from highest to lowest
+     *
      * @param items the unsorted list of highscores
      * @param start first index in list
      * @param end last index in list
      * @return the sorted list of highscores
      */
-    public static ArrayList quickSort(ArrayList<Integer> items, int start, int end) {
+    public static ArrayList quickSort(ArrayList<ScoreEntry> items, int start, int end) {
         //QuickSort code- Used Algorithm from ADA computer science
         if (start >= end) {
             return null;
         }
 
-        int pivotValue = items.get(start); // pivot is the first item in the partition
+        int pivotValue = items.get(start).getHighscore(); // pivot is the first item in the partition
         int lowMark = start + 1;
         int highMark = end;
         boolean finished = false;
 
         while (!finished) {
             // Move lowMark to the right while items[lowMark] <= pivot
-            while (lowMark <= highMark && items.get(lowMark) <= pivotValue) {
+            while (lowMark <= highMark && items.get(lowMark).getHighscore() <= pivotValue) {
                 lowMark++;
             }
 
             // Move highMark to the left while items[highMark] >= pivot
-            while (highMark >= lowMark && items.get(highMark) >= pivotValue) {
+            while (highMark >= lowMark && items.get(highMark).getHighscore() >= pivotValue) {
                 highMark--;
             }
 
             if (lowMark < highMark) {
                 // Swap items at lowMark and highMark
-                int temp = items.get(lowMark);
+                ScoreEntry temp = items.get(lowMark);
                 items.set(lowMark, items.get(highMark));
                 items.set(highMark, temp);
             } else {
@@ -285,7 +328,7 @@ public class HighScores extends javax.swing.JFrame {
         }
 
         // Swap pivot with item at highMark
-        int temp = items.get(start);
+        ScoreEntry temp = items.get(start);
         items.set(start, items.get(highMark));
         items.set(highMark, temp);
 
@@ -295,23 +338,26 @@ public class HighScores extends javax.swing.JFrame {
 
         return items;
     }
+
     /**
-     * Method that formats and outputs the formatted arrayList of the sorted highscores
+     * Method that formats and outputs the formatted arrayList of the sorted
+     * highscores
+     *
      * @param sorted the arrayList that has the sorted highscore+usernames
      */
-    public void sortedOutput(ArrayList<Integer> sorted) {
+    public void sortedOutput(ArrayList<ScoreEntry> sorted) {
         //new money formatting
         DecimalFormat money = new DecimalFormat("$0.00");
         //make a variable for the output to add to the sorted arrayList
         String output = "";
-        
+
         for (int i = 0; i < sorted.size(); i++) {
             //counter starts at 1
             int counter = i + 1;
             //get the sorted highscore at the specific index
-            int out = sorted.get(i);
+            int out = sorted.get(i).getHighscore();
             //output
-            output += (counter + ". " + money.format(out) + "      User: " + username.get(i) + "\n");
+            output += (counter + ". " + money.format(out) + "      User: " + entries.get(i).getUsername() + "\n");
 
         }
         //set the output

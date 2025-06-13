@@ -20,35 +20,32 @@ public class PlayFrame1 extends javax.swing.JFrame {
     GamePlay firstWindow;
     private PlayFrame3 thirdFrame;
     private String username;
-    private int highscore;
     private ArrayList<Phrase> phrases;
     private Phrase p;
     private SelectionWheel selectionWheel;
     private Player player;
     private int spinMoney;
-    private int spinsLeft;
     private JButton spin;
     private JButton guess;
+    private DecimalFormat money;
+    private ArrayList<Phrase> copy;
 
     //create this frame using the GamePlay/homescreen as it is invoked after that screen
     public PlayFrame1(GamePlay f) {
         //new DecimalFormat object for the money formatting
-        DecimalFormat money = new DecimalFormat("$0.00");
+        money = new DecimalFormat("$$##,###.00");
         firstWindow = f;
 
         //This if statement determines which frame the player should be called from 
         //because this game loops through the playFrame screens 3 times, after the first 'spin', the Player should come from the thirdFrame
         //however, if it is the first spin, the Player should come from the gamePlay/homescreen
         //check which case it is by determing if the third frame is null or not
-        if (thirdFrame != null) {
-            player = thirdFrame.getPlayer();
-        } else {
+        //if (thirdFrame != null) {
+         //   player = thirdFrame.getPlayer();
+        //} else {
             player = firstWindow.getPlayer();
 
-        }
-        //assign the the spinsLeft and highScore from the Player object to variables 
-        spinsLeft = player.getSpinsLeft();
-        highscore = player.getHighscore();
+        //}
         //From the gamePlay screen, assign the username and phrases to variables
         username = firstWindow.getUsername();
         phrases = firstWindow.getPhrases();
@@ -56,7 +53,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
         initComponents();
         //set the the labels to default text
         currentEarningsLabel.setText("Current Earnings:  ");
-        spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
+        spinsLeftLabel.setText("Spins Left:    " + player.getSpinsLeft());
         
         try {
             //create a new arrayLIst for all values that will go on the wheel
@@ -92,6 +89,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
         
         spin = spinButton1;
         guess = guessPhraseButton;
+        
+        copy = (ArrayList<Phrase>) phrases.clone();
 
     }
 
@@ -130,7 +129,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
      * @return int of rounds left
      */
     public int getSpinsLeft() {
-        return spinsLeft;
+        return player.getSpinsLeft();
     }
 
     /**
@@ -324,8 +323,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guessPhraseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessPhraseButtonActionPerformed
-        //create a copy of the phrases ArrayList
-        ArrayList<Phrase> copy = (ArrayList<Phrase>) phrases.clone();
+
         //generate a random number using the size of the arrayList as the max
         int rNum = (int) (Math.random() * copy.size()) + 0;
         //assign the phrase at the random number to variable 'p'
@@ -380,6 +378,8 @@ public class PlayFrame1 extends javax.swing.JFrame {
         secondFrame.setP(p);
         //set the answer to the answer from the phrase 
         secondFrame.setAnswer(answer);
+        //maybe
+        secondFrame.getTotalMoneyLabel().setText(money.format(player.getHighscore()));
         //set the next frame's visibility to true so it's displayed
         secondFrame.setVisible(true);
         //set this frame's visibility to false so that the user doesn't see it anymore and it closes
@@ -389,7 +389,7 @@ public class PlayFrame1 extends javax.swing.JFrame {
 
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
         //new DecimalFormat object for the money formatting
-        DecimalFormat money = new DecimalFormat("$##,##0.00");
+        money = new DecimalFormat("$##,##0.00");
         //set the user's current earnings label to false that way they can't see
         //how much money theyr'e going to get while the wheel is still spinning
         currentEarningsLabel1.setVisible(false);
@@ -430,7 +430,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
         //set the result variable to what the ticker landed on after the wheel stopped
         String result = selectionWheel.getSelectedString();
 
-        int total;
         //if the ticker ended on bankruptcy, then the user gets $500 as their 'spin money' so they can start to earn money back in the next screen
         if (result.equalsIgnoreCase("Bankruptcy")) {
             result = "$500";
@@ -442,16 +441,13 @@ public class PlayFrame1 extends javax.swing.JFrame {
         moneyLabel.setText(result);
         //split the string to disregard the $ and parse the new string into an int.
         spinMoney = Integer.parseInt(result.substring(1));
-        //the total is  the player's highscore
-        total = player.getHighscore();
         //set the current earnings label to the user's total
-        currentEarningsLabel1.setText(money.format(total));
-        //take a spin away from user
-        spinsLeft -= 1;
+        currentEarningsLabel1.setText(money.format(player.getHighscore()));
+        //take away a spin from the user and set the spinsLeft within the Player, so that it is saved and doesn't reset when the user spins again.
+        player.setSpinsLeft(player.getSpinsLeft() - 1);
         //set the spinsLeft label with the new number of spins left
-        spinsLeftLabel.setText("Spins Left:    " + spinsLeft);
-        //set the spinsLeft within the Player, so that it is saved and doesn't reset when the user spins again.
-        player.setSpinsLeft(spinsLeft);
+        spinsLeftLabel.setText("Spins Left:    " + player.getSpinsLeft());
+        
 
     }//GEN-LAST:event_spinButton1ActionPerformed
 

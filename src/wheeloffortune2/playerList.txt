@@ -1,2 +1,4 @@
-anna
-700
+laura 33750
+LG 9500
+L 10100
+laurag 7500

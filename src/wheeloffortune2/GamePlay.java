@@ -76,10 +76,9 @@ public class GamePlay extends javax.swing.JFrame {
             //scan the file
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
+                String playerInfo[] = s.nextLine().split(" ");
                 //add the username to the arraylist
-                username.add(s.nextLine());
-                //this is where the highscore is, but not necessary because it isn't needed in this frame
-                s.nextLine();
+                username.add(playerInfo[0]);
 
             }
         } catch (FileNotFoundException e) {//error checking to make sure the file is found
