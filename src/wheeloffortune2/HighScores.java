@@ -53,12 +53,8 @@ public class HighScores extends javax.swing.JFrame {
     }
 
     GamePlay mainScreen;
-    // private ArrayList username;
-    // private ArrayList highscore;
-    //private ArrayList<String> username = new ArrayList<>();
-    //private ArrayList<Integer> highscore = new ArrayList<>();
+
     private ArrayList<ScoreEntry> entries = new ArrayList<>();
-    //add a searching method somehow???
 
     /**
      * Creates new form HighScores
