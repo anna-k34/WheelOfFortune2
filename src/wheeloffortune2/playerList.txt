@@ -5,3 +5,4 @@ laurag 7500
 ajk 14050
 laurab 11700
 lauraga 5900
+ll 0

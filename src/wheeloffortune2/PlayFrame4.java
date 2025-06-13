@@ -258,6 +258,8 @@ public class PlayFrame4 extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+         saveScoreButton.setEnabled(false);
     }//GEN-LAST:event_saveScoreButtonActionPerformed
 
     /**
