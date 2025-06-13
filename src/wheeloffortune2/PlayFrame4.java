@@ -250,12 +250,7 @@ public class PlayFrame4 extends javax.swing.JFrame {
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void saveScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveScoreButtonActionPerformed
-        //get the Player fromt the second frame
-        //player = secondFrame.getPlayer();
-        //get the highscore also from the second frame, as getting it from the player may not give the most recent updated value
-        //int highscore = secondFrame.getHighscore();
-        //set the highscore as an extra precaution
-        //player.setHighscore(highscore);
+
         //write the player name and highscore to the playerList.txt data file
         try (FileWriter fw = new FileWriter("src/wheeloffortune2/playerList.txt", true); BufferedWriter bw = new BufferedWriter(fw); PrintWriter out = new PrintWriter(bw)) {
             out.println(player.getUsername() + " " + player.getHighscore());  // Writes player's data on a new line
