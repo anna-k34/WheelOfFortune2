@@ -63,7 +63,6 @@ public class GamePlay extends javax.swing.JFrame {
 
     /**
      * Method that reads the playList file to use for the username check
-     *
      * @return an arrayList of the usernames read from the file
      */
     public static ArrayList scanPlayerListFile() {
@@ -92,7 +91,7 @@ public class GamePlay extends javax.swing.JFrame {
     /**
      * UsernameCheck method that determines whether or not username entered is
      * valid
-     * @param u the String that the user entered in the GUI text field
+     * @param u - the String that the user entered in the GUI text field
      * @return true or false based on whether its valid
      */
     public static boolean usernameCheck(String u) {

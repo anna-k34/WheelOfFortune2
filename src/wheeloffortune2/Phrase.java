@@ -26,7 +26,6 @@ public class Phrase {
     /**
      * Secondary constructor that creates a Phrase with a question, hint and
      * answer
-     *
      * @param question the prompt given to user
      * @param hint a hint if the user buys it
      * @param answer the phrase the user will try to solve
@@ -38,8 +37,7 @@ public class Phrase {
     }
 
     /**
-     * Accessor that returns the question prompt
-     *
+     * an accessor that returns the question prompt
      * @return the clue shown to the user
      */
     public String getQuestion() {
@@ -47,8 +45,7 @@ public class Phrase {
     }
 
     /**
-     * Mutator that sets the question prompt
-     *
+     * a mutator that sets the question prompt
      * @param question the clue to display
      */
     public void setQuestion(String question) {
@@ -56,8 +53,7 @@ public class Phrase {
     }
 
     /**
-     * Accessor that returns the hint for the phrase.
-     *
+     * an accessor that returns the hint for the phrase.
      * @return the hint for the phrase
      */
     public String getHint() {
@@ -65,8 +61,7 @@ public class Phrase {
     }
 
     /**
-     * Mutator that sets the hint for the phrase.
-     *
+     * a mutator that sets the hint for the phrase.
      * @param hint the hint for the user
      */
     public void setHint(String hint) {
@@ -74,8 +69,7 @@ public class Phrase {
     }
 
     /**
-     * Accessor that returns the phrase answer
-     *
+     * an accessor that returns the phrase answer
      * @return the correct answer for phrase
      */
     public String getAnswer() {
@@ -83,8 +77,7 @@ public class Phrase {
     }
 
     /**
-     * Mutator that sets the phrase answer
-     *
+     * a mutator that sets the phrase answer
      * @param answer the answer for phrase
      */
     public void setAnswer(String answer) {
@@ -92,8 +85,7 @@ public class Phrase {
     }
 
     /**
-     * method to check for the equality of the phrasae and another phrase
-     *
+     * method to check for the equality of the phrase and another phrase
      * @param p car to check equality with
      * @return whether phrases are identical or not
      */
@@ -103,7 +95,6 @@ public class Phrase {
 
     /**
      * cloning method that creates an identical phrase
-     *
      * @return identical phrase
      */
     public Phrase clone() {
@@ -113,7 +104,6 @@ public class Phrase {
 
     /**
      * To string method that returns formatted output
-     *
      * @return output that will be put into the file when saved
      */
     public String toString() {
