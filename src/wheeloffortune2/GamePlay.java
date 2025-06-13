@@ -3,7 +3,7 @@
  * ICS4U Final Project
  * Homepage/GamePlay jFrame
  * June 11th 2025
-
+ *
  */
 package wheeloffortune2;
 //import statements
@@ -24,29 +24,40 @@ public class GamePlay extends javax.swing.JFrame {
     private String username;
     private Player player;
     private int spinMoney;
+
     /**
-     * Accessor that returns a Phrases arraylist which has all the Phrase objects from the data file
+     * Accessor that returns a Phrases arraylist which has all the Phrase
+     * objects from the data file
+     *
      * @return arrayList of phrases
      */
     public ArrayList<Phrase> getPhrases() {
         return phrases;
     }
+
     /**
-     * Mutator that sets the Phrases arrayList which has all the Phrase objects from file
+     * Mutator that sets the Phrases arrayList which has all the Phrase objects
+     * from file
+     *
      * @param phrases ArrayList containing Phrase objects
      */
     public void setPhrases(ArrayList<Phrase> phrases) {
         this.phrases = phrases;
     }
+
     /**
      * Accessor that returns the username that the user has entered
-     * @return valid string that is used to differentiate users 
+     *
+     * @return valid string that is used to differentiate users
      */
     public String getUsername() {
         return username;
     }
+
     /**
-     * Accessor that returns the Player object, defined by username, highscore, and spins left
+     * Accessor that returns the Player object, defined by username, highscore,
+     * and spins left
+     *
      * @return Player object for current user
      */
     public Player getPlayer() {
@@ -92,6 +103,7 @@ public class GamePlay extends javax.swing.JFrame {
     /**
      * UsernameCheck method that determines whether or not username entered is
      * valid
+     *
      * @param u the String that the user entered in the GUI text field
      * @return true or false based on whether its valid
      */
@@ -113,6 +125,9 @@ public class GamePlay extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Username is too long. Try again");
             return false;
 
+        } else if (u.contains("")) {
+            JOptionPane.showMessageDialog(null, "Username cannot have a space. Try again");
+            return false;
         } else if (equals) {//if the username equals another one already stored, username isn't valid
             JOptionPane.showMessageDialog(null, "Username has already been used. Try again");
             return false;
@@ -123,9 +138,12 @@ public class GamePlay extends javax.swing.JFrame {
         //otherwise, username is valid and return true
         return true;
     }
+
     /**
-     * method that reads the phrases file to get the hints and answers and assigns it to an object
-     * @param phrases the arrayList that has the  
+     * method that reads the phrases file to get the hints and answers and
+     * assigns it to an object
+     *
+     * @param phrases the arrayList that has the
      */
     public static void scanFile(ArrayList<Phrase> phrases) {
         //intialize variables for the atrributes of the Phrases class
@@ -137,7 +155,7 @@ public class GamePlay extends javax.swing.JFrame {
             File f = new File("src/wheeloffortune2/phrase.txt");
             //create a new scanner and scan the file
             Scanner s = new Scanner(f);
-            
+
             while (s.hasNextLine()) {
                 //set the string variables to what is on the next line
                 question = s.nextLine();
@@ -321,7 +339,7 @@ public class GamePlay extends javax.swing.JFrame {
             firstPlayScreen.setVisible(true);
             //close this screen by setting it equal to false
             this.setVisible(false);
-            
+
 //Otherwise, if the username is not valid, don't switch screens, and set the text in the field back to nothing so user can reenter a username
         } else if (!usernameTest) {
             usernameTextField.setText("");
@@ -333,7 +351,7 @@ public class GamePlay extends javax.swing.JFrame {
 
     private void instructionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instructionsButtonActionPerformed
         //if the instructions button is pressed, the instructions jFrame will open
-        
+
         if (instructions == null) {//if the instructions screen is null
             //initialize it with the instructions frame using this frame as a parameter
             instructions = new Instructions(this);
