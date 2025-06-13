@@ -3,3 +3,5 @@ LG 9500
 L 10100
 laurag 7500
 ajk 14050
+laurab 11700
+lauraga 5900

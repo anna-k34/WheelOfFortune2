@@ -390,7 +390,6 @@ public class PlayFrame1 extends javax.swing.JFrame {
     private void spinButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spinButton1ActionPerformed
         //new DecimalFormat object for the money formatting
         money = new DecimalFormat("$##,##0.00");
-        //set the user's current earnings label to false that way they can't see
         //how much money theyr'e going to get while the wheel is still spinning
         currentEarningsLabel1.setVisible(false);
         spin.setEnabled(false); // disable spin button while spinning
