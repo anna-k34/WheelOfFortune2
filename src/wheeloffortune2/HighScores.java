@@ -316,12 +316,12 @@ public class HighScores extends javax.swing.JFrame {
 
         while (!finished) {
             // Move lowMark to the right while items[lowMark] <= pivot
-            while (lowMark >= highMark && items.get(lowMark).getHighscore() <= pivotValue) {
+            while (lowMark <= highMark && items.get(lowMark).getHighscore() >= pivotValue) {
                 lowMark++;
             }
 
             // Move highMark to the left while items[highMark] >= pivot
-            while (highMark <= lowMark && items.get(highMark).getHighscore() >= pivotValue) {
+            while (highMark >= lowMark && items.get(highMark).getHighscore() <= pivotValue) {
                 highMark--;
             }
 
