@@ -31,9 +31,7 @@ public class PlayFrame4 extends javax.swing.JFrame {
         correct = correctLabel;
         //get variables from previous frames
         player = secondFrame.getPlayer();
-        //set label text
-        totalMoneyLabel.setText("Final Score:   " + money.format(player.getHighscore()));
-
+        
     }
 
     /**

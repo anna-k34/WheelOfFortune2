@@ -1,9 +1,9 @@
 /*
-Wheel of Fortune Game
-ICS4U Final Summative
-Instructions fram
-June 11th 2025
- */
+* Wheel of Fortune Game
+* ICS4U Final Summative
+* Instructions frame
+* June 11th 2025
+*/
 package wheeloffortune2;
 
 
