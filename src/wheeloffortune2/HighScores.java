@@ -18,20 +18,31 @@ import java.util.Scanner;
  * @author lauragarcia
  */
 public class HighScores extends javax.swing.JFrame {
-
+    //nested class to keep track of the highscore and the username together-used to sort the highscores and have the correct username correspond
     private class ScoreEntry {
+        //encapsulatoin of attributes
         String username;
         int highscore;
-
+        /**
+         * Constructor for the class that will keep track of the usernames and highscores in the file
+         * @param username String that defines the user
+         * @param highscore Score at the end of the game
+         */
         public ScoreEntry(String username, int highscore) {
             this.username = username;
             this.highscore = highscore;
         }
-
+        /**
+         * Accessor that return the username that is assigned to a player
+         * @return String username
+         */
         public String getUsername() {
             return username;
         }
-
+        /**
+         * Accessor that sets the highscore assigned to a player
+         * @return int highscore
+         */
         public int getHighscore() {
             return highscore;
         }
@@ -57,12 +68,14 @@ public class HighScores extends javax.swing.JFrame {
         mainScreen = g;
         //invoke methods to sort highscores
         scanHighscores();
-
+        //create a new arraylist with using the ScoreEntry class
         ArrayList<ScoreEntry> sorted;
-
+        //if the size is less than or equal to one, they don't need to be sorted
         if (entries.size() <= 1) {
             sorted = new ArrayList<>(entries);
+            
         } else {
+            //otherwise, sort the file using the quicksort method
             sorted = (quickSort(entries, 0, entries.size() - 1));
         }
 
@@ -230,7 +243,7 @@ public class HighScores extends javax.swing.JFrame {
             String playerInfo[];
 
             while (s.hasNextLine()) {
-                //split the 
+                //split the player information
                 playerInfo = s.nextLine().split(" ");
                 //add the player's username and highscore to the corresponding arrays
                 //username.add(playerInfo[0]);
@@ -307,12 +320,12 @@ public class HighScores extends javax.swing.JFrame {
 
         while (!finished) {
             // Move lowMark to the right while items[lowMark] <= pivot
-            while (lowMark <= highMark && items.get(lowMark).getHighscore() <= pivotValue) {
+            while (lowMark >= highMark && items.get(lowMark).getHighscore() <= pivotValue) {
                 lowMark++;
             }
 
             // Move highMark to the left while items[highMark] >= pivot
-            while (highMark >= lowMark && items.get(highMark).getHighscore() >= pivotValue) {
+            while (highMark <= lowMark && items.get(highMark).getHighscore() >= pivotValue) {
                 highMark--;
             }
 

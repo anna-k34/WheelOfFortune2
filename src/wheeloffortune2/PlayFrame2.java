@@ -207,7 +207,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
     public void setGuessesLeft(int guessesLeft) {
         this.guessesLeft = guessesLeft;
     }
-
+    /**
+     * Accessor for the guessesleft label to be used in previous screen
+     * @return the guesses left jlabel
+     */
     public JLabel getGuessesLeftLabel() {
         return guessesLeftLabel;
     }
@@ -240,7 +243,10 @@ public class PlayFrame2 extends javax.swing.JFrame {
     public JLabel getTotalMoneyLabel() {
         return totalMoneyLabel;
     }
-
+    /**
+     * Accessor for the gameplay window
+     * @return the first window
+     */
     public GamePlay getGamePlay() {
         return firstFrame.getFirstWindow();
     }
